@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.WindowInsets
+import android.view.WindowManager
 import androidx.annotation.RequiresApi
 
 class SplashScreen : AppCompatActivity() {
@@ -19,13 +20,16 @@ class SplashScreen : AppCompatActivity() {
 //      code for api level below 31
 //         This is used to hide the status bar and make
 //         the splash screen as a full screen activity.
-//        window.setFlags(
-//            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//            WindowManager.LayoutParams.FLAG_FULLSCREEN
-//        )
 
-        window.decorView.windowInsetsController?.hide(WindowInsets.Type.statusBars())
-        window.decorView.windowInsetsController?.hide(WindowInsets.Type.navigationBars())
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
+            window.decorView.windowInsetsController?.hide(WindowInsets.Type.statusBars())
+            window.decorView.windowInsetsController?.hide(WindowInsets.Type.navigationBars())
+        }else {
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
+        }
 
         // we used the postDelayed(Runnable, time) method
         // to send a message with a delayed time.
