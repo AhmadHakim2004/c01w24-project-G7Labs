@@ -6,6 +6,7 @@ import android.util.DisplayMetrics
 import android.view.View
 import android.view.ViewGroup.MarginLayoutParams
 import android.view.WindowManager
+import android.widget.GridView
 import android.widget.TextView
 import androidx.core.view.setMargins
 import androidx.core.view.setPadding
@@ -16,6 +17,20 @@ class LayoutUtils() {
 
     constructor(context: Context) : this() {
         setDimensions(context)
+    }
+
+    /**
+     * Returns Screen's Width.
+     */
+    fun width(): Int {
+        return _width
+    }
+
+    /**
+     * Returns Screen's Height.
+     */
+    fun height(): Int {
+        return _height
     }
 
     /**
@@ -36,7 +51,7 @@ class LayoutUtils() {
             rightPercentage: Float,
             bottomPercentage: Float,
     ) {
-        val layoutParams = view.layoutParams as MarginLayoutParams
+        val layoutParams = MarginLayoutParams(view.layoutParams)
 
         layoutParams.setMargins(
                 (_width * leftPercentage).toInt(),
@@ -44,6 +59,8 @@ class LayoutUtils() {
                 (_width * rightPercentage).toInt(),
                 (_height * bottomPercentage).toInt()
         )
+
+        view.layoutParams = layoutParams
     }
 
     /**
@@ -59,9 +76,11 @@ class LayoutUtils() {
     fun setMargins(view: View, marginPercentage: Float, comparedToHeight: Boolean = true)
     {
         val selectedDimensionSize = if(comparedToHeight) _height else _width
-        val layoutParams = view.layoutParams as MarginLayoutParams
+        val layoutParams = MarginLayoutParams(view.layoutParams)
 
         layoutParams.setMargins((selectedDimensionSize * marginPercentage).toInt())
+
+        view.layoutParams = layoutParams
     }
 
     /**
@@ -139,6 +158,30 @@ class LayoutUtils() {
         val selectedDimensionSize = if(comparedToHeight) _height else _width
 
         view.textSize = selectedDimensionSize * textSizePercentage
+    }
+
+    /**
+     * Sets Horizontal Spacing of GridView
+     *
+     * @param view TextView to be Modified
+     * @param spacingPercentage Percentage of screen height/width to set the text size
+     *
+     * @note When setting percentages, set them as: 100% = 1.0, 1% = 0.01, 0.75% = 0.0075
+     */
+    fun setHorizontalSpacing(view: GridView, spacingPercentage: Float) {
+        view.horizontalSpacing = (_width * spacingPercentage).toInt()
+    }
+
+    /**
+     * Sets Vertical Spacing of GridView
+     *
+     * @param view TextView to be Modified
+     * @param spacingPercentage Percentage of screen height/width to set the text size
+     *
+     * @note When setting percentages, set them as: 100% = 1.0, 1% = 0.01, 0.75% = 0.0075
+     */
+    fun setVerticalSpacing(view: GridView, spacingPercentage: Float) {
+        view.verticalSpacing = (_height * spacingPercentage).toInt()
     }
 
     @Suppress("DEPRECATION")
