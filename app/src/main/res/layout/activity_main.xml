@@ -1,18 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="clip_horizontal|center"
+    android:orientation="vertical"
+    android:paddingLeft="5dp"
+    android:paddingTop="10dp"
+    android:paddingRight="5dp"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView3"
+
+    <TextClock
+        android:id="@+id/textClock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Main page"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_marginTop="50dp"
+        android:fontFamily="sans-serif-black"
+        android:textSize="48sp" />
+
+    <ProgressBar
+        android:id="@+id/pb_battery"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateBehavior="repeat"
+        android:maxWidth="100dip"
+        android:maxHeight="40dip"
+        android:minWidth="100dp"
+        android:minHeight="40dp"
+        android:progressTint="#3ED116"
+        android:scaleX="-1"
+        android:scaleY="6" />
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="TextView"
+        android:textSize="24sp" />
+
+    <GridView
+        android:id="@+id/appsGridContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="2"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+    </GridView>
+
+</LinearLayout>
