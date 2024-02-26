@@ -51,7 +51,9 @@ class LayoutUtils() {
             rightPercentage: Float,
             bottomPercentage: Float,
     ) {
-        val layoutParams = MarginLayoutParams(view.layoutParams)
+        val layoutParams =
+            if(view.layoutParams is MarginLayoutParams) view.layoutParams as MarginLayoutParams
+            else MarginLayoutParams(view.layoutParams)
 
         layoutParams.setMargins(
                 (_width * leftPercentage).toInt(),
@@ -76,7 +78,9 @@ class LayoutUtils() {
     fun setMargins(view: View, marginPercentage: Float, comparedToHeight: Boolean = true)
     {
         val selectedDimensionSize = if(comparedToHeight) _height else _width
-        val layoutParams = MarginLayoutParams(view.layoutParams)
+        val layoutParams =
+            if(view.layoutParams is MarginLayoutParams) view.layoutParams as MarginLayoutParams
+            else MarginLayoutParams(view.layoutParams)
 
         layoutParams.setMargins((selectedDimensionSize * marginPercentage).toInt())
 
