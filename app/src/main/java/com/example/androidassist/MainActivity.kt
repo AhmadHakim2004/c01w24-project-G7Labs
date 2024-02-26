@@ -11,18 +11,23 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.GridView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import com.example.androidassist.sharedComponents.dataClasses.AppsInfo
+import com.example.androidassist.sharedComponents.services.LayoutUtils
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var appsGridContainer: GridView
+    private lateinit var appsGridAdapter: AppsGridAdapter
+    private lateinit var apps: List<AppsInfo>
     private var dateDisplay: TextView? = null
     private lateinit var batteryDisplay: ProgressBar
     private var batteryProgressStatus = 0
     private lateinit var mContext: Context
-
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,8 +46,18 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
+        initAppGrid()
         initTimeAndDate()
         initBattery()
+
+        setStyles()
+    }
+
+    private fun initAppGrid() {
+        appsGridContainer = findViewById(R.id.appsGridContainer)
+        apps = getInitialApps()
+        appsGridAdapter = AppsGridAdapter(this, apps)
+        appsGridContainer.adapter = appsGridAdapter
     }
 
     @RequiresApi(Build.VERSION_CODES.O) //requires api 26
@@ -61,7 +76,6 @@ class MainActivity : AppCompatActivity() {
         var iFilter = IntentFilter(Intent.ACTION_BATTERY_CHANGED)
         mContext.registerReceiver(batteryBroadcastReceiver, iFilter)
         batteryDisplay = findViewById(R.id.pb_battery)
-
     }
 
     private val batteryBroadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
@@ -78,5 +92,25 @@ class MainActivity : AppCompatActivity() {
             }
             batteryDisplay.progress = batteryProgressStatus
         }
+    }
+
+    // @Todo Get Apps From DB
+    private fun getInitialApps(): List<AppsInfo> {
+        return listOf(
+            AppsInfo(1, R.mipmap.ic_launcher, "Camera"),
+            AppsInfo(2, R.mipmap.ic_launcher, "Photos"),
+            AppsInfo(3, R.mipmap.ic_launcher, "Contacts"),
+            AppsInfo(4, R.mipmap.ic_launcher, "Settings"),
+            AppsInfo(5, R.mipmap.ic_launcher, "Mock"),
+            AppsInfo(6, R.mipmap.ic_launcher, "Mock"),
+            AppsInfo(7, R.mipmap.ic_launcher, "Mock"),
+            AppsInfo(8, R.mipmap.ic_launcher, "Mock")
+        )
+    }
+
+    private fun setStyles() {
+        val layoutUtils = LayoutUtils(this)
+
+        layoutUtils.setMargins(appsGridContainer, 0.025f)
     }
 }

@@ -42,12 +42,11 @@
         android:textSize="24sp" />
 
     <GridView
+        android:id="@+id/appsGridContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fadeScrollbars="false"
-        android:fastScrollAlwaysVisible="false"
-        android:fastScrollEnabled="false"
-        android:scrollbarAlwaysDrawVerticalTrack="false"
+        android:numColumns="2"
+        android:overScrollMode="never"
         android:scrollbars="none">
 
     </GridView>
