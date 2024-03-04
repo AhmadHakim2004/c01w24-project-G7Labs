@@ -1,0 +1,49 @@
+name: Android Build and Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+      - camera
+      - photos
+      - contacts
+      - settings
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: AhmadHakim2004/c01w24lab4@v1
+
+      - name: Build gradle project
+        run: ./gradlew build
+
+  Unit-Tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: AhmadHakim2004/c01w24lab4@v1
+
+      - name: Run Unit Tests
+        run: ./gradlew test
+
+  Instrumented-Tests:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        api-level: [24, 34]
+
+    steps:
+      - uses: AhmadHakim2004/c01w24lab4@v1
+
+      - name: Run instrumented tests
+        uses: ReactiveCircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api-level }}
+          target: default
+          arch: x86_64
+          script: ./gradlew connectedCheck
