@@ -9,8 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import com.example.androidassist.sharedComponents.dataClasses.AppsInfo
-import com.example.androidassist.sharedComponents.services.LayoutUtils
-import kotlin.math.roundToInt
+import com.example.androidassist.sharedComponents.utilities.LayoutUtils
 
 class AppsGridAdapter(private val context: Context, apps: List<AppsInfo>) : BaseAdapter() {
     private val items: List<AppsInfo> = apps
@@ -40,16 +39,8 @@ class AppsGridAdapter(private val context: Context, apps: List<AppsInfo>) : Base
     }
 
     private fun setStyles(cardView: CardView, textView: TextView) {
-        val layoutUtils = LayoutUtils(context)
+        LayoutUtils.setHeight(cardView, 0.25f)
 
-        // TODO() Add setting height inside LayoutUtilsService
-        val newLayoutParams = cardView.layoutParams
-        val wantedHeight = layoutUtils.height() * 0.25
-        newLayoutParams.height = wantedHeight.roundToInt()
-        cardView.layoutParams = newLayoutParams
-
-        layoutUtils.setMargins(cardView, 0.1f)
-
-        layoutUtils.setTextSize(textView, 0.007f)
+        LayoutUtils.setTextSize(textView, 0.007f)
     }
 }
