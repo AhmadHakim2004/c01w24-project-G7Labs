@@ -15,7 +15,9 @@ import android.widget.GridView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import com.example.androidassist.sharedComponents.dataClasses.SharedConstants.AppEnum
 import com.example.androidassist.sharedComponents.dataClasses.AppsInfo
+import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
 import com.example.androidassist.sharedComponents.services.LayoutUtils
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -97,14 +99,14 @@ class MainActivity : AppCompatActivity() {
     // @Todo Get Apps From DB
     private fun getInitialApps(): List<AppsInfo> {
         return listOf(
-            AppsInfo(1, R.mipmap.ic_launcher, "Camera"),
-            AppsInfo(2, R.mipmap.ic_launcher, "Photos"),
-            AppsInfo(3, R.mipmap.ic_launcher, "Contacts"),
-            AppsInfo(4, R.mipmap.ic_launcher, "Settings"),
-            AppsInfo(5, R.mipmap.ic_launcher, "Mock"),
-            AppsInfo(6, R.mipmap.ic_launcher, "Mock"),
-            AppsInfo(7, R.mipmap.ic_launcher, "Mock"),
-            AppsInfo(8, R.mipmap.ic_launcher, "Mock")
+            SharedConstants.DefaultAppsInfo.CameraAppInfo,
+            SharedConstants.DefaultAppsInfo.PhotosAppInfo,
+            SharedConstants.DefaultAppsInfo.ContactsAppInfo,
+            SharedConstants.DefaultAppsInfo.SettingsAppInfo,
+            AppsInfo(5, R.mipmap.ic_launcher, "Mock", AppEnum.OTHER),
+            AppsInfo(6, R.mipmap.ic_launcher, "Mock", AppEnum.OTHER),
+            AppsInfo(7, R.mipmap.ic_launcher, "Mock", AppEnum.OTHER),
+            AppsInfo(8, R.mipmap.ic_launcher, "Mock", AppEnum.OTHER)
         )
     }
 
