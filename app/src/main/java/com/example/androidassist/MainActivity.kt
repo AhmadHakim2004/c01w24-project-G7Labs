@@ -17,7 +17,7 @@ import android.widget.TextView
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants.AppEnum
 import com.example.androidassist.sharedComponents.dataClasses.AppsInfo
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
-import com.example.androidassist.sharedComponents.services.LayoutUtils
+import com.example.androidassist.sharedComponents.utilities.LayoutUtils
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -108,8 +108,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setStyles() {
-        val layoutUtils = LayoutUtils(this)
-
-        layoutUtils.setMargins(appsGridContainer, 0.025f)
+        LayoutUtils.setMargins(appsGridContainer, 0.025f)
     }
 }
