@@ -17,7 +17,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: AhmadHakim2004/c01w24-project-G7Labs@v2
+      - name: Set current date as env variable
+        run: echo "date_today=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+        shell: bash
+
+      - name: Set repository name as env variable
+        run: echo "repository_name=$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')" >> $GITHUB_ENV
+        shell: bash
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+          cache: 'gradle'
+
+      - name: Change wrapper permissions
+        run: chmod +x ./gradlew
 
       - name: Build gradle project
         run: ./gradlew build
@@ -26,7 +42,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: AhmadHakim2004/c01w24-project-G7Labs@v2
+      - name: Set current date as env variable
+        run: echo "date_today=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+        shell: bash
+
+      - name: Set repository name as env variable
+        run: echo "repository_name=$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')" >> $GITHUB_ENV
+        shell: bash
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+          cache: 'gradle'
+
+      - name: Change wrapper permissions
+        run: chmod +x ./gradlew
 
       - name: Run Unit Tests
         run: ./gradlew test
@@ -35,10 +67,26 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        api-level: [24, 34]
+        api-level: [26, 34]
 
     steps:
-      - uses: AhmadHakim2004/c01w24-project-G7Labs@v2
+      - name: Set current date as env variable
+        run: echo "date_today=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+        shell: bash
+
+      - name: Set repository name as env variable
+        run: echo "repository_name=$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')" >> $GITHUB_ENV
+        shell: bash
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+          cache: 'gradle'
+
+      - name: Change wrapper permissions
+        run: chmod +x ./gradlew
 
       - name: Run instrumented tests
         uses: ReactiveCircus/android-emulator-runner@v2
