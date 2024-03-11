@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: AhmadHakim2004/c01w24lab4@v1
+      - uses: AhmadHakim2004/c01w24-project-G7Labs@v2
 
       - name: Build gradle project
         run: ./gradlew build
@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: AhmadHakim2004/c01w24lab4@v1
+      - uses: AhmadHakim2004/c01w24-project-G7Labs@v2
 
       - name: Run Unit Tests
         run: ./gradlew test
@@ -38,7 +38,7 @@ jobs:
         api-level: [24, 34]
 
     steps:
-      - uses: AhmadHakim2004/c01w24lab4@v1
+      - uses: AhmadHakim2004/c01w24-project-G7Labs@v2
 
       - name: Run instrumented tests
         uses: ReactiveCircus/android-emulator-runner@v2
