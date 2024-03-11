@@ -14,7 +14,6 @@ import android.view.WindowManager
 import android.widget.GridView
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants.AppEnum
 import com.example.androidassist.sharedComponents.dataClasses.AppsInfo
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
@@ -31,7 +30,6 @@ class MainActivity : AppCompatActivity() {
     private var batteryProgressStatus = 0
     private lateinit var mContext: Context
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -62,7 +60,6 @@ class MainActivity : AppCompatActivity() {
         appsGridContainer.adapter = appsGridAdapter
     }
 
-    @RequiresApi(Build.VERSION_CODES.O) //requires api 26
     fun initTimeAndDate() {
         //time and date
         dateDisplay = findViewById(R.id.tv_date)
