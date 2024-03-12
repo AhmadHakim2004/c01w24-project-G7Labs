@@ -15,6 +15,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <application
         android:name=".sharedComponents.AndroidAssistApplication"
         android:allowBackup="true"
@@ -27,17 +28,14 @@
         android:theme="@style/Theme.AndroidAssist"
         tools:targetApi="31">
         <activity
-            android:name=".apps.photos.PhotosMainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".apps.contacts.ContactsMainActivity"
-            android:exported="false" />
-        <activity
             android:name=".apps.camera.CameraMainActivity"
             android:exported="true">
         </activity>
         <activity
             android:name=".apps.photos.PhotosMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".apps.contacts.ContactsMainActivity"
             android:exported="false" />
         <activity
             android:name=".sharedComponents.views.BaseApps"
