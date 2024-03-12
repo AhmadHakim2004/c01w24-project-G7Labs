@@ -8,7 +8,12 @@ class SharedConstants {
         PHOTOS,
         CONTACTS,
         SETTINGS,
-        OTHER
+        OTHER,
+        //TODO: //need to find a better fix for this...generic adapter maybe
+        CPHOTO,
+        CPHOTOSELFIE,
+        CVIDEO,
+        CVIDEOSELFIE
     }
 
     class DefaultAppsInfo {
@@ -19,4 +24,5 @@ class SharedConstants {
             val SettingsAppInfo = AppsInfo(4, R.drawable.settings_icon, "Settings", AppEnum.SETTINGS)
         }
     }
+
 }
