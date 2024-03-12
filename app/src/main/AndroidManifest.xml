@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-feature android:name="android.hardware.camera.any" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
+    <uses-permission android:name="android.permission.CAMERA" />
     <application
         android:name=".sharedComponents.AndroidAssistApplication"
         android:allowBackup="true"
@@ -13,6 +18,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidAssist"
         tools:targetApi="31">
+        <activity
+            android:name=".apps.camera.CameraMainActivity"
+            android:exported="true">
+        </activity>
         <activity
             android:name=".sharedComponents.views.BaseApps"
             android:exported="false" />
