@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".apps.camera.CameraMainFragment"
+    android:id="@+id/fragment_container_view_tag">
+
+    <GridView
+        android:id="@+id/appsGridContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:isScrollContainer="false"
+        android:numColumns="2"
+        android:scrollbars="none" />
+
+</FrameLayout>
