@@ -1,55 +1,63 @@
 package com.example.androidassist.apps.contacts
+import android.Manifest
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.androidassist.R
-import com.example.androidassist.databinding.ContactsMainBinding
 import android.provider.ContactsContract
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ContactMainFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ContactMainFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private lateinit var binding: ContactsMainBinding
     private lateinit var contactList: RecyclerView
-    private lateinit var contacts: MutableList<ContactDTO>
-    private lateinit var contactAdapter: ContactAdapter
+    private lateinit var contacts: MutableList<ContactInfo>
+    private var contactAdapter: ContactAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.contacts_main, container, false)
+        return inflater.inflate(R.layout.contacts_main_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        contactList = requireView().findViewById(R.id.contact_list)
-        contacts = loadContacts()
 
-        contactAdapter = ContactAdapter(contacts, activity as ContactsMainActivity)
-        contactList.adapter = contactAdapter
+        if (allPermissionsGranted()) {
+            contacts = loadContacts()
+            contactList = requireView().findViewById(R.id.contact_list)
+
+            contactAdapter = ContactAdapter(contacts)
+            contactList.adapter = contactAdapter
+            contactList.layoutManager = LinearLayoutManager(activity)
+        } else {
+            requestCameraPermissions()
+        }
     }
+
     companion object {
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance() = ContactMainFragment()
-
+        private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.READ_CONTACTS)
     }
-    private fun loadContacts() : MutableList<ContactDTO> {
-        val contactList: MutableList<ContactDTO> = ArrayList()
+
+    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
+        ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun requestCameraPermissions() {
+        ActivityCompat.requestPermissions(requireActivity(), REQUIRED_PERMISSIONS, 123)
+    }
+
+    private fun loadContacts() : MutableList<ContactInfo> {
+        val contactList: MutableList<ContactInfo> = ArrayList()
         val contacts = (activity?.contentResolver)?.query(
             ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
             null, null, null, null
@@ -57,20 +65,31 @@ class ContactMainFragment : Fragment() {
         contacts?.use { cursor ->
             val nameIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)
             val numberIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)
-            //val photoUriIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.PHOTO_URI)
+            val photoUriIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.PHOTO_URI)
 
             while (cursor.moveToNext()) {
+                if(nameIndex < 0 || numberIndex < 0 || photoUriIndex < 0) {
+                    continue
+                }
                 val name = cursor.getString(nameIndex)
                 val number = cursor.getString(numberIndex)
-                //val photoUri = if (photoUriIndex != -1) cursor.getString(photoUriIndex) else null
-                //val image = photoUri?.let { uri -> loadContactPhoto(Uri.parse(uri)) }
+                val photoUriString = cursor.getString(photoUriIndex)
+                val photoUri = photoUriString?.let { Uri.parse(it) }
+                val bitmap = loadContactPhoto(photoUri)
 
-                val contact = ContactDTO(name)
+                val contact = ContactInfo(name, number, bitmap)
                 contactList.add(contact)
             }
         }
 
-        //binding.contactList.adapter = ContactAdapter(contactList, activity as ContactsMainActivity)
         return contactList
+    }
+
+    fun loadContactPhoto(photoUri: Uri?): Bitmap? {
+        photoUri?.let {
+            val inputStream = activity?.contentResolver?.openInputStream(it)
+            return BitmapFactory.decodeStream(inputStream)
+        }
+        return null
     }
 }
