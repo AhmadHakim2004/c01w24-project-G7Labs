@@ -68,4 +68,8 @@ abstract class BaseApps : AppCompatActivity() {
     fun setState(state : SharedConstants.AppEnum){
         this.state = state
     }
+
+    fun getState(): SharedConstants.AppEnum {
+        return state
+    }
 }
