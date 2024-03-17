@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
         android:name=".sharedComponents.AndroidAssistApplication"
         android:allowBackup="true"
@@ -14,10 +16,16 @@
         android:theme="@style/Theme.AndroidAssist"
         tools:targetApi="31">
         <activity
+            android:name=".apps.contacts.ContactsMainActivity"
+            android:exported="false" />
+        <activity
             android:name=".sharedComponents.views.BaseApps"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".apps.contacts.ContactMainActivity"
             android:exported="true" />
         <activity
             android:name=".SplashScreen"
