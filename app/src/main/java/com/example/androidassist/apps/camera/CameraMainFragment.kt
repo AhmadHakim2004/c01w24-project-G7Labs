@@ -51,22 +51,25 @@ class CameraMainFragment : Fragment() {
                     val cameraActivity = activity as CameraMainActivity
                     cameraActivity.replaceFragment(CameraPhotoFragment())
                     cameraActivity.setState(SharedConstants.AppEnum.CPHOTO)
+
                 }
                 SharedConstants.AppEnum.CPHOTOSELFIE -> {
                     val cameraActivity = activity as CameraMainActivity
                     cameraActivity.replaceFragment(CameraPhotoSelfieFragment())
                     cameraActivity.setState(SharedConstants.AppEnum.CPHOTOSELFIE)
+
                 }
                 SharedConstants.AppEnum.CVIDEO -> {
                     val cameraActivity = activity as CameraMainActivity
                     cameraActivity.replaceFragment(CameraVideoFragment())
                     cameraActivity.setState(SharedConstants.AppEnum.CVIDEO)
+
                 }
                 SharedConstants.AppEnum.CVIDEOSELFIE -> {
                     val cameraActivity = activity as CameraMainActivity
                     cameraActivity.replaceFragment(CameraVideoSelfieFragment())
-                    cameraActivity.setState(SharedConstants.AppEnum.CVIDEOSELFIE)
 
+                    cameraActivity.setState(SharedConstants.AppEnum.CVIDEOSELFIE)
                 }
                 else -> {}
             }

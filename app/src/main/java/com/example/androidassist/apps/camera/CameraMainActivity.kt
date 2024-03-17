@@ -33,5 +33,6 @@ class CameraMainActivity : BaseApps() {
                     replaceFragment(CameraMainFragment())}
             }
         }
+
     }
 }
