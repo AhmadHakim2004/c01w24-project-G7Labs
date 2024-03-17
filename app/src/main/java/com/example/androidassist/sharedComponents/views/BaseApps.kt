@@ -7,13 +7,16 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.androidassist.R
 import com.example.androidassist.sharedComponents.dataClasses.AppsInfo
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
+import com.example.androidassist.sharedComponents.utilities.LayoutUtils
 
 abstract class BaseApps : AppCompatActivity() {
+    protected lateinit var appHeader: LinearLayout
     protected lateinit var appHeaderIcon: ImageView
     protected lateinit var appHeaderTitle: TextView
     protected lateinit var backButton: Button
@@ -23,6 +26,7 @@ abstract class BaseApps : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_base_apps)
 
+        appHeader = findViewById(R.id.appHeader)
         appHeaderIcon = findViewById(R.id.appHeaderIcon)
         appHeaderTitle = findViewById(R.id.appHeaderTitle)
         backButton = findViewById(R.id.backButton)
@@ -62,7 +66,11 @@ abstract class BaseApps : AppCompatActivity() {
     }
 
     private fun setupStyles() {
-
+        LayoutUtils.setMargins(appHeader, 0f, 0.005f, 0f, 0.005f)
+        LayoutUtils.setPadding(appHeaderIcon, 0.012f)
+        LayoutUtils.setTextSize(appHeaderTitle, 0.009f)
+        LayoutUtils.setMargins(backButton, 0.025F, 0.01F, 0.025F, 0.01F)
+        LayoutUtils.setTextSize(backButton, 0.007f)
     }
 
     fun setState(state : SharedConstants.AppEnum){
