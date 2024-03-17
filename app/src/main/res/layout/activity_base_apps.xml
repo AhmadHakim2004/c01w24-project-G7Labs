@@ -30,7 +30,9 @@
             android:layout_height="match_parent"
             android:layout_weight="3"
             android:fontFamily="sans-serif-medium"
-            android:gravity="center" />
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            />
 
     </LinearLayout>
 
@@ -48,8 +50,10 @@
         android:id="@+id/backButton"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="@color/backButtonColor"
         android:text="@string/backButtonTitle"
+        app:icon="?attr/homeAsUpIndicator"
+        app:iconGravity="textStart"
         app:layout_constraintTop_toBottomOf="@id/fragmentHolder"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
