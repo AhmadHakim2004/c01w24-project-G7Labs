@@ -1,1 +1,0 @@
-Added this file so that camera folder is added to github. Remove when adding actual files to this folder.
