@@ -16,6 +16,7 @@ import android.widget.GridView
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.example.androidassist.apps.camera.CameraMainActivity
+import com.example.androidassist.apps.contacts.ContactsMainActivity
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants.AppEnum
 import com.example.androidassist.sharedComponents.dataClasses.AppsInfo
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
@@ -64,6 +65,7 @@ class MainActivity : AppCompatActivity() {
         appsGridContainer.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
             when(apps[position].appEnum) {
                 AppEnum.CAMERA -> startActivity(Intent(this, CameraMainActivity::class.java))
+                AppEnum.CONTACTS -> startActivity(Intent(this, ContactsMainActivity::class.java))
                 else -> {}
             }
         }
