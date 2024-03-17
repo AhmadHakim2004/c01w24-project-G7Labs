@@ -34,8 +34,6 @@ import java.util.concurrent.Executors
  */
 class CameraPhotoSelfieFragment : Fragment() {
     private var imageCapture: ImageCapture? = null
-    private lateinit var outputDirectory: File
-    private lateinit var cameraExecutor: ExecutorService
     private lateinit var previewViewV: PreviewView
 
     override fun onCreateView(
@@ -110,6 +108,5 @@ class CameraPhotoSelfieFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        cameraExecutor.shutdown()
     }
 }
