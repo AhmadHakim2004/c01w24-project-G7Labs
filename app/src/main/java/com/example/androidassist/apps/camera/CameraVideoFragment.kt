@@ -51,53 +51,6 @@ class CameraVideoFragment : Fragment() {
         } else {
             requestCameraPermissions()
         }
-
-        // set on click listener for the button of capture photo
-        // it calls a method which is implemented below
-//        view.findViewById<Button>(R.id.camera_capture_button).setOnClickListener {
-//            takePhoto()
-//        }
-        outputDirectory = getOutputDirectory()
-        cameraExecutor = Executors.newSingleThreadExecutor()
-    }
-
-    private fun takePhoto() {
-        // Get a stable reference of the
-        // modifiable image capture use case
-        val imageCapture = imageCapture ?: return
-
-        // Create time-stamped output file to hold the image
-        val photoFile = File(
-            outputDirectory,
-            SimpleDateFormat(FILENAME_FORMAT, Locale.US).format(System.currentTimeMillis()) + ".jpg"
-        )
-
-        // Create output options object which contains file + metadata
-        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
-
-        // Set up image capture listener,
-        // which is triggered after photo has
-        // been taken
-        imageCapture.takePicture(
-            outputOptions,
-            ContextCompat.getMainExecutor(requireContext()),
-            object : ImageCapture.OnImageSavedCallback {
-                override fun onError(exc: ImageCaptureException) {
-                    Log.e(TAG, "Photo capture failed: ${exc.message}", exc)
-                }
-
-                override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                    val savedUri = Uri.fromFile(photoFile)
-
-                    // set the saved uri to the image view
-                    requireView().findViewById<ImageView>(R.id.iv_capture).visibility = View.VISIBLE
-                    requireView().findViewById<ImageView>(R.id.iv_capture).setImageURI(savedUri)
-
-                    val msg = "Photo capture succeeded: $savedUri"
-                    Toast.makeText(requireContext(), msg, Toast.LENGTH_LONG).show()
-                    Log.d(TAG, msg)
-                }
-            })
     }
 
     private fun startCamera() {
@@ -144,13 +97,6 @@ class CameraVideoFragment : Fragment() {
         ActivityCompat.requestPermissions(requireActivity(), REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
     }
 
-    // creates a folder inside internal storage
-    private fun getOutputDirectory(): File {
-        val mediaDir = requireContext().externalMediaDirs.firstOrNull()?.let {
-            File(it, resources.getString(R.string.app_name)).apply { mkdirs() }
-        }
-        return mediaDir ?: requireContext().filesDir
-    }
 
     companion object {
         private const val TAG = "CameraXGFG"
