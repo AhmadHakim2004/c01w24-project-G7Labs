@@ -11,11 +11,13 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.androidassist.R
 import com.example.androidassist.sharedComponents.dataClasses.AppsInfo
+import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
 
 abstract class BaseApps : AppCompatActivity() {
     protected lateinit var appHeaderIcon: ImageView
     protected lateinit var appHeaderTitle: TextView
     protected lateinit var backButton: Button
+    private lateinit var state : SharedConstants.AppEnum
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,5 +63,9 @@ abstract class BaseApps : AppCompatActivity() {
 
     private fun setupStyles() {
 
+    }
+
+    fun setState(state : SharedConstants.AppEnum){
+        this.state = state
     }
 }
