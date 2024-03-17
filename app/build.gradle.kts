@@ -1,6 +1,9 @@
+import dev.shushant.localization.plugin.utils.Languages
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("dev.shushant.localization.plugin") version "1.0.1"
 }
 
 android {
@@ -31,6 +34,13 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+}
+
+localization {
+    supportedLang = listOf(
+        // Add Supported Languages here
+    )
+    pathToGenerateSupportedLanguageEnum = "${projectDir}/app/src/main/java/com/example/androidassist/sharedComponents/dataClasses"
 }
 
 dependencies {
