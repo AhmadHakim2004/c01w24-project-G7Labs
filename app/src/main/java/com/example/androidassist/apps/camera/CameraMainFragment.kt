@@ -51,6 +51,18 @@ class CameraMainFragment : Fragment() {
                     val cameraActivity = activity as CameraMainActivity
                     cameraActivity.replaceFragment(CameraPhotoFragment())
                 }
+                SharedConstants.AppEnum.CPHOTOSELFIE -> {
+                    val cameraActivity = activity as CameraMainActivity
+                    cameraActivity.replaceFragment(CameraPhotoSelfieFragment())
+                }
+                SharedConstants.AppEnum.CVIDEO -> {
+                    val cameraActivity = activity as CameraMainActivity
+                    cameraActivity.replaceFragment(CameraVideoFragment())
+                }
+                SharedConstants.AppEnum.CVIDEOSELFIE -> {
+                    val cameraActivity = activity as CameraMainActivity
+                    cameraActivity.replaceFragment(CameraVideoSelfieFragment())
+                }
                 else -> {}
             }
         }
