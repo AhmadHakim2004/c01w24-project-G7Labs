@@ -20,6 +20,9 @@
             android:name=".MainActivity"
             android:exported="true" />
         <activity
+            android:name=".apps.settings.SettingsMainActivity"
+            android:exported="true" />
+        <activity
             android:name=".SplashScreen"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">

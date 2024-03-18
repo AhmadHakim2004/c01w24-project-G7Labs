@@ -8,7 +8,9 @@ class SharedConstants {
         PHOTOS,
         CONTACTS,
         SETTINGS,
-        OTHER
+        OTHER,
+        STEXT,
+        SLANGUAGE
     }
 
     class DefaultAppsInfo {
