@@ -6,11 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.GridLayout
 import androidx.fragment.app.Fragment
 import com.example.androidassist.R
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
+import com.example.androidassist.sharedComponents.utilities.LayoutUtils
 
 class SettingsMainFragment : Fragment() {
+    private lateinit var settingsButtonHolder: GridLayout
+    private lateinit var languageButton: Button
+    private lateinit var volumeButton: Button
+    private lateinit var brightnessButton: Button
+    private lateinit var textSizeButton: Button
+    private lateinit var blindnessButton: Button
+    private lateinit var textToSpeechButton: Button
+    private lateinit var buttons: List<Button>
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -23,8 +34,17 @@ class SettingsMainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        settingsButtonHolder = view.findViewById(R.id.settingsButtonsHolder)
         // Find the button
-        val languageButton = view.findViewById<Button>(R.id.language)
+        languageButton = view.findViewById(R.id.language)
+        volumeButton = view.findViewById(R.id.volume)
+        brightnessButton = view.findViewById(R.id.brightness)
+        textSizeButton = view.findViewById(R.id.text_size)
+        blindnessButton = view.findViewById(R.id.blindness)
+        textToSpeechButton = view.findViewById(R.id.tts)
+
+        buttons = listOf(languageButton, volumeButton, brightnessButton, textSizeButton,
+            blindnessButton, textToSpeechButton)
 
         // Set OnClickListener to the button
         languageButton.setOnClickListener {
@@ -33,14 +53,22 @@ class SettingsMainFragment : Fragment() {
             settingsActivity.setState(SharedConstants.AppEnum.SLANGUAGE)
         }
 
-        // Find the button
-        val textSizeButton = view.findViewById<Button>(R.id.text_size)
-
         // Set OnClickListener to the button
         textSizeButton.setOnClickListener {
             val settingsActivity = activity as SettingsMainActivity
             settingsActivity.replaceFragment(SettingsTextSize())
             settingsActivity.setState(SharedConstants.AppEnum.STEXT)
+        }
+
+        setupStyles()
+    }
+
+    private fun setupStyles() {
+        LayoutUtils.setPadding(settingsButtonHolder, 0.02f)
+        for (button in buttons) {
+            LayoutUtils.setPadding(button, 0f, 0.07f, 0f, 0f)
+            LayoutUtils.setMargins(button, 0.005f)
+            LayoutUtils.setTextSize(button, 0.005f)
         }
     }
 }
