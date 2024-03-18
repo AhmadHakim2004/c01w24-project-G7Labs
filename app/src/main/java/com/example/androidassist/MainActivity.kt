@@ -71,6 +71,7 @@ class MainActivity : AppCompatActivity() {
                 AppEnum.PHOTOS -> startActivity(Intent(this, PhotosMainActivity::class.java))
                 AppEnum.SETTINGS -> startActivity(Intent(this, SettingsMainActivity::class.java))
                 AppEnum.PHOTOS -> startActivity(Intent(this, PhotosMainActivity::class.java))
+                AppEnum.SETTINGS -> startActivity(Intent(this, SettingsMainActivity::class.java))
                 else -> {}
             }
         }
