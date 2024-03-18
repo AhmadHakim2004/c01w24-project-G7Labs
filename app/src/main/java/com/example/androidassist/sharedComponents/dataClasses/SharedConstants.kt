@@ -13,7 +13,9 @@ class SharedConstants {
         CPHOTO,
         CPHOTOSELFIE,
         CVIDEO,
-        CVIDEOSELFIE
+        CVIDEOSELFIE,
+        STEXT,
+        SLANGUAGE
     }
 
     class DefaultAppsInfo {
@@ -24,5 +26,4 @@ class SharedConstants {
             val SettingsAppInfo = AppsInfo(4, R.drawable.settings_icon, "Settings", AppEnum.SETTINGS)
         }
     }
-
 }
