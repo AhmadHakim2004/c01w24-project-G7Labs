@@ -1,6 +1,5 @@
 package com.example.androidassist.apps.settings
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,7 +27,7 @@ class SettingsMainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.settings_main_page, container, false)
+        return inflater.inflate(R.layout.settings_main_page_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,14 +48,14 @@ class SettingsMainFragment : Fragment() {
         // Set OnClickListener to the button
         languageButton.setOnClickListener {
             val settingsActivity = activity as SettingsMainActivity
-            settingsActivity.replaceFragment(SettingsLanguage())
+            settingsActivity.replaceFragment(SettingsLanguageFragment())
             settingsActivity.setState(SharedConstants.AppEnum.SLANGUAGE)
         }
 
         // Set OnClickListener to the button
         textSizeButton.setOnClickListener {
             val settingsActivity = activity as SettingsMainActivity
-            settingsActivity.replaceFragment(SettingsTextSize())
+            settingsActivity.replaceFragment(SettingsTextSizeFragment())
             settingsActivity.setState(SharedConstants.AppEnum.STEXT)
         }
 
@@ -68,7 +67,7 @@ class SettingsMainFragment : Fragment() {
         for (button in buttons) {
             LayoutUtils.setPadding(button, 0f, 0.07f, 0f, 0f)
             LayoutUtils.setMargins(button, 0.005f)
-            LayoutUtils.setTextSize(button, 0.005f)
+            LayoutUtils.setTextSize(button, 0.008f)
         }
     }
 }

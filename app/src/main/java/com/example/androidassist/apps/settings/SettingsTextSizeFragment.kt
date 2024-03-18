@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import com.example.androidassist.R
 import com.example.androidassist.sharedComponents.utilities.LayoutUtils
 
-class SettingsTextSize : Fragment() {
+class SettingsTextSizeFragment : Fragment() {
     private lateinit var textSizeButtonHolder: GridLayout
     private lateinit var size1Button: Button
     private lateinit var size2Button: Button
@@ -26,7 +26,7 @@ class SettingsTextSize : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.settings_text_size, container, false)
+        return inflater.inflate(R.layout.settings_text_size_fragment, container, false)
     }
 
 

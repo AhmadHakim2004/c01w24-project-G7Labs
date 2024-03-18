@@ -15,13 +15,13 @@
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
+        android:backgroundTint="@color/settingsButtons"
         android:drawableTop="@drawable/size_1"
         android:gravity="center"
         android:text="@string/size_1"
+        android:textAllCaps="false"
         android:textColor="@color/black"
-        android:backgroundTint="@color/settingsButtons"
-        android:textSize="18dp"
-        />
+        android:textSize="18dp" />
 
     <Button
         android:id="@+id/size_2"
@@ -30,13 +30,13 @@
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
+        android:backgroundTint="@color/settingsButtons"
         android:drawableTop="@drawable/size_2"
         android:gravity="center"
         android:text="@string/size_2"
+        android:textAllCaps="false"
         android:textColor="@color/black"
-        android:backgroundTint="@color/settingsButtons"
-        android:textSize="20dp"
-        />
+        android:textSize="20dp" />
 
     <Button
         android:id="@+id/size_3"
@@ -45,13 +45,13 @@
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
+        android:backgroundTint="@color/settingsButtons"
         android:drawableTop="@drawable/size_3"
         android:gravity="center"
         android:text="@string/size_3"
+        android:textAllCaps="false"
         android:textColor="@color/black"
-        android:backgroundTint="@color/settingsButtons"
-        android:textSize="22dp"
-        />
+        android:textSize="22dp" />
 
     <Button
         android:id="@+id/size_4"
@@ -60,13 +60,13 @@
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
+        android:backgroundTint="@color/settingsButtons"
         android:drawableTop="@drawable/size_4"
         android:gravity="center"
         android:text="@string/size_4"
+        android:textAllCaps="false"
         android:textColor="@color/black"
-        android:backgroundTint="@color/settingsButtons"
-        android:textSize="24dp"
-        />
+        android:textSize="24dp" />
 
     <Button
         android:id="@+id/size_5"
@@ -75,13 +75,13 @@
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
+        android:backgroundTint="@color/settingsButtons"
         android:drawableTop="@drawable/size_5"
         android:gravity="center"
         android:text="@string/size_5"
+        android:textAllCaps="false"
         android:textColor="@color/black"
-        android:backgroundTint="@color/settingsButtons"
-        android:textSize="26dp"
-        />
+        android:textSize="26dp" />
 
     <Button
         android:id="@+id/size_6"
@@ -90,11 +90,11 @@
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
+        android:backgroundTint="@color/settingsButtons"
         android:drawableTop="@drawable/size_6"
         android:gravity="center"
         android:text="@string/size_6"
+        android:textAllCaps="false"
         android:textColor="@color/black"
-        android:backgroundTint="@color/settingsButtons"
-        android:textSize="28dp"
-        />
+        android:textSize="28dp" />
 </GridLayout>
