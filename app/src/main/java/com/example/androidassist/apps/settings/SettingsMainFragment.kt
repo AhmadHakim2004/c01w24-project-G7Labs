@@ -11,6 +11,8 @@ import com.example.androidassist.R
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
 import com.example.androidassist.sharedComponents.utilities.LayoutUtils
 
+import com.example.androidassist.apps.settings.SettingsService
+
 class SettingsMainFragment : Fragment() {
     private lateinit var settingsButtonHolder: GridLayout
     private lateinit var languageButton: Button
@@ -20,6 +22,7 @@ class SettingsMainFragment : Fragment() {
     private lateinit var blindnessButton: Button
     private lateinit var textToSpeechButton: Button
     private lateinit var buttons: List<Button>
+    private lateinit var service: SettingsService
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,13 +62,15 @@ class SettingsMainFragment : Fragment() {
             settingsActivity.setState(SharedConstants.AppEnum.STEXT)
         }
 
+        service = SettingsService(requireActivity().window);
+
         setupStyles()
     }
 
     private fun setupStyles() {
         LayoutUtils.setPadding(settingsButtonHolder, 0.02f)
         for (button in buttons) {
-            LayoutUtils.setPadding(button, 0f, 0.07f, 0f, 0f)
+            LayoutUtils.setPadding(button, 0f, 0.05f, 0f, 0.03f)
             LayoutUtils.setMargins(button, 0.005f)
             LayoutUtils.setTextSize(button, 0.008f)
         }
