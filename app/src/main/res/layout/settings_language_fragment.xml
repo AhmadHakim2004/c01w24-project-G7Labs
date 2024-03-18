@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/settingsButtonsHolder"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:columnCount="2"
@@ -15,15 +16,11 @@
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
-        android:layout_margin="8dp"
         android:drawableTop="@drawable/english"
-        android:drawablePadding="0dp"
         android:gravity="center"
-        android:paddingTop="40dp"
         android:text="@string/english"
-        android:textSize="15sp"
         android:textAllCaps="false"
-        android:textColor="#000000"
+        android:textColor="@color/black"
         android:backgroundTint="#144C3636" />
 
     <Button
@@ -33,16 +30,12 @@
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
-        android:layout_margin="8dp"
         android:backgroundTint="#144C3636"
         android:drawableTop="@drawable/spanish"
-        android:drawablePadding="0dp"
         android:gravity="center"
-        android:paddingTop="40dp"
         android:text="@string/spanish"
         android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textSize="15sp" />
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/french"
@@ -51,16 +44,12 @@
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
-        android:layout_margin="8dp"
         android:backgroundTint="#144C3636"
         android:drawableTop="@drawable/french"
-        android:drawablePadding="0dp"
         android:gravity="center"
-        android:paddingTop="40dp"
         android:text="@string/french"
         android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textSize="15sp" />
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/arabic"
@@ -69,16 +58,12 @@
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
-        android:layout_margin="8dp"
         android:backgroundTint="#144C3636"
         android:drawableTop="@drawable/arabic"
-        android:drawablePadding="0dp"
         android:gravity="center"
-        android:paddingTop="40dp"
         android:text="@string/arabic"
         android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textSize="15sp" />
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/hindi"
@@ -87,16 +72,12 @@
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
-        android:layout_margin="8dp"
         android:backgroundTint="#144C3636"
         android:drawableTop="@drawable/hindi"
-        android:drawablePadding="0dp"
         android:gravity="center"
-        android:paddingTop="40dp"
         android:text="@string/hindi"
         android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textSize="15sp" />
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/mandarin"
@@ -105,14 +86,10 @@
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
-        android:layout_margin="8dp"
         android:backgroundTint="#144C3636"
         android:drawableTop="@drawable/mandarin"
-        android:drawablePadding="0dp"
         android:gravity="center"
-        android:paddingTop="40dp"
         android:text="@string/mandarin"
         android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textSize="15sp" />
+        android:textColor="@color/black" />
 </GridLayout>
