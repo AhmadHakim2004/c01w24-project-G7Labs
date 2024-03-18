@@ -4,6 +4,24 @@
     <string name="takePhoto">Take Photo</string>
     <string name="takeSelfie">Take Selfie</string>
     <string name="startVideo">Start Video</string>
+    <string name="text_size">Text Size</string>
+    <string name="brightness">Brightness</string>
+    <string name="volume">Volume</string>
+    <string name="text_to_speech">Text-to-speech</string>
+    <string name="language">Language</string>
+    <string name="blindness">Blindness</string>
+    <string name="mandarin">Mandarin</string>
+    <string name="hindi">Hindi</string>
+    <string name="arabic">Arabic</string>
+    <string name="french">French</string>
+    <string name="spanish">Spanish</string>
+    <string name="english">English</string>
+    <string name="size_1">Size 1</string>
+    <string name="size_2">Size 2</string>
+    <string name="size_3">Size 3</string>
+    <string name="size_4">Size 4</string>
+    <string name="size_5">Size 5</string>
+    <string name="size_6">Size 6</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
