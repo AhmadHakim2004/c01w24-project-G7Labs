@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/settingsButtonsHolder"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:columnCount="2"
     android:rowCount="3"
-    android:padding="32dp"
     android:orientation="horizontal"
     android:columnOrderPreserved="false">
 
@@ -15,16 +15,12 @@
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
-        android:layout_margin="8dp"
-        android:backgroundTint="#144C3636"
         android:drawableTop="@drawable/text_size"
-        android:drawablePadding="0dp"
         android:gravity="center"
-        android:paddingTop="40dp"
         android:text="@string/text_size"
-        android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textSize="15sp" />
+        android:textColor="@color/black"
+        android:backgroundTint="@color/settingsButtons"
+        />
 
     <Button
         android:id="@+id/brightness"
@@ -33,16 +29,12 @@
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
-        android:layout_margin="8dp"
-        android:backgroundTint="#144C3636"
         android:drawableTop="@drawable/brightness"
-        android:drawablePadding="0dp"
         android:gravity="center"
-        android:paddingTop="40dp"
         android:text="@string/brightness"
-        android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textSize="15sp" />
+        android:textColor="@color/black"
+        android:backgroundTint="@color/settingsButtons"
+        />
 
     <Button
         android:id="@+id/volume"
@@ -51,16 +43,12 @@
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
-        android:layout_margin="8dp"
-        android:backgroundTint="#144C3636"
         android:drawableTop="@drawable/volume"
-        android:drawablePadding="0dp"
         android:gravity="center"
-        android:paddingTop="40dp"
         android:text="@string/volume"
-        android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textSize="15sp" />
+        android:textColor="@color/black"
+        android:backgroundTint="@color/settingsButtons"
+        />
 
     <Button
         android:id="@+id/tts"
@@ -69,16 +57,12 @@
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
-        android:layout_margin="8dp"
-        android:backgroundTint="#144C3636"
         android:drawableTop="@drawable/text_to_speech"
-        android:drawablePadding="0dp"
         android:gravity="center"
-        android:paddingTop="40dp"
         android:text="@string/text_to_speech"
-        android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textSize="15sp" />
+        android:textColor="@color/black"
+        android:backgroundTint="@color/settingsButtons"
+        />
 
     <Button
         android:id="@+id/language"
@@ -87,16 +71,12 @@
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
-        android:layout_margin="8dp"
-        android:backgroundTint="#144C3636"
         android:drawableTop="@drawable/language"
-        android:drawablePadding="0dp"
         android:gravity="center"
-        android:paddingTop="40dp"
         android:text="@string/language"
-        android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textSize="15sp" />
+        android:textColor="@color/black"
+        android:backgroundTint="@color/settingsButtons"
+        />
 
     <Button
         android:id="@+id/blindness"
@@ -105,14 +85,10 @@
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
-        android:layout_margin="8dp"
-        android:backgroundTint="#144C3636"
         android:drawableTop="@drawable/blindness"
-        android:drawablePadding="0dp"
         android:gravity="center"
-        android:paddingTop="40dp"
         android:text="@string/blindness"
-        android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textSize="15sp" />
+        android:textColor="@color/black"
+        android:backgroundTint="@color/settingsButtons"
+        />
 </GridLayout>
