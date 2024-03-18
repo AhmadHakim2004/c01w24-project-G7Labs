@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/textSizeButtonsHolder"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:columnCount="2"
     android:rowCount="3"
-    android:padding="32dp"
     android:orientation="horizontal"
     android:columnOrderPreserved="false">
 
@@ -15,16 +15,13 @@
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
-        android:layout_margin="8dp"
-        android:backgroundTint="#144C3636"
         android:drawableTop="@drawable/size_1"
-        android:drawablePadding="0dp"
         android:gravity="center"
-        android:paddingTop="40dp"
         android:text="@string/size_1"
-        android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textSize="18sp" />
+        android:textColor="@color/black"
+        android:backgroundTint="@color/settingsButtons"
+        android:textSize="18dp"
+        />
 
     <Button
         android:id="@+id/size_2"
@@ -33,16 +30,13 @@
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
-        android:layout_margin="8dp"
-        android:backgroundTint="#144C3636"
         android:drawableTop="@drawable/size_2"
-        android:drawablePadding="0dp"
         android:gravity="center"
-        android:paddingTop="40dp"
         android:text="@string/size_2"
-        android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textSize="20sp" />
+        android:textColor="@color/black"
+        android:backgroundTint="@color/settingsButtons"
+        android:textSize="20dp"
+        />
 
     <Button
         android:id="@+id/size_3"
@@ -51,16 +45,13 @@
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
-        android:layout_margin="8dp"
-        android:backgroundTint="#144C3636"
         android:drawableTop="@drawable/size_3"
-        android:drawablePadding="0dp"
         android:gravity="center"
-        android:paddingTop="32dp"
         android:text="@string/size_3"
-        android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textSize="22sp" />
+        android:textColor="@color/black"
+        android:backgroundTint="@color/settingsButtons"
+        android:textSize="22dp"
+        />
 
     <Button
         android:id="@+id/size_4"
@@ -69,16 +60,13 @@
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
-        android:layout_margin="8dp"
-        android:backgroundTint="#144C3636"
         android:drawableTop="@drawable/size_4"
-        android:drawablePadding="0dp"
         android:gravity="center"
-        android:paddingTop="32dp"
         android:text="@string/size_4"
-        android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textSize="26sp" />
+        android:textColor="@color/black"
+        android:backgroundTint="@color/settingsButtons"
+        android:textSize="24dp"
+        />
 
     <Button
         android:id="@+id/size_5"
@@ -87,16 +75,13 @@
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
-        android:layout_margin="8dp"
-        android:backgroundTint="#144C3636"
         android:drawableTop="@drawable/size_5"
-        android:drawablePadding="0dp"
         android:gravity="center"
-        android:paddingTop="24dp"
         android:text="@string/size_5"
-        android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textSize="28sp" />
+        android:textColor="@color/black"
+        android:backgroundTint="@color/settingsButtons"
+        android:textSize="26dp"
+        />
 
     <Button
         android:id="@+id/size_6"
@@ -105,14 +90,11 @@
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
-        android:layout_margin="8dp"
-        android:backgroundTint="#144C3636"
         android:drawableTop="@drawable/size_6"
-        android:drawablePadding="0dp"
         android:gravity="center"
-        android:paddingTop="24dp"
         android:text="@string/size_6"
-        android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textSize="32sp" />
+        android:textColor="@color/black"
+        android:backgroundTint="@color/settingsButtons"
+        android:textSize="28dp"
+        />
 </GridLayout>
