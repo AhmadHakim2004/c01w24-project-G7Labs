@@ -50,7 +50,7 @@ class SettingsLanguageFragment : Fragment() {
     private fun setupStyles() {
         LayoutUtils.setPadding(settingsButtonHolder, 0.02f)
         for (button in buttons) {
-            LayoutUtils.setPadding(button, 0f, 0.07f, 0f, 0f)
+            LayoutUtils.setPadding(button, 0f, 0.06f, 0f, 0.03f)
             LayoutUtils.setMargins(button, 0.005f)
             LayoutUtils.setTextSize(button, 0.008f)
         }
