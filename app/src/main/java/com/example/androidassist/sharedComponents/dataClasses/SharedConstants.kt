@@ -13,10 +13,10 @@ class SharedConstants {
 
     class DefaultAppsInfo {
         companion object {
-            val CameraAppInfo = AppsInfo(1, R.mipmap.ic_launcher, "Camera", AppEnum.CAMERA)
-            val PhotosAppInfo = AppsInfo(2, R.mipmap.ic_launcher, "Photos", AppEnum.PHOTOS)
-            val ContactsAppInfo = AppsInfo(3, R.mipmap.ic_launcher, "Contacts", AppEnum.CONTACTS)
-            val SettingsAppInfo = AppsInfo(4, R.mipmap.ic_launcher, "Settings", AppEnum.SETTINGS)
+            val CameraAppInfo = AppsInfo(1, R.drawable.camera_icon, "Camera", AppEnum.CAMERA)
+            val PhotosAppInfo = AppsInfo(2, R.drawable.photos_icon, "Photos", AppEnum.PHOTOS)
+            val ContactsAppInfo = AppsInfo(3, R.drawable.contacts_icon, "Contacts", AppEnum.CONTACTS)
+            val SettingsAppInfo = AppsInfo(4, R.drawable.settings_icon, "Settings", AppEnum.SETTINGS)
         }
     }
 }
