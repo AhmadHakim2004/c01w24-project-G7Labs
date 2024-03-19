@@ -18,6 +18,7 @@ import android.widget.TextView
 import com.example.androidassist.apps.settings.SettingsMainActivity
 import com.example.androidassist.apps.camera.CameraMainActivity
 import com.example.androidassist.apps.contacts.ContactsMainActivity
+import com.example.androidassist.apps.photos.PhotosMainActivity
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants.AppEnum
 import com.example.androidassist.sharedComponents.dataClasses.AppsInfo
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
@@ -66,6 +67,7 @@ class MainActivity : AppCompatActivity() {
         appsGridContainer.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
             when(apps[position].appEnum) {
                 AppEnum.CAMERA -> startActivity(Intent(this, CameraMainActivity::class.java))
+                AppEnum.PHOTOS -> startActivity(Intent(this, PhotosMainActivity::class.java))
                 AppEnum.CONTACTS -> startActivity(Intent(this, ContactsMainActivity::class.java))
                 AppEnum.SETTINGS -> startActivity(Intent(this, SettingsMainActivity::class.java))
                 else -> {}
