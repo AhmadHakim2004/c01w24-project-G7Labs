@@ -11,7 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.androidassist.R
 import android.provider.ContactsContract
-import androidx.core.app.ActivityCompat
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +20,8 @@ class ContactMainFragment : Fragment() {
     private lateinit var contactList: RecyclerView
     private lateinit var contacts: MutableList<ContactInfo>
     private var contactAdapter: ContactAdapter? = null
+
+    private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.READ_CONTACTS)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,27 +35,29 @@ class ContactMainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if (allPermissionsGranted()) {
-            contacts = loadContacts()
-            contactList = requireView().findViewById(R.id.contact_list)
-
-            contactAdapter = ContactAdapter(contacts)
-            contactList.adapter = contactAdapter
-            contactList.layoutManager = LinearLayoutManager(activity)
+            setupContacts()
         } else {
-            requestCameraPermissions()
+            requestPermissionLauncher.launch(REQUIRED_PERMISSIONS)
         }
-    }
-
-    companion object {
-        private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.READ_CONTACTS)
     }
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED
     }
 
-    private fun requestCameraPermissions() {
-        ActivityCompat.requestPermissions(requireActivity(), REQUIRED_PERMISSIONS, 123)
+    private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+        if (permissions.all { it.value }) {
+            setupContacts()
+        }
+    }
+
+    private fun setupContacts() {
+        contacts = loadContacts()
+        contactList = requireView().findViewById(R.id.contact_list)
+
+        contactAdapter = ContactAdapter(contacts)
+        contactList.adapter = contactAdapter
+        contactList.layoutManager = LinearLayoutManager(activity)
     }
 
     private fun loadContacts() : MutableList<ContactInfo> {
