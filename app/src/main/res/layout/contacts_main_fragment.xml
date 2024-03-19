@@ -1,12 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/mint">
 
+    <!-- RelativeLayout for the add contact button only, removing the search bar -->
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp">
+
+        <!-- Add Contact Button, now aligned to the parent's start -->
+        <Button
+            android:id="@+id/add_contact_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:drawableStart="@drawable/ic_launcher_background"
+            android:drawablePadding="10dp"
+            android:text="Add"
+            android:backgroundTint="@color/teal_700"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+
+    <!-- RecyclerView for displaying contacts -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/contact_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:layout_below="@id/header"
+        android:layout_marginTop="8dp"/>
 
+    <!-- Emergency Call Button -->
+    <Button
+        android:id="@+id/emergency_call_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Emergency Call"
+        android:backgroundTint="@color/red"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:drawableStart="@drawable/ic_launcher_background"
+        android:drawablePadding="10dp"
+        android:padding="12dp"
+        android:layout_alignParentBottom="true"/>
 </RelativeLayout>
