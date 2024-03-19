@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Android Assist</string>
     <string name="backButtonTitle">Back</string>
+    <string name="takePhoto">Take Photo</string>
+    <string name="takeSelfie">Take Selfie</string>
+    <string name="startVideo">Start Video</string>
 </resources>
