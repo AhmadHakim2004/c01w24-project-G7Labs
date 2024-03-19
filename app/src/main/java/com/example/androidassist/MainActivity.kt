@@ -11,9 +11,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.AdapterView
 import android.widget.GridView
 import android.widget.ProgressBar
 import android.widget.TextView
+import com.example.androidassist.apps.photos.PhotosMainActivity
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants.AppEnum
 import com.example.androidassist.sharedComponents.dataClasses.AppsInfo
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
@@ -58,6 +60,13 @@ class MainActivity : AppCompatActivity() {
         apps = getInitialApps()
         appsGridAdapter = AppsGridAdapter(this, apps)
         appsGridContainer.adapter = appsGridAdapter
+
+        appsGridContainer.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+            when(apps[position].appEnum) {
+                AppEnum.PHOTOS -> startActivity(Intent(this, PhotosMainActivity::class.java))
+                else -> {}
+            }
+        }
     }
 
     fun initTimeAndDate() {
