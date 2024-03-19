@@ -40,6 +40,7 @@ dependencies {
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.test:core-ktx:1.5.0")
+    implementation("com.github.bumptech.glide:glide:4.14.2")
     testImplementation("junit:junit:4.13.2")
     // Optional -- Robolectric environment
     testImplementation("androidx.test:core:1.5.0")
