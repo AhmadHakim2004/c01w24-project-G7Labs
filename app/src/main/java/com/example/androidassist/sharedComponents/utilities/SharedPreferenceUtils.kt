@@ -20,5 +20,11 @@ class SharedPreferenceUtils {
                 apply()
             }
         }
+
+        fun getStringFromDefaultSharedPrefFile(context: Context, key: String, default : String) : String? {
+            val sharedPrefSettings = getDefaultSharedPrefFile(context)
+            return sharedPrefSettings.getString(key, default)
+
+        }
     }
 }

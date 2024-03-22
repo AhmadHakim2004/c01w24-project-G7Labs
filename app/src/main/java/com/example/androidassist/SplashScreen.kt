@@ -9,7 +9,7 @@ import android.os.Looper
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.annotation.RequiresApi
-import com.example.androidassist.sharedComponents.utilities.LocaleUtil
+import com.example.androidassist.sharedComponents.utilities.LocaleUtils
 import com.example.androidassist.sharedComponents.utilities.SharedPreferenceUtils
 
 class SplashScreen : AppCompatActivity() {
@@ -46,10 +46,10 @@ class SplashScreen : AppCompatActivity() {
     }
 
     private fun setAppLanguage(){
-        val sharedPrefSettings = SharedPreferenceUtils.getDefaultSharedPrefFile(applicationContext)
-        val lang = sharedPrefSettings.getString("language", "en")
+//        val sharedPrefSettings = SharedPreferenceUtils.getDefaultSharedPrefFile(applicationContext)
+        val lang = SharedPreferenceUtils.getStringFromDefaultSharedPrefFile(applicationContext, "language", "en")
         if (lang != null) {
-            LocaleUtil.setAppLocale(baseContext, lang)
+            LocaleUtils.setAppLocale(baseContext, lang)
         }
     }
 }
