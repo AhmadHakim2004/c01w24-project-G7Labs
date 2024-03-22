@@ -75,10 +75,10 @@ class CameraMainFragment : Fragment() {
     // @Todo Get Apps From DB
     private fun getInitialApps(): List<AppsInfo> {
         return listOf(
-            AppsInfo(1, R.mipmap.camera_rear, "Photo", SharedConstants.AppEnum.CPHOTO),
-            AppsInfo(2, R.mipmap.camera_front, "Photo Selfie", SharedConstants.AppEnum.CPHOTOSELFIE),
-            AppsInfo(3, R.mipmap.video_rear, "Video",SharedConstants.AppEnum.CVIDEO),
-            AppsInfo(4, R.mipmap.video_front, "Video Selfie", SharedConstants.AppEnum.CVIDEOSELFIE),
+            AppsInfo(1, R.mipmap.camera_rear, R.string.c_photo, SharedConstants.AppEnum.CPHOTO),
+            AppsInfo(2, R.mipmap.camera_front, R.string.c_photo_selfie, SharedConstants.AppEnum.CPHOTOSELFIE),
+            AppsInfo(3, R.mipmap.video_rear, R.string.c_video,SharedConstants.AppEnum.CVIDEO),
+            AppsInfo(4, R.mipmap.video_front, R.string.c_video_selfie, SharedConstants.AppEnum.CVIDEOSELFIE),
         )
     }
 }

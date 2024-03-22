@@ -39,7 +39,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//      hide status bar...need to figure out how to do this for the whole app
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
             window.decorView.windowInsetsController?.hide(WindowInsets.Type.statusBars())
             window.decorView.windowInsetsController?.hide(WindowInsets.Type.navigationBars())
@@ -115,10 +114,10 @@ class MainActivity : AppCompatActivity() {
             SharedConstants.DefaultAppsInfo.PhotosAppInfo,
             SharedConstants.DefaultAppsInfo.ContactsAppInfo,
             SharedConstants.DefaultAppsInfo.SettingsAppInfo,
-            AppsInfo(5, R.mipmap.ic_launcher, "Mock", AppEnum.OTHER),
-            AppsInfo(6, R.mipmap.ic_launcher, "Mock", AppEnum.OTHER),
-            AppsInfo(7, R.mipmap.ic_launcher, "Mock", AppEnum.OTHER),
-            AppsInfo(8, R.mipmap.ic_launcher, "Mock", AppEnum.OTHER)
+            AppsInfo(5, R.mipmap.ic_launcher, R.string.mock_app, AppEnum.OTHER),
+            AppsInfo(6, R.mipmap.ic_launcher, R.string.mock_app, AppEnum.OTHER),
+            AppsInfo(7, R.mipmap.ic_launcher, R.string.mock_app, AppEnum.OTHER),
+            AppsInfo(8, R.mipmap.ic_launcher, R.string.mock_app, AppEnum.OTHER)
         )
     }
 
