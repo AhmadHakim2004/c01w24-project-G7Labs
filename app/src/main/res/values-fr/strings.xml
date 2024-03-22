@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+    <string name="app_name">Assistance Android</string>
+    <string name="app_tag_line">bienvenue dans votre nouvelle maison !</string>
+    <string name="camera">Caméra</string>
+    <string name="photo">Photos</string>
+    <string name="contacts">Contacts</string>
+    <string name="settings">Paramètres</string>
+    <string name="mock_app">Se moquer</string>
+    <string name="c_photo">Photo</string>
+    <string name="c_video">Photo</string>
+    <string name="c_photo_selfie">Photo</string>
+    <string name="c_video_selfie">Photo</string>
+    <string name="backButtonTitle">Dos</string>
+    <string name="takePhoto">Prendre une photo</string>
+    <string name="takeSelfie">Prendre un selfie</string>
+    <string name="startVideo">Démarrer la vidéo</string>
+    <string name="text_size">Taille du texte</string>
+    <string name="brightness">Luminosité</string>
+    <string name="volume">Volume</string>
+    <string name="text_to_speech">Texte pour parler</string>
+    <string name="language">Langue</string>
+    <string name="blindness">Cécité</string>
+    <string name="mandarin">mandarin</string>
+    <string name="hindi">hindi</string>
+    <string name="arabic">arabe</string>
+    <string name="french">Français</string>
+    <string name="spanish">Espagnol</string>
+    <string name="english">Anglais</string>
+    <string name="size_1">Taille 1</string>
+    <string name="size_2">Taille 2</string>
+    <string name="size_3">Taille 3</string>
+    <string name="size_4">Taille 4</string>
+    <string name="size_5">Taille 5</string>
+    <string name="size_6">Taille 6</string>
+</resources>

@@ -39,6 +39,12 @@ android {
 localization {
     supportedLang = listOf(
         // Add Supported Languages here
+        Languages.English,
+        Languages.Urdu,
+        Languages.Arabic,
+        Languages.Spanish,
+        Languages.French,
+        Languages.ChineseSimplified
     )
     pathToGenerateSupportedLanguageEnum = "${projectDir}/app/src/main/java/com/example/androidassist/sharedComponents/dataClasses"
 }

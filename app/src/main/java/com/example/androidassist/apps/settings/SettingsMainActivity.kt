@@ -1,13 +1,14 @@
 package com.example.androidassist.apps.settings
 
 import android.content.Intent
-import android.os.Bundle
+import androidx.fragment.app.Fragment
 import com.example.androidassist.MainActivity
+import com.example.androidassist.sharedComponents.OnRefresh
 import com.example.androidassist.sharedComponents.dataClasses.AppsInfo
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
 import com.example.androidassist.sharedComponents.views.BaseApps
 
-class SettingsMainActivity : BaseApps() {
+class SettingsMainActivity : BaseApps(), OnRefresh {
     override val appInfo: AppsInfo
         get() = SharedConstants.DefaultAppsInfo.SettingsAppInfo
 
@@ -26,5 +27,11 @@ class SettingsMainActivity : BaseApps() {
                 }
             }
         }
+    }
+
+    override fun refreshScreen(fragment: Fragment, state: SharedConstants.AppEnum) {
+        finish()
+        overridePendingTransition(0, 0) // Optional: remove transition animation
+        startActivity(intent)
     }
 }
