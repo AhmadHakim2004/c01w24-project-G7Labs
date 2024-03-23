@@ -1,27 +1,33 @@
 package com.example.androidassist.apps.contacts
+
 import android.Manifest
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.androidassist.R
-import android.provider.ContactsContract
+import android.widget.Button
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.androidassist.R
+import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
 
 class ContactMainFragment : Fragment() {
     private lateinit var contactList: RecyclerView
     private lateinit var contacts: MutableList<ContactInfo>
     private var contactAdapter: ContactAdapter? = null
 
-    private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.READ_CONTACTS)
+    private val REQUIRED_PERMISSIONS = arrayOf(
+        Manifest.permission.READ_CONTACTS,
+        Manifest.permission.WRITE_CONTACTS
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +39,16 @@ class ContactMainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val addButton = view.findViewById<Button>(R.id.add_contact_button)
+        addButton.setOnClickListener {
+            // Intent to open AddContactActivity
+            //Toast.makeText(requireContext(), "This is a test message.", Toast.LENGTH_SHORT).show()
 
+            (activity as? ContactsMainActivity)?.apply {
+                replaceFragment(AddContactFragment())
+                setState(SharedConstants.AppEnum.ADDCONTACTS)
+            }
+        }
         if (allPermissionsGranted()) {
             setupContacts()
         } else {
@@ -45,13 +60,14 @@ class ContactMainFragment : Fragment() {
         ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED
     }
 
-    private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
-        if (permissions.all { it.value }) {
-            setupContacts()
+    private val requestPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+            if (permissions.all { it.value }) {
+                setupContacts()
+            }
         }
-    }
 
-    private fun setupContacts() {
+    public fun setupContacts() {
         contacts = loadContacts()
         contactList = requireView().findViewById(R.id.contact_list)
 
@@ -60,7 +76,7 @@ class ContactMainFragment : Fragment() {
         contactList.layoutManager = LinearLayoutManager(activity)
     }
 
-    private fun loadContacts() : MutableList<ContactInfo> {
+    public fun loadContacts(): MutableList<ContactInfo> {
         val contactList: MutableList<ContactInfo> = ArrayList()
         val contacts = (activity?.contentResolver)?.query(
             ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
@@ -72,7 +88,7 @@ class ContactMainFragment : Fragment() {
             val photoUriIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.PHOTO_URI)
 
             while (cursor.moveToNext()) {
-                if(nameIndex < 0 || numberIndex < 0 || photoUriIndex < 0) {
+                if (nameIndex < 0 || numberIndex < 0 || photoUriIndex < 0) {
                     continue
                 }
                 val name = cursor.getString(nameIndex)
@@ -89,7 +105,7 @@ class ContactMainFragment : Fragment() {
         return contactList
     }
 
-    fun loadContactPhoto(photoUri: Uri?): Bitmap? {
+    public fun loadContactPhoto(photoUri: Uri?): Bitmap? {
         photoUri?.let {
             val inputStream = activity?.contentResolver?.openInputStream(it)
             return BitmapFactory.decodeStream(inputStream)
