@@ -56,8 +56,13 @@ class SettingsTextSizeFragment : Fragment() {
             Pair(size5Button, 1.4f),
             Pair(size6Button, 1.5f)
         )
-//        setBtnListeners()
+        setBtnListeners()
 
+        setupStyles()
+
+    }
+
+    private fun setBtnListeners(){
         buttons.forEachIndexed { _, pair ->
             pair.first.setOnClickListener {
                 val size = pair.second
@@ -69,50 +74,6 @@ class SettingsTextSizeFragment : Fragment() {
                     size
                 )
             }
-        }
-
-        setupStyles()
-
-    }
-
-    private fun setBtnListeners(){
-        size1Button.setOnClickListener {
-            LayoutUtils.setAppTextSize(requireContext(), 0.25f)
-            onRefresh?.refreshScreen(SettingsTextSizeFragment(), SharedConstants.AppEnum.STEXT)
-            SharedPreferenceUtils.addFloatToDefaultSharedPrefFile(requireContext(),
-                "textSize", 0.25f)
-
-        }
-        size2Button.setOnClickListener {
-            LayoutUtils.setAppTextSize(requireContext(), 0.50f)
-            onRefresh?.refreshScreen(SettingsTextSizeFragment(), SharedConstants.AppEnum.STEXT)
-            SharedPreferenceUtils.addFloatToDefaultSharedPrefFile(requireContext(),
-                "textSize", 0.50f)
-
-        }
-        size3Button.setOnClickListener {
-            LayoutUtils.setAppTextSize(requireContext(), 0.75f)
-            onRefresh?.refreshScreen(SettingsTextSizeFragment(), SharedConstants.AppEnum.STEXT)
-            SharedPreferenceUtils.addFloatToDefaultSharedPrefFile(requireContext(),
-                "textSize", 0.75f)
-        }
-        size4Button.setOnClickListener {
-            LayoutUtils.setAppTextSize(requireContext(), 1f)
-            onRefresh?.refreshScreen(SettingsTextSizeFragment(), SharedConstants.AppEnum.STEXT)
-            SharedPreferenceUtils.addFloatToDefaultSharedPrefFile(requireContext(),
-                "textSize", 1f)
-        }
-        size5Button.setOnClickListener {
-            LayoutUtils.setAppTextSize(requireContext(), 1.25f)
-            onRefresh?.refreshScreen(SettingsTextSizeFragment(), SharedConstants.AppEnum.STEXT)
-            SharedPreferenceUtils.addFloatToDefaultSharedPrefFile(requireContext(),
-                "textSize", 1.25f)
-        }
-        size6Button.setOnClickListener {
-            LayoutUtils.setAppTextSize(requireContext(), 1.5f)
-            onRefresh?.refreshScreen(SettingsTextSizeFragment(), SharedConstants.AppEnum.STEXT)
-            SharedPreferenceUtils.addFloatToDefaultSharedPrefFile(requireContext(),
-                "textSize", 1.5f)
         }
     }
     private fun setupStyles() {
