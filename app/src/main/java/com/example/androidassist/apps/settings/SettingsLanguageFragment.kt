@@ -25,7 +25,7 @@ class SettingsLanguageFragment : Fragment() {
     private lateinit var arabicButton: Button
     private lateinit var hindiButton: Button
     private lateinit var mandarinButton: Button
-    private lateinit var buttons: List<Pair<Button, String>>
+    private lateinit var buttons: List<Button>
     private var onRefresh: OnRefresh? = null
 
     override fun onCreateView(
@@ -49,13 +49,8 @@ class SettingsLanguageFragment : Fragment() {
         hindiButton = view.findViewById(R.id.hindi)
         mandarinButton = view.findViewById(R.id.mandarin)
 
-        buttons = listOf(
-            Pair(englishButton, "en"),
-            Pair(spanishButton, "es"),
-            Pair(frenchButton, "fr"),
-            Pair(arabicButton, "ar"),
-            Pair(hindiButton, "ur"),
-            Pair(mandarinButton, "zh"))
+        buttons = listOf(englishButton, spanishButton, frenchButton, arabicButton,
+            hindiButton, mandarinButton)
 
         setBtnListeners()
 
@@ -63,14 +58,40 @@ class SettingsLanguageFragment : Fragment() {
     }
 
     private fun setBtnListeners(){
+        hindiButton.setOnClickListener {
+            LocaleUtils.setAppLocale(requireContext(), "ur")
+            onRefresh?.refreshScreen(SettingsLanguageFragment(), SharedConstants.AppEnum.SLANGUAGE)
+            SharedPreferenceUtils.addStringToDefaultSharedPrefFile(requireContext(), "language", "ur")
+        }
 
-        buttons.forEachIndexed{_, pair ->
-            pair.first.setOnClickListener {
-                val lang = pair.second
-                LocaleUtils.setAppLocale(requireContext(), lang)
-                onRefresh?.refreshScreen(SettingsLanguageFragment(), SharedConstants.AppEnum.SLANGUAGE)
-                SharedPreferenceUtils.addStringToDefaultSharedPrefFile(requireContext(), "language", lang)
-            }
+        englishButton.setOnClickListener {
+            LocaleUtils.setAppLocale(requireContext(), "en")
+            onRefresh?.refreshScreen(SettingsLanguageFragment(), SharedConstants.AppEnum.SLANGUAGE)
+            SharedPreferenceUtils.addStringToDefaultSharedPrefFile(requireContext(), "language", "en")
+        }
+
+        spanishButton.setOnClickListener {
+            LocaleUtils.setAppLocale(requireContext(), "es")
+            onRefresh?.refreshScreen(SettingsLanguageFragment(), SharedConstants.AppEnum.SLANGUAGE)
+            SharedPreferenceUtils.addStringToDefaultSharedPrefFile(requireContext(), "language", "es")
+        }
+
+        frenchButton.setOnClickListener {
+            LocaleUtils.setAppLocale(requireContext(), "fr")
+            onRefresh?.refreshScreen(SettingsLanguageFragment(), SharedConstants.AppEnum.SLANGUAGE)
+            SharedPreferenceUtils.addStringToDefaultSharedPrefFile(requireContext(), "language", "fr")
+        }
+
+        arabicButton.setOnClickListener {
+            LocaleUtils.setAppLocale(requireContext(), "ar")
+            onRefresh?.refreshScreen(SettingsLanguageFragment(), SharedConstants.AppEnum.SLANGUAGE)
+            SharedPreferenceUtils.addStringToDefaultSharedPrefFile(requireContext(), "language", "ar")
+        }
+
+        mandarinButton.setOnClickListener {
+            LocaleUtils.setAppLocale(requireContext(), "zh")
+            onRefresh?.refreshScreen(SettingsLanguageFragment(), SharedConstants.AppEnum.SLANGUAGE)
+            SharedPreferenceUtils.addStringToDefaultSharedPrefFile(requireContext(), "language", "zh")
         }
     }
 
@@ -90,10 +111,10 @@ class SettingsLanguageFragment : Fragment() {
 
     private fun setupStyles() {
         LayoutUtils.setPadding(settingsButtonHolder, 0.02f)
-        for (pair in buttons) {
-            LayoutUtils.setPadding(pair.first, 0f, 0.06f, 0f, 0.03f)
-            LayoutUtils.setMargins(pair.first, 0.005f)
-            LayoutUtils.setTextSize(pair.first, 0.008f)
+        for (button in buttons) {
+            LayoutUtils.setPadding(button, 0f, 0.06f, 0f, 0.03f)
+            LayoutUtils.setMargins(button, 0.005f)
+            LayoutUtils.setTextSize(button, 0.008f)
         }
     }
 }
