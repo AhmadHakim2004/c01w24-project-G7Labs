@@ -16,7 +16,8 @@ class SharedConstants {
         CVIDEO,
         CVIDEOSELFIE,
         STEXT,
-        SLANGUAGE
+        SLANGUAGE,
+        ADDCONTACTS
     }
 
     class DefaultAppsInfo {
