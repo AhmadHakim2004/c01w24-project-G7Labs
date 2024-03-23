@@ -17,7 +17,8 @@ class SharedConstants {
         CVIDEOSELFIE,
         PSINGLEPHOTO,
         STEXT,
-        SLANGUAGE
+        SLANGUAGE,
+        ADDCONTACTS
     }
 
     class DefaultAppsInfo {
