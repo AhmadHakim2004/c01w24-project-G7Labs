@@ -61,7 +61,6 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.14.2")
     testImplementation("junit:junit:4.13.2")
     // Optional -- Robolectric environment
-    testImplementation ("org.robolectric:robolectric:+")
     testImplementation("androidx.test:core:1.5.0")
     testImplementation("org.mockito:mockito-core:3.11.2")
     testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")

@@ -5,7 +5,7 @@ import android.os.Build
 import java.util.Locale
 import android.content.Context
 
-class LocaleUtils {
+class LocaleUtil {
 
     companion object{
         fun setAppLocale(context: Context, localeCode: String) {

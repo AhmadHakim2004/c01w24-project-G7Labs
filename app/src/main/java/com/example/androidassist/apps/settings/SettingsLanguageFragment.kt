@@ -12,7 +12,7 @@ import com.example.androidassist.R
 import com.example.androidassist.sharedComponents.OnRefresh
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
 import com.example.androidassist.sharedComponents.utilities.LayoutUtils
-import com.example.androidassist.sharedComponents.utilities.LocaleUtils
+import com.example.androidassist.sharedComponents.utilities.LocaleUtil
 import com.example.androidassist.sharedComponents.utilities.SharedPreferenceUtils
 
 
@@ -59,37 +59,37 @@ class SettingsLanguageFragment : Fragment() {
 
     private fun setBtnListeners(){
         hindiButton.setOnClickListener {
-            LocaleUtils.setAppLocale(requireContext(), "ur")
+            LocaleUtil.setAppLocale(requireContext(), "ur")
             onRefresh?.refreshScreen(SettingsLanguageFragment(), SharedConstants.AppEnum.SLANGUAGE)
             SharedPreferenceUtils.addStringToDefaultSharedPrefFile(requireContext(), "language", "ur")
         }
 
         englishButton.setOnClickListener {
-            LocaleUtils.setAppLocale(requireContext(), "en")
+            LocaleUtil.setAppLocale(requireContext(), "en")
             onRefresh?.refreshScreen(SettingsLanguageFragment(), SharedConstants.AppEnum.SLANGUAGE)
             SharedPreferenceUtils.addStringToDefaultSharedPrefFile(requireContext(), "language", "en")
         }
 
         spanishButton.setOnClickListener {
-            LocaleUtils.setAppLocale(requireContext(), "es")
+            LocaleUtil.setAppLocale(requireContext(), "es")
             onRefresh?.refreshScreen(SettingsLanguageFragment(), SharedConstants.AppEnum.SLANGUAGE)
             SharedPreferenceUtils.addStringToDefaultSharedPrefFile(requireContext(), "language", "es")
         }
 
         frenchButton.setOnClickListener {
-            LocaleUtils.setAppLocale(requireContext(), "fr")
+            LocaleUtil.setAppLocale(requireContext(), "fr")
             onRefresh?.refreshScreen(SettingsLanguageFragment(), SharedConstants.AppEnum.SLANGUAGE)
             SharedPreferenceUtils.addStringToDefaultSharedPrefFile(requireContext(), "language", "fr")
         }
 
         arabicButton.setOnClickListener {
-            LocaleUtils.setAppLocale(requireContext(), "ar")
+            LocaleUtil.setAppLocale(requireContext(), "ar")
             onRefresh?.refreshScreen(SettingsLanguageFragment(), SharedConstants.AppEnum.SLANGUAGE)
             SharedPreferenceUtils.addStringToDefaultSharedPrefFile(requireContext(), "language", "ar")
         }
 
         mandarinButton.setOnClickListener {
-            LocaleUtils.setAppLocale(requireContext(), "zh")
+            LocaleUtil.setAppLocale(requireContext(), "zh")
             onRefresh?.refreshScreen(SettingsLanguageFragment(), SharedConstants.AppEnum.SLANGUAGE)
             SharedPreferenceUtils.addStringToDefaultSharedPrefFile(requireContext(), "language", "zh")
         }
