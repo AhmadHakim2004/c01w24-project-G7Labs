@@ -20,9 +20,18 @@ class ContactsMainActivity : BaseApps() {
         backButton.setOnClickListener{
             when(getState()) {
                 SharedConstants.AppEnum.CONTACTS -> startActivity(Intent(this, MainActivity::class.java))
-                else -> {}
+                else -> {
+                    replaceFragment(ContactMainFragment())
+                    setState(SharedConstants.AppEnum.CONTACTS)
+                }
             }
         }
     }
+
+
+
+
+
+
 
 }
