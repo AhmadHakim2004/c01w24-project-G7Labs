@@ -21,7 +21,7 @@
         android:text="@string/size_1"
         android:textAllCaps="false"
         android:textColor="@color/black"
-        android:textSize="18dp" />
+        android:textSize="12dp" />
 
     <Button
         android:id="@+id/size_2"
@@ -36,7 +36,7 @@
         android:text="@string/size_2"
         android:textAllCaps="false"
         android:textColor="@color/black"
-        android:textSize="20dp" />
+        android:textSize="18dp" />
 
     <Button
         android:id="@+id/size_3"
@@ -51,7 +51,7 @@
         android:text="@string/size_3"
         android:textAllCaps="false"
         android:textColor="@color/black"
-        android:textSize="22dp" />
+        android:textSize="20dp" />
 
     <Button
         android:id="@+id/size_4"
@@ -66,7 +66,7 @@
         android:text="@string/size_4"
         android:textAllCaps="false"
         android:textColor="@color/black"
-        android:textSize="24dp" />
+        android:textSize="22dp" />
 
     <Button
         android:id="@+id/size_5"
@@ -81,7 +81,7 @@
         android:text="@string/size_5"
         android:textAllCaps="false"
         android:textColor="@color/black"
-        android:textSize="26dp" />
+        android:textSize="24dp" />
 
     <Button
         android:id="@+id/size_6"
@@ -96,5 +96,5 @@
         android:text="@string/size_6"
         android:textAllCaps="false"
         android:textColor="@color/black"
-        android:textSize="28dp" />
+        android:textSize="26dp" />
 </GridLayout>
