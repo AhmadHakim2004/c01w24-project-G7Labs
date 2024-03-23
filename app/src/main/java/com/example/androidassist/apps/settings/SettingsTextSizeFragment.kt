@@ -54,7 +54,7 @@ class SettingsTextSizeFragment : Fragment() {
             Pair(size3Button, 1f),
             Pair(size4Button, 1.2f),
             Pair(size5Button, 1.4f),
-            Pair(size6Button, 1.5f)
+            Pair(size6Button, 1.6f)
         )
 //        setBtnListeners()
 
