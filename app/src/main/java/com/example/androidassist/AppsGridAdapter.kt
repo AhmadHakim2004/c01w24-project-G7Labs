@@ -9,7 +9,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import com.example.androidassist.sharedComponents.dataClasses.AppsInfo
-import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
 import com.example.androidassist.sharedComponents.utilities.LayoutUtils
 
 class AppsGridAdapter(private val context: Context, apps: List<AppsInfo>) : BaseAdapter() {
@@ -32,7 +31,7 @@ class AppsGridAdapter(private val context: Context, apps: List<AppsInfo>) : Base
 
         // Set data to views
         imageView.setImageResource(appItem.imageResource)
-        textView.text = context.getString(appItem.appName)
+        textView.text = appItem.appName
 
         setStyles(appCardView, textView)
 

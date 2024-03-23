@@ -62,7 +62,7 @@ abstract class BaseApps : AppCompatActivity() {
 
     private fun setupHeader() {
         this.appHeaderIcon.setImageResource(appInfo.imageResource)
-        this.appHeaderTitle.text = baseContext.getString(appInfo.appName)
+        this.appHeaderTitle.text = appInfo.appName
     }
 
     private fun setupStyles() {

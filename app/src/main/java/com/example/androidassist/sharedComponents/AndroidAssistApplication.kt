@@ -13,7 +13,7 @@ class AndroidAssistApplication : Application() {
         private lateinit var androidAssistAppInstance: AndroidAssistApplication
 
         fun getAppContext(): Context {
-            return androidAssistAppInstance.applicationContext
+            return androidAssistAppInstance
         }
     }
 }

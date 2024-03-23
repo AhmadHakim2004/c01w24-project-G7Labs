@@ -9,15 +9,13 @@ import android.os.Looper
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.annotation.RequiresApi
-import com.example.androidassist.sharedComponents.utilities.LocaleUtil
-import com.example.androidassist.sharedComponents.utilities.SharedPreferenceUtils
 
 class SplashScreen : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setAppLanguage()
         setContentView(R.layout.activity_splash_screen)
+
 
 //      code for api level below 31
 //         This is used to hide the status bar and make
@@ -43,13 +41,5 @@ class SplashScreen : AppCompatActivity() {
             startActivity(intent)
             finish()
         }, 3500) // 3000 is the delayed time in milliseconds.
-    }
-
-    private fun setAppLanguage(){
-        val sharedPrefSettings = SharedPreferenceUtils.getDefaultSharedPrefFile(applicationContext)
-        val lang = sharedPrefSettings.getString("language", "en")
-        if (lang != null) {
-            LocaleUtil.setAppLocale(baseContext, lang)
-        }
     }
 }

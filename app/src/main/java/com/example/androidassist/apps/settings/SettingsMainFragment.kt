@@ -45,10 +45,8 @@ class SettingsMainFragment : Fragment() {
         blindnessButton = view.findViewById(R.id.blindness)
         textToSpeechButton = view.findViewById(R.id.tts)
 
-        buttons = listOf(
-            languageButton, volumeButton, brightnessButton, textSizeButton,
-            blindnessButton, textToSpeechButton
-        )
+        buttons = listOf(languageButton, volumeButton, brightnessButton, textSizeButton,
+            blindnessButton, textToSpeechButton)
 
         // Set OnClickListener to the button
         languageButton.setOnClickListener {
@@ -77,5 +75,4 @@ class SettingsMainFragment : Fragment() {
             LayoutUtils.setTextSize(button, 0.008f)
         }
     }
-
 }
