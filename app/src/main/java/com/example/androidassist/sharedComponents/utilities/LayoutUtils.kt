@@ -1,7 +1,5 @@
 package com.example.androidassist.sharedComponents.utilities
 
-import android.content.Context
-import android.content.res.Configuration
 import android.view.View
 import android.view.ViewGroup.MarginLayoutParams
 import android.widget.GridView
@@ -195,23 +193,6 @@ class LayoutUtils {
          */
         fun setVerticalSpacing(view: GridView, spacingPercentage: Float) {
             view.verticalSpacing = (_height * spacingPercentage).toInt()
-        }
-
-
-        /**
-         * Sets Text Size of the whole app
-         *
-         * @param context context of the views to be modified
-         * @param fontScale Percentage of to scale font by
-         *
-         * @note 1f = scale font by 1 which is the same size as original
-         */
-        fun setAppTextSize(context : Context, fontScale : Float){
-            val resources = context.resources
-            val dm = resources.displayMetrics
-            val config: Configuration = resources.configuration
-            config.fontScale = fontScale
-            resources.updateConfiguration(config, dm)
         }
     }
 }

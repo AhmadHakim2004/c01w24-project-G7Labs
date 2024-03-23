@@ -1,6 +1,5 @@
 package com.example.androidassist.apps.settings
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,10 +8,7 @@ import android.widget.Button
 import android.widget.GridLayout
 import androidx.fragment.app.Fragment
 import com.example.androidassist.R
-import com.example.androidassist.sharedComponents.OnRefresh
-import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
 import com.example.androidassist.sharedComponents.utilities.LayoutUtils
-import com.example.androidassist.sharedComponents.utilities.SharedPreferenceUtils
 
 class SettingsTextSizeFragment : Fragment() {
     private lateinit var textSizeButtonHolder: GridLayout
@@ -22,9 +18,7 @@ class SettingsTextSizeFragment : Fragment() {
     private lateinit var size4Button: Button
     private lateinit var size5Button: Button
     private lateinit var size6Button: Button
-    private lateinit var buttons: List<Pair<Button, Float>>
-    private var onRefresh: OnRefresh? = null
-
+    private lateinit var buttons: List<Button>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,95 +43,18 @@ class SettingsTextSizeFragment : Fragment() {
         size6Button = view.findViewById(R.id.size_6)
 
         buttons = listOf(
-            Pair(size1Button, 0.5f),
-            Pair(size2Button, 0.75f),
-            Pair(size3Button, 1f),
-            Pair(size4Button, 1.2f),
-            Pair(size5Button, 1.4f),
-            Pair(size6Button, 1.6f)
+            size1Button, size2Button, size3Button, size4Button,
+            size5Button, size6Button
         )
-//        setBtnListeners()
-
-        buttons.forEachIndexed { _, pair ->
-            pair.first.setOnClickListener {
-                val size = pair.second
-                LayoutUtils.setAppTextSize(requireContext(), size)
-                onRefresh?.refreshScreen(SettingsTextSizeFragment(), SharedConstants.AppEnum.STEXT)
-                SharedPreferenceUtils.addFloatToDefaultSharedPrefFile(
-                    requireContext(),
-                    "textSize",
-                    size
-                )
-            }
-        }
 
         setupStyles()
-
     }
 
-    private fun setBtnListeners(){
-        size1Button.setOnClickListener {
-            LayoutUtils.setAppTextSize(requireContext(), 0.25f)
-            onRefresh?.refreshScreen(SettingsTextSizeFragment(), SharedConstants.AppEnum.STEXT)
-            SharedPreferenceUtils.addFloatToDefaultSharedPrefFile(requireContext(),
-                "textSize", 0.25f)
-
-        }
-        size2Button.setOnClickListener {
-            LayoutUtils.setAppTextSize(requireContext(), 0.50f)
-            onRefresh?.refreshScreen(SettingsTextSizeFragment(), SharedConstants.AppEnum.STEXT)
-            SharedPreferenceUtils.addFloatToDefaultSharedPrefFile(requireContext(),
-                "textSize", 0.50f)
-
-        }
-        size3Button.setOnClickListener {
-            LayoutUtils.setAppTextSize(requireContext(), 0.75f)
-            onRefresh?.refreshScreen(SettingsTextSizeFragment(), SharedConstants.AppEnum.STEXT)
-            SharedPreferenceUtils.addFloatToDefaultSharedPrefFile(requireContext(),
-                "textSize", 0.75f)
-        }
-        size4Button.setOnClickListener {
-            LayoutUtils.setAppTextSize(requireContext(), 1f)
-            onRefresh?.refreshScreen(SettingsTextSizeFragment(), SharedConstants.AppEnum.STEXT)
-            SharedPreferenceUtils.addFloatToDefaultSharedPrefFile(requireContext(),
-                "textSize", 1f)
-        }
-        size5Button.setOnClickListener {
-            LayoutUtils.setAppTextSize(requireContext(), 1.25f)
-            onRefresh?.refreshScreen(SettingsTextSizeFragment(), SharedConstants.AppEnum.STEXT)
-            SharedPreferenceUtils.addFloatToDefaultSharedPrefFile(requireContext(),
-                "textSize", 1.25f)
-        }
-        size6Button.setOnClickListener {
-            LayoutUtils.setAppTextSize(requireContext(), 1.5f)
-            onRefresh?.refreshScreen(SettingsTextSizeFragment(), SharedConstants.AppEnum.STEXT)
-            SharedPreferenceUtils.addFloatToDefaultSharedPrefFile(requireContext(),
-                "textSize", 1.5f)
-        }
-    }
     private fun setupStyles() {
         LayoutUtils.setPadding(textSizeButtonHolder, 0.02f)
-        for (pair in buttons) {
-            LayoutUtils.setPadding(pair.first, 0f, 0.05f, 0f, 0.03f)
-            LayoutUtils.setMargins(pair.first, 0.005f)
+        for (button in buttons) {
+            LayoutUtils.setPadding(button, 0f, 0.05f, 0f, 0.03f)
+            LayoutUtils.setMargins(button, 0.005f)
         }
     }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is OnRefresh) {
-            onRefresh = context
-        } else {
-            throw RuntimeException("$context must implement OnDataRefreshListener")
-        }
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        onRefresh = null
-    }
-
-
-
-
 }

@@ -9,7 +9,6 @@ import android.os.Looper
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.annotation.RequiresApi
-import com.example.androidassist.sharedComponents.utilities.LayoutUtils
 import com.example.androidassist.sharedComponents.utilities.LocaleUtils
 import com.example.androidassist.sharedComponents.utilities.SharedPreferenceUtils
 
@@ -18,7 +17,6 @@ class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setAppLanguage()
-        setTextSize()
         setContentView(R.layout.activity_splash_screen)
 
 //      code for api level below 31
@@ -54,12 +52,4 @@ class SplashScreen : AppCompatActivity() {
             LocaleUtils.setAppLocale(baseContext, lang)
         }
     }
-
-    private fun setTextSize(){
-        val textSize = SharedPreferenceUtils.getFloatFromDefaultSharedPrefFile(applicationContext, "textSize", 1f)
-        if (textSize != null) {
-           LayoutUtils.setAppTextSize(baseContext, textSize)
-        }
-    }
-
 }
