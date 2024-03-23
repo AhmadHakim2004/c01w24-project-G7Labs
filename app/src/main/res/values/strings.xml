@@ -7,9 +7,9 @@
     <string name="settings">Settings</string>
     <string name="mock_app">Mock</string>
     <string name="c_photo">Photo</string>
-    <string name="c_video">Video</string>
-    <string name="c_photo_selfie">Photo Selfie</string>
-    <string name="c_video_selfie">Video Selfie</string>
+    <string name="c_video">Photo</string>
+    <string name="c_photo_selfie">Photo</string>
+    <string name="c_video_selfie">Photo</string>
     <string name="backButtonTitle">Back</string>
     <string name="takePhoto">Take Photo</string>
     <string name="takeSelfie">Take Selfie</string>
