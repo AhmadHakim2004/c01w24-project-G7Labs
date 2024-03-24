@@ -24,7 +24,10 @@ class PhotosMainActivity : BaseApps() {
                         MainActivity::class.java
                     )
                 )
-                else -> {}
+                else -> {
+                    setState(SharedConstants.AppEnum.PHOTOS)
+                    replaceFragment(PhotosMainFragment())
+                }
             }
         }
     }

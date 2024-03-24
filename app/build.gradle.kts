@@ -59,6 +59,7 @@ dependencies {
     implementation("androidx.activity:activity:1.8.0")
     implementation("androidx.test:core-ktx:1.5.0")
     implementation("com.github.bumptech.glide:glide:4.14.2")
+    implementation("com.jsibbold:zoomage:1.3.1")
     testImplementation("junit:junit:4.13.2")
     // Optional -- Robolectric environment
     testImplementation ("org.robolectric:robolectric:+")
