@@ -15,6 +15,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
 
 class PhotosMainFragment : Fragment() {
     private lateinit var photosList: RecyclerView
@@ -36,12 +37,23 @@ class PhotosMainFragment : Fragment() {
             photos = loadPhotos()
             photosList = requireView().findViewById(R.id.photosList)
 
-            photosAdapter = PhotosAdapter(photos)
+            photosAdapter = PhotosAdapter(photos, ::onPhotoClicked)
             photosList.adapter = photosAdapter
             photosList.layoutManager = GridLayoutManager(activity, 3)
         } else {
             requestPhotosPermissions()
         }
+    }
+
+    private fun onPhotoClicked(photoFilePath: String) {
+        val photosSinglePhotofragment = PhotosSinglePhotoFragment()
+        val args = Bundle()
+        args.putString("photoFilePath", photoFilePath)
+        photosSinglePhotofragment.arguments = args
+
+        val photosActivity = activity as PhotosMainActivity
+        photosActivity.replaceFragment(photosSinglePhotofragment)
+        photosActivity.setState(SharedConstants.AppEnum.PSINGLEPHOTO)
     }
 
     companion object {
