@@ -8,9 +8,9 @@
     <string name="settings">ترتیبات</string>
     <string name="mock_app">فرضی</string>
     <string name="c_photo">تصویر</string>
-    <string name="c_video">تصویر</string>
-    <string name="c_photo_selfie">تصویر</string>
-    <string name="c_video_selfie">تصویر</string>
+    <string name="c_video">ویڈیو</string>
+    <string name="c_photo_selfie">فوٹو سیلفی</string>
+    <string name="c_video_selfie">ویڈیو سیلفی</string>
     <string name="backButtonTitle">پیچھے</string>
     <string name="takePhoto">تصویر لو</string>
     <string name="takeSelfie">سیلفی لیں۔</string>

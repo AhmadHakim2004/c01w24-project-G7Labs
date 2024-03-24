@@ -15,6 +15,7 @@ class SharedConstants {
         CPHOTOSELFIE,
         CVIDEO,
         CVIDEOSELFIE,
+        PSINGLEPHOTO,
         STEXT,
         SLANGUAGE
     }
