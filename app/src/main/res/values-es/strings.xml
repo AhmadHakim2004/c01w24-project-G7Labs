@@ -8,9 +8,9 @@
     <string name="settings">Ajustes</string>
     <string name="mock_app">Imitar</string>
     <string name="c_photo">Foto</string>
-    <string name="c_video">Foto</string>
-    <string name="c_photo_selfie">Foto</string>
-    <string name="c_video_selfie">Foto</string>
+    <string name="c_video">Video</string>
+    <string name="c_photo_selfie">Foto selfie</string>
+    <string name="c_video_selfie">Vídeo selfie</string>
     <string name="backButtonTitle">Atrás</string>
     <string name="takePhoto">Tomar foto</string>
     <string name="takeSelfie">Tomarse una selfie</string>

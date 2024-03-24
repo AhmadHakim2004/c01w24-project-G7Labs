@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.androidassist.R
 import java.io.File
 
-class PhotosAdapter(private val photosList: ArrayList<String>) :
+class PhotosAdapter(private val photosList: ArrayList<String>, private val onPhotoClicked: (String) -> Unit) :
     RecyclerView.Adapter<PhotosAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.photo_list_item_view, parent, false)
@@ -20,6 +20,10 @@ class PhotosAdapter(private val photosList: ArrayList<String>) :
         val imageFile = File(photosList[position])
         if (imageFile.exists()) {
             Glide.with(holder.itemView.context).load(imageFile).into(holder.image)
+        }
+
+        holder.image.setOnClickListener {
+            onPhotoClicked(photosList[position])
         }
     }
 
