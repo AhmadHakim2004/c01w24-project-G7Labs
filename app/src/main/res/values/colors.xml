@@ -11,4 +11,5 @@
     <color name="settingsButtons">#144C3636</color>
     <color name="mint">#DCFFDD</color>
     <color name="red">#FF0000</color>
+    <color name="green_confirmation">#21B327</color>
 </resources>
