@@ -38,4 +38,6 @@
     <string name="last_name">آخری نام</string>
     <string name="phone_number">فون نمبر</string>
     <string name="save">محفوظ کریں۔</string>
+    <string name="emergency_call_confirmation_text">کیا آپ واقعی ایمرجنسی سروسز (پولیس، ایمبولینس، فائر ٹرک) کو کال کرنا چاہتے ہیں؟</string>
+    <string name="call_911">911 پر کال کریں۔</string>
 </resources>

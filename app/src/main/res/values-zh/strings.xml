@@ -38,4 +38,6 @@
     <string name="last_name">姓</string>
     <string name="phone_number">电话号码</string>
     <string name="save">节省</string>
+    <string name="emergency_call_confirmation_text">您确定要拨打紧急服务电话（警察、救护车、消防车）吗？</string>
+    <string name="call_911">拨打 911</string>
 </resources>

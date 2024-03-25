@@ -1,7 +1,6 @@
 package com.example.androidassist.sharedComponents.dataClasses
 
 import com.example.androidassist.R
-import com.example.androidassist.sharedComponents.AndroidAssistApplication
 
 class SharedConstants {
     enum class AppEnum {
@@ -18,7 +17,8 @@ class SharedConstants {
         PSINGLEPHOTO,
         STEXT,
         SLANGUAGE,
-        CADDCONTACTS
+        CADDCONTACTS,
+        CEMERGENCYCONFIRM
     }
 
     class DefaultAppsInfo {

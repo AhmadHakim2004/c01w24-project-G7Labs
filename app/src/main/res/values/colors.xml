@@ -16,4 +16,5 @@
     <color name="light_primary">@color/white</color>
     <color name="light_on_primary">@color/black</color>
     <color name="grey">#9da1a8</color>
+    <color name="green_confirmation">#21B327</color>
 </resources>
