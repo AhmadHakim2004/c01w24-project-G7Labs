@@ -20,9 +20,12 @@ import com.example.androidassist.R
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
 
 class ContactMainFragment : Fragment() {
-    private lateinit var contactList: RecyclerView
     private lateinit var contacts: MutableList<ContactInfo>
     private var contactAdapter: ContactAdapter? = null
+
+    private lateinit var contactList: RecyclerView
+    private lateinit var addButton: Button
+    private lateinit var emergencyButton: Button
 
     private val REQUIRED_PERMISSIONS = arrayOf(
         Manifest.permission.READ_CONTACTS,
@@ -40,7 +43,17 @@ class ContactMainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val addButton = view.findViewById<Button>(R.id.add_contact_button)
+        contactList = requireView().findViewById(R.id.contact_list)
+        emergencyButton = requireView().findViewById(R.id.emergency_call_button)
+
+        addButton = view.findViewById(R.id.add_contact_button)
+
+        if (allPermissionsGranted()) {
+            setupContacts()
+        } else {
+            requestPermissionLauncher.launch(REQUIRED_PERMISSIONS)
+        }
+
         addButton.setOnClickListener {
             (activity as? ContactsMainActivity)?.apply {
                 replaceFragment(ContactsAddContactFragment())
@@ -48,10 +61,10 @@ class ContactMainFragment : Fragment() {
             }
         }
 
-        if (allPermissionsGranted()) {
-            setupContacts()
-        } else {
-            requestPermissionLauncher.launch(REQUIRED_PERMISSIONS)
+        emergencyButton.setOnClickListener {
+            val contactsActivity = activity as ContactsMainActivity
+            contactsActivity.replaceFragment(ContactsEmergencyCallConfirmationFragment())
+            contactsActivity.setState(SharedConstants.AppEnum.CEMERGENCYCONFIRM)
         }
     }
 
@@ -66,16 +79,15 @@ class ContactMainFragment : Fragment() {
             }
         }
 
-    fun setupContacts() {
+    private fun setupContacts() {
         contacts = loadContacts()
-        contactList = requireView().findViewById(R.id.contact_list)
 
         contactAdapter = ContactAdapter(contacts)
         contactList.adapter = contactAdapter
         contactList.layoutManager = LinearLayoutManager(activity)
     }
 
-    fun loadContacts(): MutableList<ContactInfo> {
+    private fun loadContacts() : MutableList<ContactInfo> {
         val contactList: MutableList<ContactInfo> = ArrayList()
         val contacts = (activity?.contentResolver)?.query(
             ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
