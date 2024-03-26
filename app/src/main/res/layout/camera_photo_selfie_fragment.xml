@@ -22,14 +22,6 @@
 
         </androidx.camera.view.PreviewView>
 
-        <ImageView
-            android:id="@+id/iv_capture"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
         <Button
             android:id="@+id/camera_capture_button"
             android:layout_width="350dp"
