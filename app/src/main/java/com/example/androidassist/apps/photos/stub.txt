@@ -1,1 +1,0 @@
-Added this file so that photos folder is added to github. Remove when adding actual files to this folder.
