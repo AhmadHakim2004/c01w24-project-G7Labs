@@ -8,7 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="backButtonColor">#353535</color>
-    <color name="settingsButtons">#144C3636</color>
+<!--    <color name="settingsButtons">#144C3636</color>-->
+<!--    <color name="settingsButtons">#14751515</color>-->
+<!--    <color name="settingsButtons">#14B4C4E1</color>-->
+    <color name="settingsButtons">#14DAC8C8</color>
     <color name="mint">#DCFFDD</color>
     <color name="red">#FF0000</color>
 </resources>
