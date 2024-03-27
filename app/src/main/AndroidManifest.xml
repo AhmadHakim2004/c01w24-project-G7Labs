@@ -28,7 +28,7 @@
             android:name=".apps.contacts.ContactsMainActivity"
             android:exported="false" />
         <activity
-            android:name=".apps.contacts.AddContactFragment"
+            android:name=".apps.contacts.ContactsAddContactFragment"
             android:exported="false" />
         <activity
             android:name=".apps.camera.CameraMainActivity"

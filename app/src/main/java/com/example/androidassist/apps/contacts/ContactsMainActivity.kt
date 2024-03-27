@@ -27,11 +27,4 @@ class ContactsMainActivity : BaseApps() {
             }
         }
     }
-
-
-
-
-
-
-
 }

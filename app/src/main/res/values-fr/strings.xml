@@ -8,9 +8,9 @@
     <string name="settings">Paramètres</string>
     <string name="mock_app">Se moquer</string>
     <string name="c_photo">Photo</string>
-    <string name="c_video">Photo</string>
-    <string name="c_photo_selfie">Photo</string>
-    <string name="c_video_selfie">Photo</string>
+    <string name="c_video">Vidéo</string>
+    <string name="c_photo_selfie">Selfie photo</string>
+    <string name="c_video_selfie">Selfie vidéo</string>
     <string name="backButtonTitle">Dos</string>
     <string name="takePhoto">Prendre une photo</string>
     <string name="takeSelfie">Prendre un selfie</string>
@@ -33,4 +33,9 @@
     <string name="size_4">Taille 4</string>
     <string name="size_5">Taille 5</string>
     <string name="size_6">Taille 6</string>
+    <string name="choose_photo">Choisissez une photo</string>
+    <string name="first_name">Prénom</string>
+    <string name="last_name">Nom de famille</string>
+    <string name="phone_number">Numéro de téléphone</string>
+    <string name="save">Sauvegarder</string>
 </resources>

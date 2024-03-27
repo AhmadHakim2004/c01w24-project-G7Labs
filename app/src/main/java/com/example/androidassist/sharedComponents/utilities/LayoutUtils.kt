@@ -47,6 +47,28 @@ class LayoutUtils {
         }
 
         /**
+         * Sets Height of View
+         *
+         * @param view View to be Modified
+         * @param heightPercentage Percentage of screen height/width to set the height
+         * @param widthPercentage Percentage of screen height/width to set the width
+         * @param comparedToHeight true by default to set the margins as a percentage of screen height,
+         *                          set it to false to set margins as a percentage of screen width
+         *
+         * @note When setting percentages, set them as: 100% = 1.0, 1% = 0.01, 0.75% = 0.0075
+         */
+        fun setDimensions(view: View, heightPercentage: Float, widthPercentage: Float, comparedToHeight: Boolean = true) {
+            val selectedDimensionSize = if (comparedToHeight) _height else _width
+            val newLayoutParams = view.layoutParams
+            val wantedHeight = selectedDimensionSize * heightPercentage
+            val wantedWidth = selectedDimensionSize * widthPercentage
+
+            newLayoutParams.height = wantedHeight.roundToInt()
+            newLayoutParams.width = wantedWidth.roundToInt()
+            view.layoutParams = newLayoutParams
+        }
+
+        /**
          * Sets Margins of View
          *
          * @param view View to be Modified
