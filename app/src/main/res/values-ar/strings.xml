@@ -33,4 +33,9 @@
     <string name="size_4">الحجم 4</string>
     <string name="size_5">حجم 5</string>
     <string name="size_6">الحجم 6</string>
+    <string name="choose_photo">اختر صورة</string>
+    <string name="first_name">الاسم الأول</string>
+    <string name="last_name">اسم العائلة</string>
+    <string name="phone_number">رقم التليفون</string>
+    <string name="save">يحفظ</string>
 </resources>

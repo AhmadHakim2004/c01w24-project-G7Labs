@@ -33,4 +33,9 @@
     <string name="size_4">سائز 4</string>
     <string name="size_5">سائز 5</string>
     <string name="size_6">سائز 6</string>
+    <string name="choose_photo">تصویر کا انتخاب کریں۔</string>
+    <string name="first_name">پہلا نام</string>
+    <string name="last_name">آخری نام</string>
+    <string name="phone_number">فون نمبر</string>
+    <string name="save">محفوظ کریں۔</string>
 </resources>

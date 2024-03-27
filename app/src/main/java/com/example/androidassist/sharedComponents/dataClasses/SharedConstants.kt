@@ -18,7 +18,7 @@ class SharedConstants {
         PSINGLEPHOTO,
         STEXT,
         SLANGUAGE,
-        ADDCONTACTS
+        CADDCONTACTS
     }
 
     class DefaultAppsInfo {
