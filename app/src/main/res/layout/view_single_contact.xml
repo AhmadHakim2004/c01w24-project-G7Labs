@@ -51,7 +51,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constrainedHeight_percent="0.10" />
+        />
 
     <TextView
         android:id="@+id/textView5"
@@ -98,6 +98,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button3"
-        app:layout_constrainedHeight_percent="0.10" />
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
