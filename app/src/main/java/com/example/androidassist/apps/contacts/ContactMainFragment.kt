@@ -39,16 +39,15 @@ class ContactMainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val addButton = view.findViewById<Button>(R.id.add_contact_button)
         addButton.setOnClickListener {
-            // Intent to open AddContactActivity
-            //Toast.makeText(requireContext(), "This is a test message.", Toast.LENGTH_SHORT).show()
-
             (activity as? ContactsMainActivity)?.apply {
-                replaceFragment(AddContactFragment())
-                setState(SharedConstants.AppEnum.ADDCONTACTS)
+                replaceFragment(ContactsAddContactFragment())
+                setState(SharedConstants.AppEnum.CADDCONTACTS)
             }
         }
+
         if (allPermissionsGranted()) {
             setupContacts()
         } else {
@@ -67,7 +66,7 @@ class ContactMainFragment : Fragment() {
             }
         }
 
-    public fun setupContacts() {
+    fun setupContacts() {
         contacts = loadContacts()
         contactList = requireView().findViewById(R.id.contact_list)
 
@@ -76,7 +75,7 @@ class ContactMainFragment : Fragment() {
         contactList.layoutManager = LinearLayoutManager(activity)
     }
 
-    public fun loadContacts(): MutableList<ContactInfo> {
+    fun loadContacts(): MutableList<ContactInfo> {
         val contactList: MutableList<ContactInfo> = ArrayList()
         val contacts = (activity?.contentResolver)?.query(
             ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
@@ -105,7 +104,7 @@ class ContactMainFragment : Fragment() {
         return contactList
     }
 
-    public fun loadContactPhoto(photoUri: Uri?): Bitmap? {
+    fun loadContactPhoto(photoUri: Uri?): Bitmap? {
         photoUri?.let {
             val inputStream = activity?.contentResolver?.openInputStream(it)
             return BitmapFactory.decodeStream(inputStream)

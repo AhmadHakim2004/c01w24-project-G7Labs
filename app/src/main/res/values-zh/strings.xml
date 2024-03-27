@@ -33,4 +33,9 @@
     <string name="size_4">尺码 4</string>
     <string name="size_5">尺码 5</string>
     <string name="size_6">尺码 6</string>
+    <string name="choose_photo">选择照片</string>
+    <string name="first_name">名</string>
+    <string name="last_name">姓</string>
+    <string name="phone_number">电话号码</string>
+    <string name="save">节省</string>
 </resources>
