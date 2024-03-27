@@ -38,6 +38,6 @@
     <string name="last_name">Nom de famille</string>
     <string name="phone_number">Numéro de téléphone</string>
     <string name="save">Sauvegarder</string>
-    <string name="emergency_call_confirmation_text">Etes-vous sûr de vouloir appeler les services d &amp;apos;urgence (police, ambulance, camion de pompiers) ?</string>
+    <string name="emergency_call_confirmation_text">Êtes-vous sûr de vouloir appeler les services d &amp;apos;urgence ?</string>
     <string name="call_911">APPELER LE 911</string>
 </resources>
