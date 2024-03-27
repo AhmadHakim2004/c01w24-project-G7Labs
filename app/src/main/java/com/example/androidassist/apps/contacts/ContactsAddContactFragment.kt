@@ -13,14 +13,22 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.androidassist.R
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
+import com.example.androidassist.sharedComponents.utilities.LayoutUtils
 
 private const val PICK_IMAGE = 100
 
-class AddContactFragment : Fragment() {
+class ContactsAddContactFragment : Fragment() {
+    private lateinit var choosePhotoTextView: TextView
+    private lateinit var photoImageView: ImageView
+    private lateinit var firstNameEditText: EditText
+    private lateinit var lastNameEditText: EditText
+    private lateinit var phoneEditText: EditText
+    private lateinit var saveContactButton: Button
 
     private var imageUri: Uri? = null
 
@@ -28,17 +36,18 @@ class AddContactFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.add_contact, container, false)
+        return inflater.inflate(R.layout.contacts_add_contact_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val firstNameEditText = view.findViewById<EditText>(R.id.firstNameEditText)
-        val lastNameEditText = view.findViewById<EditText>(R.id.lastNameEditText)
-        val phoneEditText = view.findViewById<EditText>(R.id.phoneEditText)
-        val photoImageView = view.findViewById<ImageView>(R.id.photoImageView)
-        val saveContactButton = view.findViewById<Button>(R.id.saveContactButton)
+        choosePhotoTextView = view.findViewById(R.id.choose_photo_text)
+        firstNameEditText = view.findViewById(R.id.firstNameEditText)
+        lastNameEditText = view.findViewById(R.id.lastNameEditText)
+        phoneEditText = view.findViewById(R.id.phoneEditText)
+        photoImageView = view.findViewById(R.id.photoImageView)
+        saveContactButton = view.findViewById(R.id.saveContactButton)
 
         photoImageView.setOnClickListener {
             val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
@@ -62,6 +71,8 @@ class AddContactFragment : Fragment() {
                 Toast.makeText(requireContext(), "Name and phone number are required", Toast.LENGTH_SHORT).show()
             }
         }
+
+        setupStyles()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -115,4 +126,23 @@ class AddContactFragment : Fragment() {
         }
     }
 
+    private fun setupStyles() {
+        LayoutUtils.setMargins(choosePhotoTextView, 0f, 0.05f, 0f, 0f)
+        LayoutUtils.setTextSize(choosePhotoTextView, 0.01f)
+
+        LayoutUtils.setDimensions(photoImageView, 0.2f, 0.2f)
+        LayoutUtils.setMargins(photoImageView, 0f, 0.01f, 0f, 0f)
+
+        LayoutUtils.setMargins(firstNameEditText, 0.1f, 0.05f, 0.1f, 0f)
+        LayoutUtils.setTextSize(firstNameEditText, 0.01f)
+
+        LayoutUtils.setMargins(lastNameEditText, 0.1f, 0.01f, 0.1f, 0f)
+        LayoutUtils.setTextSize(lastNameEditText, 0.01f)
+
+        LayoutUtils.setMargins(phoneEditText, 0.1f, 0.01f, 0.1f, 0f)
+        LayoutUtils.setTextSize(phoneEditText, 0.01f)
+
+        LayoutUtils.setMargins(saveContactButton, 0.1f, 0.05f, 0.1f, 0f)
+        LayoutUtils.setTextSize(saveContactButton, 0.007f)
+    }
 }
