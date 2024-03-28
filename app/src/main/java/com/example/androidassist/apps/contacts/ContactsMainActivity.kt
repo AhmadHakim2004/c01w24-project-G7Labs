@@ -8,6 +8,8 @@ import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
 import com.example.androidassist.sharedComponents.views.BaseApps
 
 class ContactsMainActivity : BaseApps() {
+    var selectedContact: ContactInfo? = null
+
     override val appInfo: AppsInfo
         get() = SharedConstants.DefaultAppsInfo.ContactsAppInfo
 
@@ -21,6 +23,7 @@ class ContactsMainActivity : BaseApps() {
             when(getState()) {
                 SharedConstants.AppEnum.CONTACTS -> startActivity(Intent(this, MainActivity::class.java))
                 else -> {
+                    selectedContact = null
                     replaceFragment(ContactMainFragment())
                     setState(SharedConstants.AppEnum.CONTACTS)
                 }
