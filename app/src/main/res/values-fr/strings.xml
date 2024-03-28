@@ -40,6 +40,8 @@
     <string name="save">Sauvegarder</string>
     <string name="emergency_call_confirmation_text">Êtes-vous sûr de vouloir appeler les services d &amp;apos;urgence ?</string>
     <string name="call_911">APPELER LE 911</string>
+    <string name="create_new_contact">Créer un nouveau contact</string>
+    <string name="emergency_call">Appel d &amp;apos;urgence</string>
     <string name="edit_contact">Modifier le contact</string>
     <string name="call_contact">Appeler le contact</string>
 </resources>

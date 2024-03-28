@@ -40,6 +40,8 @@
     <string name="save">节省</string>
     <string name="emergency_call_confirmation_text">您确定要拨打紧急服务电话吗？</string>
     <string name="call_911">拨打 911</string>
+    <string name="create_new_contact">创建新联系人</string>
+    <string name="emergency_call">紧急呼叫</string>
     <string name="edit_contact">更改联系资料</string>
     <string name="call_contact">致电联系</string>
 </resources>
