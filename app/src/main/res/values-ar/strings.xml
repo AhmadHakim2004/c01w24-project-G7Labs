@@ -40,4 +40,6 @@
     <string name="save">يحفظ</string>
     <string name="emergency_call_confirmation_text">هل أنت متأكد أنك تريد الاتصال بخدمات الطوارئ؟</string>
     <string name="call_911">اتصل ب 911</string>
+    <string name="edit_contact">تحرير جهة الاتصال</string>
+    <string name="call_contact">اتصل بجهة الاتصال</string>
 </resources>
