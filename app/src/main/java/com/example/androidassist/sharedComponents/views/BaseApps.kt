@@ -14,6 +14,7 @@ import com.example.androidassist.R
 import com.example.androidassist.sharedComponents.dataClasses.AppsInfo
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
 import com.example.androidassist.sharedComponents.utilities.LayoutUtils
+import com.example.androidassist.sharedComponents.utilities.SharedPreferenceUtils
 
 abstract class BaseApps : AppCompatActivity() {
     protected lateinit var appHeader: LinearLayout
@@ -23,6 +24,10 @@ abstract class BaseApps : AppCompatActivity() {
     private lateinit var state : SharedConstants.AppEnum
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val theme = SharedPreferenceUtils.getIntFromDefaultSharedPrefFile(applicationContext, "theme", R.style.Theme_AndroidAssist)
+        if (theme != null) {
+            setTheme(theme)
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_base_apps)
 

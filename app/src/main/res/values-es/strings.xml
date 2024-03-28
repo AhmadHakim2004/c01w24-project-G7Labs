@@ -8,9 +8,9 @@
     <string name="settings">Ajustes</string>
     <string name="mock_app">Imitar</string>
     <string name="c_photo">Foto</string>
-    <string name="c_video">Foto</string>
-    <string name="c_photo_selfie">Foto</string>
-    <string name="c_video_selfie">Foto</string>
+    <string name="c_video">Video</string>
+    <string name="c_photo_selfie">Foto selfie</string>
+    <string name="c_video_selfie">Vídeo selfie</string>
     <string name="backButtonTitle">Atrás</string>
     <string name="takePhoto">Tomar foto</string>
     <string name="takeSelfie">Tomarse una selfie</string>
@@ -20,7 +20,7 @@
     <string name="volume">Volumen</string>
     <string name="text_to_speech">Texto a voz</string>
     <string name="language">Idioma</string>
-    <string name="blindness">Ceguera</string>
+    <string name="blindness">Contraste de color</string>
     <string name="mandarin">mandarín</string>
     <string name="hindi">hindi</string>
     <string name="arabic">Arábica</string>

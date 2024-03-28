@@ -8,7 +8,8 @@
     android:paddingLeft="5dp"
     android:paddingTop="10dp"
     android:paddingRight="5dp"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="?attr/colorPrimary">
 
 
     <TextClock
@@ -17,7 +18,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:fontFamily="sans-serif-black"
-        android:textSize="48sp" />
+        android:textSize="48sp"
+        android:textColor="?attr/colorOnPrimary"/>
 
     <ProgressBar
         android:id="@+id/pb_battery"
@@ -39,7 +41,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
         android:text="TextView"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="?attr/colorOnPrimary"/>
 
     <GridView
         android:id="@+id/appsGridContainer"
@@ -47,7 +50,8 @@
         android:layout_height="match_parent"
         android:numColumns="2"
         android:overScrollMode="never"
-        android:scrollbars="none">
+        android:scrollbars="none"
+        android:backgroundTint="?attr/colorPrimary">
 
     </GridView>
 

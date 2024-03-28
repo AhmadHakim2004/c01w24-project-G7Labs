@@ -41,5 +41,20 @@ class SharedPreferenceUtils {
             return sharedPrefSettings.getFloat(key, default)
 
         }
+
+        fun addIntToDefaultSharedPrefFile(context: Context, key : String, value : Int)
+        {
+            val sharedPrefSettings = getDefaultSharedPrefFile(context)
+            with (sharedPrefSettings.edit()) {
+                putInt(key, value)
+                apply()
+            }
+        }
+
+        fun getIntFromDefaultSharedPrefFile(context: Context, key: String, default : Int) : Int? {
+            val sharedPrefSettings = getDefaultSharedPrefFile(context)
+            return sharedPrefSettings.getInt(key, default)
+
+        }
     }
 }
