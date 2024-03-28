@@ -8,10 +8,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="backButtonColor">#353535</color>
-<!--    <color name="settingsButtons">#144C3636</color>-->
-<!--    <color name="settingsButtons">#14751515</color>-->
-<!--    <color name="settingsButtons">#14B4C4E1</color>-->
-    <color name="settingsButtons">#14DAC8C8</color>
+    <color name="settingsButtons">#144C3636</color>
+    <color name="settingsButtonsLight">#144C3636</color>
+    <color name="settingsButtonsDark">#998f8a</color>
     <color name="mint">#DCFFDD</color>
     <color name="red">#FF0000</color>
+    <color name="light_primary">@color/white</color>
+    <color name="light_on_primary">@color/black</color>
+    <color name="grey">#9da1a8</color>
 </resources>

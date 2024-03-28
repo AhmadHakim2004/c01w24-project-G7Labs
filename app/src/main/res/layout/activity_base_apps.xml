@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="?attr/colorPrimary">
 
     <LinearLayout
         android:id="@+id/appHeader"
@@ -15,7 +16,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toTopOf="@id/fragmentHolder"
-        app:layout_constraintHeight_percent="0.1">
+        app:layout_constraintHeight_percent="0.1"
+        android:background="?attr/colorPrimary">
 
         <ImageView
             android:id="@+id/appHeaderIcon"
@@ -31,8 +33,8 @@
             android:paddingRight="30dp"
             android:fontFamily="sans-serif-medium"
             android:gravity="center_vertical"
-            android:textColor="@color/black"
-            android:layout_width="0dp"/>
+            android:textColor="?attr/colorOnPrimary"
+            android:layout_width="0dp" />
 
     </LinearLayout>
 
@@ -44,22 +46,22 @@
         app:layout_constraintTop_toBottomOf="@id/appHeader"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/backButton"/>
+        app:layout_constraintBottom_toTopOf="@id/backButton"
+        android:background="?attr/colorPrimary"/>
 
     <Button
         android:id="@+id/backButton"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:backgroundTint="@color/backButtonColor"
         android:text="@string/backButtonTitle"
-        app:icon="?attr/homeAsUpIndicator"
         app:iconGravity="textStart"
         app:layout_constraintTop_toBottomOf="@id/fragmentHolder"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent="0.1"
-        />
+        android:textColor="?attr/colorPrimary"
+        android:backgroundTint="?attr/backButtonColor" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

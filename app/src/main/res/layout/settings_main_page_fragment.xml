@@ -19,8 +19,8 @@
         android:drawableTop="@drawable/size_5"
         android:gravity="center"
         android:text="@string/text_size"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/settingsButtons"
+        android:textColor="?attr/colorOnPrimary"
+        android:backgroundTint="?attr/colorSecondary"
         />
 
     <Button
@@ -34,8 +34,8 @@
         android:drawableTop="@drawable/brightness"
         android:gravity="center"
         android:text="@string/brightness"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/settingsButtons"
+        android:textColor="?attr/colorOnPrimary"
+        android:backgroundTint="?attr/colorSecondary"
         />
 
     <Button
@@ -49,8 +49,8 @@
         android:drawableTop="@drawable/volume"
         android:gravity="center"
         android:text="@string/volume"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/settingsButtons"
+        android:textColor="?attr/colorOnPrimary"
+        android:backgroundTint="?attr/colorSecondary"
         />
 
     <Button
@@ -64,8 +64,8 @@
         android:drawableTop="@drawable/text_to_speech"
         android:gravity="center"
         android:text="@string/text_to_speech"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/settingsButtons"
+        android:textColor="?attr/colorOnPrimary"
+        android:backgroundTint="?attr/colorSecondary"
         />
 
     <Button
@@ -79,8 +79,8 @@
         android:drawableTop="@drawable/language"
         android:gravity="center"
         android:text="@string/language"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/settingsButtons"
+        android:textColor="?attr/colorOnPrimary"
+        android:backgroundTint="?attr/colorSecondary"
         />
 
     <Button
@@ -94,7 +94,7 @@
         android:drawableTop="@drawable/blindness"
         android:gravity="center"
         android:text="@string/blindness"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/settingsButtons"
+        android:textColor="?attr/colorOnPrimary"
+        android:backgroundTint="?attr/colorSecondary"
         />
 </GridLayout>

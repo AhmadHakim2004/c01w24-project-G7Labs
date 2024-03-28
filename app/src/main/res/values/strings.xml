@@ -19,7 +19,7 @@
     <string name="volume">Volume</string>
     <string name="text_to_speech">Text-to-speech</string>
     <string name="language">Language</string>
-    <string name="blindness">Blindness</string>
+    <string name="blindness">Color Contrast</string>
     <string name="mandarin">Mandarin</string>
     <string name="hindi">Hindi</string>
     <string name="arabic">Arabic</string>
