@@ -1,14 +1,15 @@
 package com.example.androidassist.apps.contacts
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import com.example.androidassist.R
+import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
 import com.example.androidassist.sharedComponents.utilities.LayoutUtils
 
 class ContactsSingleContactFragment : Fragment() {
@@ -48,6 +49,12 @@ class ContactsSingleContactFragment : Fragment() {
         contactPhoneNumberText.text = contactInfo.number
 
         setupStyles()
+        editContactBtn.setOnClickListener {
+            (activity as? ContactsMainActivity)?.apply {
+                replaceFragment(EditContactFragment())
+                setState(SharedConstants.AppEnum.CEDITCONTACTS)
+            }
+        }
     }
 
     private fun setupStyles() {

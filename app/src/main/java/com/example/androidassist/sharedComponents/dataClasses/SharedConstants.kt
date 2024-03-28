@@ -19,7 +19,8 @@ class SharedConstants {
         SLANGUAGE,
         CADDCONTACTS,
         CEMERGENCYCONFIRM,
-        CSINGLECONTACT
+        CSINGLECONTACT,
+        CEDITCONTACTS
     }
 
     class DefaultAppsInfo {
