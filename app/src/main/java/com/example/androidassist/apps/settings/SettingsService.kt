@@ -4,6 +4,8 @@ import android.content.Context
 import android.media.AudioManager
 import android.provider.Settings
 import com.example.androidassist.sharedComponents.AndroidAssistApplication
+import kotlin.math.ln
+import kotlin.math.roundToInt
 
 
 class SettingsService {
@@ -16,19 +18,10 @@ class SettingsService {
     }
 
     fun getCurrentBrightnessPercentage(): Int {
-        return (Settings.System.getInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS)  * 100 / 255)
+        val currentBrightness = Settings.System.getInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS)
+        val percentageFloat = ln(currentBrightness.toFloat()) / ln(255f)
+        return (percentageFloat * 100).toInt()
     }
-
-    fun changeVolume(progress: Int) {
-        val volumeProgress = progress * maxVolume / 100
-        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, volumeProgress, 0)
-    } // seek
-
-    fun changeBrightness(progress: Int) {
-        val brightnessProgress = progress * 255/100
-        Settings.System.putInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS,Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL)
-        Settings.System.putInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS, brightnessProgress)
-    } // seek
 
     fun increaseVolume() {
         val currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
@@ -46,14 +39,14 @@ class SettingsService {
 
     fun increaseBrightness() {
         val currentBrightness = Settings.System.getInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS)
-        val newBrightness = (currentBrightness + 10).coerceAtMost(255)
+        val newBrightness = ((currentBrightness * Math.E).roundToInt()).coerceAtMost(255)
         Settings.System.putInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS, newBrightness)
 
     }
 
     fun decreaseBrightness() {
         val currentBrightness = Settings.System.getInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS)
-        val newBrightness = (currentBrightness - 10).coerceAtLeast(0)
+        val newBrightness = ((currentBrightness / Math.E).roundToInt()).coerceAtLeast(1)
         Settings.System.putInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS, newBrightness)
     }
 }

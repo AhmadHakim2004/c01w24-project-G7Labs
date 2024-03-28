@@ -12,7 +12,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.GridLayout
-import android.widget.SeekBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.androidassist.R
@@ -94,14 +93,9 @@ class SettingsMainFragment : Fragment() {
         val dialogInfo = volumeDialog.findViewById<TextView>(R.id.dialog_info)
         val btnDecrease = volumeDialog.findViewById<Button>(R.id.btn_decrease)
         val btnIncrease = volumeDialog.findViewById<Button>(R.id.btn_increase)
-        val seekBar = volumeDialog.findViewById<SeekBar>(R.id.seekBar) // seek
 
         dialogTitle.text = getString(R.string.volume)
-        dialogInfo.text = service.getCurrentVolumePercentage().toString() + " %"
-        seekBar.keyProgressIncrement = 1 // seek
-        seekBar.max = 100 // seek
-        seekBar.progress = service.getCurrentVolumePercentage() // seek
-
+        dialogInfo.text = "${service.getCurrentVolumePercentage()} %"
 
         volumeDialog.window?.setLayout(
             ViewGroup.LayoutParams.MATCH_PARENT,
@@ -111,34 +105,16 @@ class SettingsMainFragment : Fragment() {
         btnIncrease.setOnClickListener {
             service.increaseVolume()
             Handler(Looper.getMainLooper()).postDelayed({
-                seekBar.progress = service.getCurrentVolumePercentage() // seek
-                dialogInfo.text = service.getCurrentVolumePercentage().toString() + " %"
+                dialogInfo.text = "${service.getCurrentVolumePercentage()} %"
             }, 50)
         }
 
         btnDecrease.setOnClickListener {
             service.decreaseVolume()
             Handler(Looper.getMainLooper()).postDelayed({
-                seekBar.progress = service.getCurrentVolumePercentage() // seek
-                dialogInfo.text = service.getCurrentVolumePercentage().toString() + " %"
+                dialogInfo.text = "${service.getCurrentVolumePercentage()} %"
             }, 50)
         }
-
-        seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                if (fromUser) {
-                    service.changeVolume(progress)
-                    dialogInfo.text = service.getCurrentVolumePercentage().toString() + " %"
-                }
-            }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-            }
-
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-            }
-        }) // seekbar function
-
 
         volumeDialog.setCancelable(true)
         volumeDialog.show()
@@ -153,13 +129,9 @@ class SettingsMainFragment : Fragment() {
         val dialogInfo = brightnessDialog.findViewById<TextView>(R.id.dialog_info)
         val btnDecrease = brightnessDialog.findViewById<Button>(R.id.btn_decrease)
         val btnIncrease = brightnessDialog.findViewById<Button>(R.id.btn_increase)
-        val seekBar = brightnessDialog.findViewById<SeekBar>(R.id.seekBar) // seek
 
         dialogTitle.text = getString(R.string.brightness)
-        dialogInfo.text = service.getCurrentBrightnessPercentage().toString() + " %"
-        seekBar.keyProgressIncrement = 1 // seek
-        seekBar.max = 100 // seek
-        seekBar.progress = service.getCurrentBrightnessPercentage() // seek
+        dialogInfo.text = "${service.getCurrentBrightnessPercentage()} %"
 
         brightnessDialog.window?.setLayout(
             ViewGroup.LayoutParams.MATCH_PARENT,
@@ -168,30 +140,13 @@ class SettingsMainFragment : Fragment() {
 
         btnIncrease.setOnClickListener {
             service.increaseBrightness()
-            dialogInfo.text = service.getCurrentBrightnessPercentage().toString() + " %"
-            seekBar.progress = service.getCurrentBrightnessPercentage() // seek
+            dialogInfo.text = "${service.getCurrentBrightnessPercentage()} %"
         }
 
         btnDecrease.setOnClickListener {
             service.decreaseBrightness()
-            dialogInfo.text = service.getCurrentBrightnessPercentage().toString() + " %"
-            seekBar.progress = service.getCurrentBrightnessPercentage() // seek
+            dialogInfo.text = "${service.getCurrentBrightnessPercentage()} %"
         }
-
-        seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                if (fromUser) {
-                    service.changeBrightness(progress)
-                    dialogInfo.text = service.getCurrentBrightnessPercentage().toString() + " %"
-                }
-            }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-            }
-
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-            }
-        }) // seek function
 
         brightnessDialog.setCancelable(true)
 
