@@ -1,1 +1,0 @@
-Added this file so that contacts folder is added to github. Remove when adding actual files to this folder.

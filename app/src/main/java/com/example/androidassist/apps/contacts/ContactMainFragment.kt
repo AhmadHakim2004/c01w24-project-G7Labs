@@ -2,6 +2,7 @@ package com.example.androidassist.apps.contacts
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -82,7 +83,7 @@ class ContactMainFragment : Fragment() {
     private fun setupContacts() {
         contacts = loadContacts()
 
-        contactAdapter = ContactAdapter(contacts)
+        contactAdapter = ContactAdapter(contacts, activity as ContactsMainActivity)
         contactList.adapter = contactAdapter
         contactList.layoutManager = LinearLayoutManager(activity)
     }
@@ -94,21 +95,28 @@ class ContactMainFragment : Fragment() {
             null, null, null, null
         )
         contacts?.use { cursor ->
-            val nameIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)
+            val idIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.CONTACT_ID)
             val numberIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)
             val photoUriIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.PHOTO_URI)
 
             while (cursor.moveToNext()) {
-                if (nameIndex < 0 || numberIndex < 0 || photoUriIndex < 0) {
+                if (idIndex < 0 || numberIndex < 0 || photoUriIndex < 0) {
                     continue
                 }
-                val name = cursor.getString(nameIndex)
+
+                val id = cursor.getString(idIndex)
+
+                val firstAndLastName = getContactFirstAndLastName(id)
+                val firstName: String? = firstAndLastName.first
+                val lastName: String? = firstAndLastName.second
+
                 val number = cursor.getString(numberIndex)
+
                 val photoUriString = cursor.getString(photoUriIndex)
                 val photoUri = photoUriString?.let { Uri.parse(it) }
                 val bitmap = loadContactPhoto(photoUri)
 
-                val contact = ContactInfo(name, number, bitmap)
+                val contact = ContactInfo(firstName, lastName, number, bitmap)
                 contactList.add(contact)
             }
         }
@@ -116,7 +124,29 @@ class ContactMainFragment : Fragment() {
         return contactList
     }
 
-    fun loadContactPhoto(photoUri: Uri?): Bitmap? {
+    private fun getContactFirstAndLastName(id: String): Pair<String?, String?> {
+        val contactCursor: Cursor? = activity?.contentResolver?.query(
+            ContactsContract.Data.CONTENT_URI,
+            null,
+            ContactsContract.CommonDataKinds.StructuredName.CONTACT_ID + " = ?",
+            arrayOf(id),
+            null
+        )
+
+        contactCursor?.use {
+            val firstNameIndex = contactCursor.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME)
+            val lastNameIndex = contactCursor.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME)
+            if (contactCursor.moveToFirst()) {
+                val firstName = contactCursor.getString(firstNameIndex)
+                val lastName = contactCursor.getString(lastNameIndex)
+                return Pair(firstName, lastName)
+            }
+        }
+
+        return Pair(null, null)
+    }
+
+    private fun loadContactPhoto(photoUri: Uri?): Bitmap? {
         photoUri?.let {
             val inputStream = activity?.contentResolver?.openInputStream(it)
             return BitmapFactory.decodeStream(inputStream)
