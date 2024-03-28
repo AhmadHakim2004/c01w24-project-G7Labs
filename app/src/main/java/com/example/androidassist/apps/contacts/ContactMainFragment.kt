@@ -19,10 +19,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidassist.R
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
+import com.example.androidassist.sharedComponents.AndroidAssistApplication
+import com.example.androidassist.sharedComponents.utilities.SharedPreferenceUtils
 
 class ContactMainFragment : Fragment() {
     private lateinit var contacts: MutableList<ContactInfo>
     private var contactAdapter: ContactAdapter? = null
+    private lateinit var favouredContacts: Set<String>
 
     private lateinit var contactList: RecyclerView
     private lateinit var addButton: Button
@@ -81,9 +84,11 @@ class ContactMainFragment : Fragment() {
         }
 
     private fun setupContacts() {
+        favouredContacts = SharedPreferenceUtils.getStringSetFromDefaultSharedPrefFile(
+            AndroidAssistApplication.getAppContext(), "favContacts", setOf()) ?: setOf()
         contacts = loadContacts()
 
-        contactAdapter = ContactAdapter(contacts, activity as ContactsMainActivity)
+        contactAdapter = ContactAdapter(contacts, contactList, activity as ContactsMainActivity)
         contactList.adapter = contactAdapter
         contactList.layoutManager = LinearLayoutManager(activity)
     }
@@ -116,8 +121,11 @@ class ContactMainFragment : Fragment() {
                 val photoUri = photoUriString?.let { Uri.parse(it) }
                 val bitmap = loadContactPhoto(photoUri)
 
-                val contact = ContactInfo(firstName, lastName, number, bitmap)
-                contactList.add(contact)
+                val contact = ContactInfo(id, firstName, lastName, number, bitmap)
+                contact.isFavourite = favouredContacts.contains(contact.id)
+
+                val indexToInsert = ContactsBinarySearch.indexToInsert(contactList, contact)
+                contactList.add(indexToInsert, contact)
             }
         }
 
