@@ -8,9 +8,9 @@
     <string name="settings">设置</string>
     <string name="mock_app">嘲笑</string>
     <string name="c_photo">照片</string>
-    <string name="c_video">照片</string>
-    <string name="c_photo_selfie">照片</string>
-    <string name="c_video_selfie">照片</string>
+    <string name="c_video">视频</string>
+    <string name="c_photo_selfie">自拍</string>
+    <string name="c_video_selfie">视频自拍</string>
     <string name="backButtonTitle">后退</string>
     <string name="takePhoto">拍照</string>
     <string name="takeSelfie">自拍</string>
@@ -20,7 +20,7 @@
     <string name="volume">体积</string>
     <string name="text_to_speech">文字转语音</string>
     <string name="language">语言</string>
-    <string name="blindness">失明</string>
+    <string name="blindness">色彩对比</string>
     <string name="mandarin">普通话</string>
     <string name="hindi">印地语</string>
     <string name="arabic">阿拉伯</string>

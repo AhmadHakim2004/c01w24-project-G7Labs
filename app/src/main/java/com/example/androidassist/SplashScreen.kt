@@ -16,6 +16,10 @@ import com.example.androidassist.sharedComponents.utilities.SharedPreferenceUtil
 class SplashScreen : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
+        val theme = SharedPreferenceUtils.getIntFromDefaultSharedPrefFile(applicationContext, "theme", R.style.Theme_AndroidAssist)
+        if (theme != null) {
+            setTheme(theme)
+        }
         super.onCreate(savedInstanceState)
         setAppLanguage()
         setTextSize()

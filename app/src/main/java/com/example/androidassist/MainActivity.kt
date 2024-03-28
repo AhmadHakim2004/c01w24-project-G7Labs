@@ -23,6 +23,7 @@ import com.example.androidassist.sharedComponents.dataClasses.SharedConstants.Ap
 import com.example.androidassist.sharedComponents.dataClasses.AppsInfo
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
 import com.example.androidassist.sharedComponents.utilities.LayoutUtils
+import com.example.androidassist.sharedComponents.utilities.SharedPreferenceUtils
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -36,6 +37,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mContext: Context
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val theme = SharedPreferenceUtils.getIntFromDefaultSharedPrefFile(applicationContext, "theme", R.style.Theme_AndroidAssist)
+        if (theme != null) {
+            setTheme(theme)
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 

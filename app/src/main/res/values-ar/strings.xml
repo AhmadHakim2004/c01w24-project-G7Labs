@@ -8,9 +8,9 @@
     <string name="settings">إعدادات</string>
     <string name="mock_app">وهمية</string>
     <string name="c_photo">صورة</string>
-    <string name="c_video">صورة</string>
-    <string name="c_photo_selfie">صورة</string>
-    <string name="c_video_selfie">صورة</string>
+    <string name="c_video">فيديو</string>
+    <string name="c_photo_selfie">صور سيلفي</string>
+    <string name="c_video_selfie">فيديو سيلفي</string>
     <string name="backButtonTitle">خلف</string>
     <string name="takePhoto">تصوير</string>
     <string name="takeSelfie">خذ صورة شخصية</string>
@@ -20,7 +20,7 @@
     <string name="volume">مقدار</string>
     <string name="text_to_speech">النص إلى الكلام</string>
     <string name="language">لغة</string>
-    <string name="blindness">العمى</string>
+    <string name="blindness">تباين الألوان</string>
     <string name="mandarin">الماندرين</string>
     <string name="hindi">الهندية</string>
     <string name="arabic">عربي</string>

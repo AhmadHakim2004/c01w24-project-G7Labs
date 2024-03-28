@@ -1,9 +1,12 @@
 package com.example.androidassist.apps.settings
 
+import android.content.Context
+import android.content.res.Configuration
 import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.TypedValue
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
@@ -17,6 +20,8 @@ import androidx.fragment.app.Fragment
 import com.example.androidassist.R
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
 import com.example.androidassist.sharedComponents.utilities.LayoutUtils
+import com.example.androidassist.sharedComponents.utilities.LocaleUtils
+import com.example.androidassist.sharedComponents.utilities.SharedPreferenceUtils
 
 
 class SettingsMainFragment : Fragment() {
@@ -29,7 +34,6 @@ class SettingsMainFragment : Fragment() {
     private lateinit var textToSpeechButton: Button
     private lateinit var buttons: List<Button>
     private lateinit var service: SettingsService
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,19 +61,32 @@ class SettingsMainFragment : Fragment() {
             blindnessButton, textToSpeechButton
         )
 
-        // Set OnClickListener to the language button
+        // Set OnClickListener to the button
         languageButton.setOnClickListener {
             val settingsActivity = activity as SettingsMainActivity
             settingsActivity.replaceFragment(SettingsLanguageFragment())
             settingsActivity.setState(SharedConstants.AppEnum.SLANGUAGE)
         }
 
-        // Set OnClickListener to the text_size button
+        // Set OnClickListener to the button
         textSizeButton.setOnClickListener {
             val settingsActivity = activity as SettingsMainActivity
             settingsActivity.replaceFragment(SettingsTextSizeFragment())
             settingsActivity.setState(SharedConstants.AppEnum.STEXT)
         }
+
+        blindnessButton.setOnClickListener {
+                val outValue = TypedValue()
+                requireActivity().theme.resolveAttribute(R.attr.ThemeName, outValue, true)
+
+                if (outValue.string.equals("LightTheme")){
+                    SharedPreferenceUtils.addIntToDefaultSharedPrefFile(requireContext(), "theme", R.style.Theme_AndroidAssistDark)
+
+                } else{
+                    SharedPreferenceUtils.addIntToDefaultSharedPrefFile(requireContext(), "theme", R.style.Theme_AndroidAssist)
+                }
+                requireActivity().recreate()
+            }
 
         // Set OnClickListener to the volume button
         volumeButton.setOnClickListener {
@@ -82,6 +99,24 @@ class SettingsMainFragment : Fragment() {
         }
 
         setupStyles()
+    }
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(wrapContextWithBaseContextChanges(context))
+    }
+
+    private fun wrapContextWithBaseContextChanges(context: Context): Context {
+        val locale = SharedPreferenceUtils.getStringFromDefaultSharedPrefFile(requireContext(), "language", "en")
+        val textSize = SharedPreferenceUtils.getFloatFromDefaultSharedPrefFile(requireContext(), "textSize", 1f)
+        if (locale != null) {
+            LocaleUtils.setAppLocale(requireContext(), locale)
+        }
+        if (textSize != null) {
+            LayoutUtils.setAppTextSize(requireContext(), textSize)
+        }
+        val config = Configuration(context.resources.configuration)
+        return context.createConfigurationContext(config)
     }
 
     private fun showVolumeDialog() {
