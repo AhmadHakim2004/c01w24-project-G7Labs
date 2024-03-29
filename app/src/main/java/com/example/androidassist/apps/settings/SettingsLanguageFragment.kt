@@ -68,7 +68,7 @@ class SettingsLanguageFragment : Fragment() {
             pair.first.setOnClickListener {
                 val lang = pair.second
                 LocaleUtils.setAppLocale(requireContext(), lang)
-                onRefresh?.refreshScreen(SettingsLanguageFragment(), SharedConstants.AppEnum.SLANGUAGE)
+                onRefresh?.refreshScreen(SettingsLanguageFragment(), SharedConstants.PageState.SLANGUAGE)
                 SharedPreferenceUtils.addStringToDefaultSharedPrefFile(requireContext(), "language", lang)
             }
         }

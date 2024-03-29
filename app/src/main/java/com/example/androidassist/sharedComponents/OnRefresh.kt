@@ -9,5 +9,5 @@ import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
  * @see SettingsMainAcitivty with SettingsLanguageFragment
  */
 interface OnRefresh {
-    fun refreshScreen(fragment : Fragment, state : SharedConstants.AppEnum)
+    fun refreshScreen(fragment : Fragment, state : SharedConstants.PageState)
 }

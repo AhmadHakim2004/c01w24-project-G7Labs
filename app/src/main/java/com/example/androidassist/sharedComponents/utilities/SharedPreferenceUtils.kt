@@ -36,7 +36,7 @@ class SharedPreferenceUtils {
             }
         }
 
-        fun getFloatFromDefaultSharedPrefFile(context: Context, key: String, default : Float) : Float? {
+        fun getFloatFromDefaultSharedPrefFile(context: Context, key: String, default : Float) : Float {
             val sharedPrefSettings = getDefaultSharedPrefFile(context)
             return sharedPrefSettings.getFloat(key, default)
         }
@@ -78,6 +78,14 @@ class SharedPreferenceUtils {
             return set?.let { HashSet(it) }
         }
 
+        fun addStringSetToDefaultSharedPrefFile(context: Context, key: String, value : Set<String>) {
+            val sharedPrefSettings = getDefaultSharedPrefFile(context)
+            with (sharedPrefSettings.edit()) {
+                putStringSet(key, value)
+                apply()
+            }
+        }
+
         fun addIntToDefaultSharedPrefFile(context: Context, key : String, value : Int)
         {
             val sharedPrefSettings = getDefaultSharedPrefFile(context)
@@ -87,7 +95,7 @@ class SharedPreferenceUtils {
             }
         }
 
-        fun getIntFromDefaultSharedPrefFile(context: Context, key: String, default : Int) : Int? {
+        fun getIntFromDefaultSharedPrefFile(context: Context, key: String, default : Int) : Int {
             val sharedPrefSettings = getDefaultSharedPrefFile(context)
             return sharedPrefSettings.getInt(key, default)
 

@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.AdapterView
+import android.widget.Button
 import android.widget.GridView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -19,8 +20,9 @@ import com.example.androidassist.apps.settings.SettingsMainActivity
 import com.example.androidassist.apps.camera.CameraMainActivity
 import com.example.androidassist.apps.contacts.ContactsMainActivity
 import com.example.androidassist.apps.photos.PhotosMainActivity
-import com.example.androidassist.sharedComponents.dataClasses.SharedConstants.AppEnum
-import com.example.androidassist.sharedComponents.dataClasses.AppsInfo
+import com.example.androidassist.sharedComponents.dataClasses.AdapterItem
+import com.example.androidassist.sharedComponents.dataClasses.CustomApp
+import com.example.androidassist.sharedComponents.dataClasses.InstalledApp
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
 import com.example.androidassist.sharedComponents.utilities.LayoutUtils
 import com.example.androidassist.sharedComponents.utilities.SharedPreferenceUtils
@@ -29,11 +31,12 @@ import java.time.format.DateTimeFormatter
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appsGridContainer: GridView
-    private lateinit var appsGridAdapter: AppsGridAdapter
-    private lateinit var apps: List<AppsInfo>
+    private lateinit var appsGridAdapter: GridAdapter
+    private lateinit var apps: MutableList<AdapterItem>
     private var dateDisplay: TextView? = null
     private lateinit var batteryDisplay: ProgressBar
     private var batteryProgressStatus = 0
+    private lateinit var addAppsBtn: Button
     private lateinit var mContext: Context
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,22 +62,50 @@ class MainActivity : AppCompatActivity() {
         initTimeAndDate()
         initBattery()
 
+        addAppsBtn = findViewById(R.id.add_apps)
+        addAppsBtn.setOnClickListener {
+            startActivity(Intent(this, MainSelectAppsActivity::class.java))
+        }
         setStyles()
+    }
+
+    private fun addPhoneApps(apps: MutableList<AdapterItem>) {
+        var phoneApps = AppsService.getAllApps()
+        val selectedApps = SharedPreferenceUtils.getStringSetFromDefaultSharedPrefFile(
+            applicationContext, "SelectedApps", setOf())
+
+        if (selectedApps.isNullOrEmpty()) {
+            return
+        }
+
+        phoneApps = phoneApps.filter { app -> selectedApps.contains(app.id) }.toMutableList()
+
+        for (app in phoneApps) {
+            apps.add(app)
+        }
     }
 
     private fun initAppGrid() {
         appsGridContainer = findViewById(R.id.appsGridContainer)
         apps = getInitialApps()
-        appsGridAdapter = AppsGridAdapter(this, apps)
+        addPhoneApps(apps)
+
+        appsGridAdapter = GridAdapter(this, apps)
         appsGridContainer.adapter = appsGridAdapter
 
         appsGridContainer.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
-            when(apps[position].appEnum) {
-                AppEnum.CAMERA -> startActivity(Intent(this, CameraMainActivity::class.java))
-                AppEnum.PHOTOS -> startActivity(Intent(this, PhotosMainActivity::class.java))
-                AppEnum.CONTACTS -> startActivity(Intent(this, ContactsMainActivity::class.java))
-                AppEnum.SETTINGS -> startActivity(Intent(this, SettingsMainActivity::class.java))
-                else -> {}
+            val item = apps[position]
+            if(item is CustomApp) {
+                when(item.pageState) {
+                    SharedConstants.PageState.CAMERA -> startActivity(Intent(this, CameraMainActivity::class.java))
+                    SharedConstants.PageState.PHOTOS -> startActivity(Intent(this, PhotosMainActivity::class.java))
+                    SharedConstants.PageState.CONTACTS -> startActivity(Intent(this, ContactsMainActivity::class.java))
+                    SharedConstants.PageState.SETTINGS -> startActivity(Intent(this, SettingsMainActivity::class.java))
+                    else -> {}
+                }
+            }
+            else if (item is InstalledApp) {
+                startActivity(item.intent)
             }
         }
     }
@@ -91,7 +122,7 @@ class MainActivity : AppCompatActivity() {
     private fun initBattery() {
         //battery
         mContext = applicationContext
-        var iFilter = IntentFilter(Intent.ACTION_BATTERY_CHANGED)
+        val iFilter = IntentFilter(Intent.ACTION_BATTERY_CHANGED)
         mContext.registerReceiver(batteryBroadcastReceiver, iFilter)
         batteryDisplay = findViewById(R.id.pb_battery)
     }
@@ -104,29 +135,28 @@ class MainActivity : AppCompatActivity() {
             val percentage = level.toFloat() / scale
             batteryProgressStatus = (percentage * 100).toInt()
             if (batteryProgressStatus <= 25){
-                batteryDisplay.progressTintList = android.content.res.ColorStateList.valueOf(Color.RED);
+                batteryDisplay.progressTintList = android.content.res.ColorStateList.valueOf(Color.RED)
             } else {
-                batteryDisplay.progressTintList = android.content.res.ColorStateList.valueOf(Color.GREEN);
+                batteryDisplay.progressTintList = android.content.res.ColorStateList.valueOf(Color.GREEN)
             }
             batteryDisplay.progress = batteryProgressStatus
         }
     }
 
-    // @Todo Get Apps From DB
-    private fun getInitialApps(): List<AppsInfo> {
-        return listOf(
-            SharedConstants.DefaultAppsInfo.CameraAppInfo,
-            SharedConstants.DefaultAppsInfo.PhotosAppInfo,
-            SharedConstants.DefaultAppsInfo.ContactsAppInfo,
-            SharedConstants.DefaultAppsInfo.SettingsAppInfo,
-            AppsInfo(5, R.mipmap.ic_launcher, R.string.mock_app, AppEnum.OTHER),
-            AppsInfo(6, R.mipmap.ic_launcher, R.string.mock_app, AppEnum.OTHER),
-            AppsInfo(7, R.mipmap.ic_launcher, R.string.mock_app, AppEnum.OTHER),
-            AppsInfo(8, R.mipmap.ic_launcher, R.string.mock_app, AppEnum.OTHER)
+    private fun getInitialApps(): MutableList<AdapterItem> {
+        return mutableListOf (
+            SharedConstants.DefaultApps.CameraApp,
+            SharedConstants.DefaultApps.PhotosApp,
+            SharedConstants.DefaultApps.ContactsApp,
+            SharedConstants.DefaultApps.SettingsApp
         )
     }
 
     private fun setStyles() {
-        LayoutUtils.setMargins(appsGridContainer, 0.025f)
+        LayoutUtils.setMargins(appsGridContainer, 0.025f, 0.015f, 0.025f, 0f)
+
+        LayoutUtils.setMargins(addAppsBtn, 0.01f, 0.01f, 0.01f, 0.01f)
+        LayoutUtils.setPadding(addAppsBtn, 0f, 0.03f, 0f, 0.03f)
+        LayoutUtils.setTextSize(addAppsBtn, 0.01f)
     }
 }
