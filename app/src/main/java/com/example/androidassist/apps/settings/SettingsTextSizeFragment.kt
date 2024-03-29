@@ -67,7 +67,7 @@ class SettingsTextSizeFragment : Fragment() {
             pair.first.setOnClickListener {
                 val size = pair.second
                 LayoutUtils.setAppTextSize(requireContext(), size)
-                onRefresh?.refreshScreen(SettingsTextSizeFragment(), SharedConstants.AppEnum.STEXT)
+                onRefresh?.refreshScreen(SettingsTextSizeFragment(), SharedConstants.PageState.STEXT)
                 SharedPreferenceUtils.addFloatToDefaultSharedPrefFile(
                     requireContext(),
                     "textSize",

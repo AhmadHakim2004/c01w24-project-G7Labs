@@ -48,4 +48,7 @@
     <string name="mute">Mute</string>
     <string name="speaker">Speaker</string>
     <string name="end_call">End Call</string>
+    <string name="add_apps">Add Apps</string>
+    <string name="apply_changes">Apply Changes</string>
+    <string name="discard_changes">Discard Changes</string>
 </resources>

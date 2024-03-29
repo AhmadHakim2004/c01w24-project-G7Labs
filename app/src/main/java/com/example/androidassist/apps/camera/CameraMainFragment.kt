@@ -6,19 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.Button
 import android.widget.GridView
-import com.example.androidassist.AppsGridAdapter
+import com.example.androidassist.GridAdapter
 import com.example.androidassist.R
-import com.example.androidassist.sharedComponents.dataClasses.AppsInfo
+import com.example.androidassist.sharedComponents.dataClasses.ActionItem
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
-import java.util.concurrent.Executors
 
 class CameraMainFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private lateinit var appsGridContainer: GridView
-    private lateinit var appsGridAdapter: AppsGridAdapter
-    private lateinit var apps: List<AppsInfo>
+    private lateinit var actionItemsContainer: GridView
+    private lateinit var actionItemsAdapter: GridAdapter
+    private lateinit var actionItems: List<ActionItem>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,39 +31,33 @@ class CameraMainFragment : Fragment() {
         initAppGrid()
     }
 
-    companion object {
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance() = CameraMainFragment()
-    }
-
     private fun initAppGrid() {
-        appsGridContainer = requireView().findViewById(R.id.appsGridContainer)
-        apps = getInitialApps()
-        appsGridAdapter = AppsGridAdapter(requireContext(), apps)
-        appsGridContainer.adapter = appsGridAdapter
+        actionItemsContainer = requireView().findViewById(R.id.appsGridContainer)
+        actionItems = getActionItems()
+        actionItemsAdapter = GridAdapter(requireContext(), actionItems)
+        actionItemsContainer.adapter = actionItemsAdapter
 
-        appsGridContainer.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
-            when(apps[position].appEnum) {
-                SharedConstants.AppEnum.CPHOTO -> {
+        actionItemsContainer.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+            when(actionItems[position].pageState) {
+                SharedConstants.PageState.CPHOTO -> {
                     val cameraActivity = activity as CameraMainActivity
                     cameraActivity.replaceFragment(CameraPhotoFragment())
-                    cameraActivity.setState(SharedConstants.AppEnum.CPHOTO)
+                    cameraActivity.setState(SharedConstants.PageState.CPHOTO)
                 }
-                SharedConstants.AppEnum.CPHOTOSELFIE -> {
+                SharedConstants.PageState.CPHOTOSELFIE -> {
                     val cameraActivity = activity as CameraMainActivity
                     cameraActivity.replaceFragment(CameraPhotoSelfieFragment())
-                    cameraActivity.setState(SharedConstants.AppEnum.CPHOTOSELFIE)
+                    cameraActivity.setState(SharedConstants.PageState.CPHOTOSELFIE)
                 }
-                SharedConstants.AppEnum.CVIDEO -> {
+                SharedConstants.PageState.CVIDEO -> {
                     val cameraActivity = activity as CameraMainActivity
                     cameraActivity.replaceFragment(CameraVideoFragment())
-                    cameraActivity.setState(SharedConstants.AppEnum.CVIDEO)
+                    cameraActivity.setState(SharedConstants.PageState.CVIDEO)
                 }
-                SharedConstants.AppEnum.CVIDEOSELFIE -> {
+                SharedConstants.PageState.CVIDEOSELFIE -> {
                     val cameraActivity = activity as CameraMainActivity
                     cameraActivity.replaceFragment(CameraVideoSelfieFragment())
-                    cameraActivity.setState(SharedConstants.AppEnum.CVIDEOSELFIE)
+                    cameraActivity.setState(SharedConstants.PageState.CVIDEOSELFIE)
                 }
                 else -> {}
             }
@@ -73,12 +65,12 @@ class CameraMainFragment : Fragment() {
     }
 
     // @Todo Get Apps From DB
-    private fun getInitialApps(): List<AppsInfo> {
+    private fun getActionItems(): List<ActionItem> {
         return listOf(
-            AppsInfo(1, R.mipmap.camera_rear, R.string.c_photo, SharedConstants.AppEnum.CPHOTO),
-            AppsInfo(2, R.mipmap.camera_front, R.string.c_photo_selfie, SharedConstants.AppEnum.CPHOTOSELFIE),
-            AppsInfo(3, R.mipmap.video_rear, R.string.c_video,SharedConstants.AppEnum.CVIDEO),
-            AppsInfo(4, R.mipmap.video_front, R.string.c_video_selfie, SharedConstants.AppEnum.CVIDEOSELFIE),
+            ActionItem("1", R.string.c_photo, R.mipmap.camera_rear, SharedConstants.PageState.CPHOTO),
+            ActionItem("2", R.string.c_photo_selfie, R.mipmap.camera_front, SharedConstants.PageState.CPHOTOSELFIE),
+            ActionItem("3", R.string.c_video, R.mipmap.video_rear, SharedConstants.PageState.CVIDEO),
+            ActionItem("4", R.string.c_video_selfie, R.mipmap.video_front, SharedConstants.PageState.CVIDEO),
         )
     }
 }
