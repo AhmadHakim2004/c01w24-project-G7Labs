@@ -49,4 +49,7 @@
     <string name="mute">Silenciar</string>
     <string name="speaker">Vocero</string>
     <string name="end_call">Finalizar llamada</string>
+    <string name="add_apps">Agregar aplicaciones</string>
+    <string name="apply_changes">Aplicar cambios</string>
+    <string name="discard_changes">Descartar los cambios</string>
 </resources>

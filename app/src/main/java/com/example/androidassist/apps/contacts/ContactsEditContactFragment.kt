@@ -59,7 +59,7 @@ class ContactsEditContactFragment : Fragment() {
                 Toast.makeText(requireContext(), "Contact updated", Toast.LENGTH_SHORT).show()
                 (activity as? ContactsMainActivity)?.apply {
                     replaceFragment(ContactMainFragment())
-                    setState(SharedConstants.AppEnum.CONTACTS)
+                    setState(SharedConstants.PageState.CONTACTS)
                 }
             }
         }
