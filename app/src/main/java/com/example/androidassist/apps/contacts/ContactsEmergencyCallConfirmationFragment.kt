@@ -1,14 +1,15 @@
 package com.example.androidassist.apps.contacts
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.Fragment
 import com.example.androidassist.R
+import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
 import com.example.androidassist.sharedComponents.utilities.LayoutUtils
 
 class ContactsEmergencyCallConfirmationFragment : Fragment() {
@@ -31,6 +32,13 @@ class ContactsEmergencyCallConfirmationFragment : Fragment() {
         constraintLayout = requireView().findViewById(R.id.emergency_call_confirmation_fragment_holder)
         confirmationText = requireView().findViewById(R.id.emergency_call_confirmation_text)
         callButton = requireView().findViewById(R.id.call911)
+
+        callButton.setOnClickListener{
+            (activity as? ContactsMainActivity)?.apply {
+                replaceFragment(ContactsEmergencyFragment())
+                setState(SharedConstants.AppEnum.CEDITCONTACTS)
+            }
+        }
 
         setupStyles()
     }
