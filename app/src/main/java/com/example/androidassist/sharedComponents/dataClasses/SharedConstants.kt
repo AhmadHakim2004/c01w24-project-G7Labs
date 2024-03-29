@@ -20,7 +20,8 @@ class SharedConstants {
         CADDCONTACTS,
         CEMERGENCYCONFIRM,
         CSINGLECONTACT,
-        CEDITCONTACTS
+        CEDITCONTACTS,
+        CCALLSCREEN
     }
 
     class DefaultAppsInfo {
