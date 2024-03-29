@@ -59,7 +59,13 @@ class ContactsAddContactFragment : Fragment() {
             val last = lastNameEditText.text.toString()
             val phone = phoneEditText.text.toString()
 
-            if (first.isNotEmpty() && last.isNotEmpty() && phone.isNotEmpty()) {
+            if(phone.isEmpty()) {
+                Toast.makeText(requireContext(), "Enter a Phone Number", Toast.LENGTH_SHORT).show()
+            }
+            if(!isNumeric(phone)) {
+                Toast.makeText(requireContext(), "Enter a Correct Phone Number", Toast.LENGTH_SHORT).show()
+            }
+            else {
                 val fullName = "$first $last"
                 addContact(fullName, phone, imageUri)
                 Toast.makeText(requireContext(), "Contact saved", Toast.LENGTH_SHORT).show()
@@ -67,8 +73,6 @@ class ContactsAddContactFragment : Fragment() {
                     replaceFragment(ContactMainFragment())
                     setState(SharedConstants.AppEnum.CONTACTS)
                 }
-            } else {
-                Toast.makeText(requireContext(), "Name and phone number are required", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -124,6 +128,10 @@ class ContactsAddContactFragment : Fragment() {
 
             photoStream?.close() // Make sure to close the stream
         }
+    }
+
+    fun isNumeric(input: String): Boolean {
+        return input.matches(Regex("-?\\d+(\\.\\d+)?"))
     }
 
     private fun setupStyles() {

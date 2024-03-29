@@ -16,7 +16,7 @@ class ContactsSingleContactFragment : Fragment() {
     private lateinit var contactInfo: ContactInfo
 
     private lateinit var contactImage: ImageView
-    private lateinit var contactFirstNameText: TextView
+    private lateinit var contactNameText: TextView
     private lateinit var contactPhoneNumberText: TextView
     private lateinit var editContactBtn: Button
     private lateinit var callContactBtn: Button
@@ -39,19 +39,22 @@ class ContactsSingleContactFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         contactImage = requireView().findViewById(R.id.contact_image)
-        contactFirstNameText = requireView().findViewById(R.id.contact_name)
+        contactNameText = requireView().findViewById(R.id.contact_name)
         contactPhoneNumberText = requireView().findViewById(R.id.contact_phone_number)
         editContactBtn = requireView().findViewById(R.id.edit_contact_btn)
         callContactBtn = requireView().findViewById(R.id.call_contact_btn)
 
         if(contactInfo.image != null)contactImage.setImageBitmap(contactInfo.image)
-        contactFirstNameText.text = "${contactInfo.firstName} ${contactInfo.lastName}"
+
+        var displayName: String? = "${contactInfo.firstName ?: ""} ${contactInfo.lastName ?: ""}"
+        if(contactInfo.firstName.isNullOrBlank() && contactInfo.lastName.isNullOrBlank()) displayName = contactInfo.number
+        contactNameText.text = displayName
         contactPhoneNumberText.text = contactInfo.number
 
         setupStyles()
         editContactBtn.setOnClickListener {
             (activity as? ContactsMainActivity)?.apply {
-                replaceFragment(EditContactFragment())
+                replaceFragment(ContactsEditContactFragment())
                 setState(SharedConstants.AppEnum.CEDITCONTACTS)
             }
         }
@@ -60,8 +63,8 @@ class ContactsSingleContactFragment : Fragment() {
     private fun setupStyles() {
         LayoutUtils.setMargins(contactImage, 0f, 0.05f, 0f, 0f)
 
-        LayoutUtils.setMargins(contactFirstNameText, 0f, 0.02f, 0f, 0f)
-        LayoutUtils.setTextSize(contactFirstNameText, 0.015f)
+        LayoutUtils.setMargins(contactNameText, 0f, 0.02f, 0f, 0f)
+        LayoutUtils.setTextSize(contactNameText, 0.015f)
 
         LayoutUtils.setTextSize(contactPhoneNumberText, 0.012f)
 

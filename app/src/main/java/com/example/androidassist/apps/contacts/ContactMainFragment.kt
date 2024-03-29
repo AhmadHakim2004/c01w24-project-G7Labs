@@ -129,7 +129,7 @@ class ContactMainFragment : Fragment() {
             }
         }
 
-        return contactList
+        return contactList.distinctBy { it.id }.toMutableList()
     }
 
     private fun getContactFirstAndLastName(id: String): Pair<String?, String?> {
