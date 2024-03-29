@@ -11,7 +11,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.androidassist.R
-import com.example.androidassist.sharedComponents.dataClasses.AppsInfo
+import com.example.androidassist.sharedComponents.dataClasses.CustomApp
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
 import com.example.androidassist.sharedComponents.utilities.LayoutUtils
 import com.example.androidassist.sharedComponents.utilities.SharedPreferenceUtils
@@ -21,7 +21,7 @@ abstract class BaseApps : AppCompatActivity() {
     protected lateinit var appHeaderIcon: ImageView
     protected lateinit var appHeaderTitle: TextView
     protected lateinit var backButton: Button
-    private lateinit var state : SharedConstants.AppEnum
+    private lateinit var state : SharedConstants.PageState
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val theme = SharedPreferenceUtils.getIntFromDefaultSharedPrefFile(applicationContext, "theme", R.style.Theme_AndroidAssist)
@@ -43,7 +43,7 @@ abstract class BaseApps : AppCompatActivity() {
         setupStyles()
     }
 
-    abstract val appInfo: AppsInfo
+    abstract val appInfo: CustomApp
 
     abstract fun setupFragment()
 
@@ -66,8 +66,8 @@ abstract class BaseApps : AppCompatActivity() {
     }
 
     private fun setupHeader() {
-        this.appHeaderIcon.setImageResource(appInfo.imageResource)
-        this.appHeaderTitle.text = baseContext.getString(appInfo.appName)
+        this.appHeaderIcon.setImageResource(appInfo.imageResource!!)
+        this.appHeaderTitle.text = resources.getString(appInfo.nameResource)
     }
 
     private fun setupStyles() {
@@ -78,11 +78,11 @@ abstract class BaseApps : AppCompatActivity() {
         LayoutUtils.setTextSize(backButton, 0.007f)
     }
 
-    fun setState(state : SharedConstants.AppEnum){
+    fun setState(state : SharedConstants.PageState){
         this.state = state
     }
 
-    fun getState(): SharedConstants.AppEnum {
+    fun getState(): SharedConstants.PageState {
         return state
     }
 }

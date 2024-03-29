@@ -44,4 +44,7 @@
     <string name="emergency_call">Llamada de emergencia</string>
     <string name="edit_contact">Editar contacto</string>
     <string name="call_contact">Llamar Contacto</string>
+    <string name="add_apps">Agregar aplicaciones</string>
+    <string name="apply_changes">Aplicar cambios</string>
+    <string name="discard_changes">Descartar los cambios</string>
 </resources>

@@ -3,13 +3,11 @@ package com.example.androidassist.sharedComponents.dataClasses
 import com.example.androidassist.R
 
 class SharedConstants {
-    enum class AppEnum {
+    enum class PageState {
         CAMERA,
         PHOTOS,
         CONTACTS,
         SETTINGS,
-        OTHER,
-        //TODO: //need to find a better fix for this...generic adapter maybe
         CPHOTO,
         CPHOTOSELFIE,
         CVIDEO,
@@ -23,12 +21,12 @@ class SharedConstants {
         CEDITCONTACTS
     }
 
-    class DefaultAppsInfo {
+    class DefaultApps {
         companion object {
-            val CameraAppInfo = AppsInfo(1, R.drawable.camera_icon, R.string.camera, AppEnum.CAMERA)
-            val PhotosAppInfo = AppsInfo(2, R.drawable.photos_icon, R.string.photo, AppEnum.PHOTOS)
-            val ContactsAppInfo = AppsInfo(3, R.drawable.contacts_icon, R.string.contacts, AppEnum.CONTACTS)
-            val SettingsAppInfo = AppsInfo(4, R.drawable.settings_icon, R.string.settings, AppEnum.SETTINGS)
+            val CameraApp = CustomApp("1", R.string.camera, R.drawable.camera_icon, PageState.CAMERA)
+            val PhotosApp = CustomApp("2", R.string.photo, R.drawable.photos_icon, PageState.PHOTOS)
+            val ContactsApp = CustomApp("3", R.string.contacts, R.drawable.contacts_icon, PageState.CONTACTS)
+            val SettingsApp = CustomApp("4", R.string.settings, R.drawable.settings_icon, PageState.SETTINGS)
         }
     }
 }

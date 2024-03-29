@@ -66,7 +66,7 @@ class ContactAdapter(private val items: MutableList<ContactInfo>, private val re
     private fun onContactClicked(contact: ContactInfo) {
         activity.selectedContact = contact
         activity.replaceFragment(ContactsSingleContactFragment())
-        activity.setState(SharedConstants.AppEnum.CSINGLECONTACT)
+        activity.setState(SharedConstants.PageState.CSINGLECONTACT)
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

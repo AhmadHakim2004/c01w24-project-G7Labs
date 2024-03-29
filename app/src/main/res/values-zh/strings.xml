@@ -44,4 +44,7 @@
     <string name="emergency_call">紧急呼叫</string>
     <string name="edit_contact">更改联系资料</string>
     <string name="call_contact">致电联系</string>
+    <string name="add_apps">添加应用程序</string>
+    <string name="apply_changes">应用更改</string>
+    <string name="discard_changes">放弃更改</string>
 </resources>

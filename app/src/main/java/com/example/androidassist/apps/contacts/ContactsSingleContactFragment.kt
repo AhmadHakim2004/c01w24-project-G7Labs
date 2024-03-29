@@ -55,7 +55,7 @@ class ContactsSingleContactFragment : Fragment() {
         editContactBtn.setOnClickListener {
             (activity as? ContactsMainActivity)?.apply {
                 replaceFragment(ContactsEditContactFragment())
-                setState(SharedConstants.AppEnum.CEDITCONTACTS)
+                setState(SharedConstants.PageState.CEDITCONTACTS)
             }
         }
     }

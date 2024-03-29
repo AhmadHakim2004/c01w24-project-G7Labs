@@ -61,14 +61,14 @@ class ContactMainFragment : Fragment() {
         addButton.setOnClickListener {
             (activity as? ContactsMainActivity)?.apply {
                 replaceFragment(ContactsAddContactFragment())
-                setState(SharedConstants.AppEnum.CADDCONTACTS)
+                setState(SharedConstants.PageState.CADDCONTACTS)
             }
         }
 
         emergencyButton.setOnClickListener {
             val contactsActivity = activity as ContactsMainActivity
             contactsActivity.replaceFragment(ContactsEmergencyCallConfirmationFragment())
-            contactsActivity.setState(SharedConstants.AppEnum.CEMERGENCYCONFIRM)
+            contactsActivity.setState(SharedConstants.PageState.CEMERGENCYCONFIRM)
         }
     }
 
