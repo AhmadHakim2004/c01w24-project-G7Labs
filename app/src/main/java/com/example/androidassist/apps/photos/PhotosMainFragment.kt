@@ -48,7 +48,7 @@ class PhotosMainFragment : Fragment() {
 
         photosAdapter = PhotosAdapter(photos, ::onPhotoClicked)
         photosList.adapter = photosAdapter
-        photosList.layoutManager = GridLayoutManager(activity, 3)
+        photosList.layoutManager = GridLayoutManager(activity, 2)
     }
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
