@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mint">
+    android:background="?attr/colorPrimary">
 
     <!-- RelativeLayout for the add contact button only, removing the search bar -->
     <RelativeLayout
@@ -23,7 +23,7 @@
             android:drawableStart="@drawable/ic_launcher_background"
             android:drawablePadding="10dp"
             android:text="@string/create_new_contact"
-            android:backgroundTint="@color/teal_700"
+            android:backgroundTint="@color/grey"
             android:layout_centerVertical="true"/>
     </RelativeLayout>
 
