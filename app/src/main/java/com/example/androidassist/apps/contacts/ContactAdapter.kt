@@ -22,7 +22,10 @@ class ContactAdapter(private val items: MutableList<ContactInfo>, private val re
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val contact = items[position]
-        holder.contactName.text = "${contact.firstName} ${contact.lastName}"
+        var displayName: String? = "${contact.firstName ?: ""} ${contact.lastName ?: ""}"
+        if(contact.firstName.isNullOrBlank() && contact.lastName.isNullOrBlank()) displayName = contact.number
+
+        holder.contactName.text = displayName
 
         val heartButtonNeeded = if (contact.isFavourite) R.drawable.heart else R.drawable.empty_heart
         holder.heartButton.setImageResource(heartButtonNeeded)
