@@ -49,4 +49,7 @@
     <string name="mute">Muet</string>
     <string name="speaker">Conférencier</string>
     <string name="end_call">Fin d &amp;apos;appel</string>
+    <string name="add_apps">Ajouter des applications</string>
+    <string name="apply_changes">Appliquer les modifications</string>
+    <string name="discard_changes">Annuler les modifications</string>
 </resources>

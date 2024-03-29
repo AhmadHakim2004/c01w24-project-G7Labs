@@ -65,14 +65,14 @@ class SettingsMainFragment : Fragment() {
         languageButton.setOnClickListener {
             val settingsActivity = activity as SettingsMainActivity
             settingsActivity.replaceFragment(SettingsLanguageFragment())
-            settingsActivity.setState(SharedConstants.AppEnum.SLANGUAGE)
+            settingsActivity.setState(SharedConstants.PageState.SLANGUAGE)
         }
 
         // Set OnClickListener to the button
         textSizeButton.setOnClickListener {
             val settingsActivity = activity as SettingsMainActivity
             settingsActivity.replaceFragment(SettingsTextSizeFragment())
-            settingsActivity.setState(SharedConstants.AppEnum.STEXT)
+            settingsActivity.setState(SharedConstants.PageState.STEXT)
         }
 
         blindnessButton.setOnClickListener {

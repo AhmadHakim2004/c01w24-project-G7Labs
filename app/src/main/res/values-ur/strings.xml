@@ -49,4 +49,7 @@
     <string name="mute">خاموش</string>
     <string name="speaker">اسپیکر</string>
     <string name="end_call">کال ختم</string>
+    <string name="add_apps">ایپس شامل کریں۔</string>
+    <string name="apply_changes">تبدیلیاں لاگو کریں۔</string>
+    <string name="discard_changes">تبدیلیاں مسترد کریں</string>
 </resources>

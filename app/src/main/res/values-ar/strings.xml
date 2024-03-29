@@ -49,4 +49,7 @@
     <string name="mute">صامت</string>
     <string name="speaker">مكبر الصوت</string>
     <string name="end_call">إنهاء المكالمة</string>
+    <string name="add_apps">إضافة تطبيقات</string>
+    <string name="apply_changes">تطبيق التغييرات</string>
+    <string name="discard_changes">تجاهل التغييرات</string>
 </resources>

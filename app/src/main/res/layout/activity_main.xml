@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="clip_horizontal|center"
     android:orientation="vertical"
     android:paddingLeft="5dp"
@@ -19,7 +20,10 @@
         android:layout_marginTop="50dp"
         android:fontFamily="sans-serif-black"
         android:textSize="48sp"
-        android:textColor="?attr/colorOnPrimary"/>
+        android:textColor="?attr/colorOnPrimary"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
     <ProgressBar
         android:id="@+id/pb_battery"
@@ -33,7 +37,10 @@
         android:minHeight="40dp"
         android:progressTint="#3ED116"
         android:scaleX="-1"
-        android:scaleY="6" />
+        android:scaleY="6"
+        app:layout_constraintTop_toBottomOf="@id/textClock"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
     <TextView
         android:id="@+id/tv_date"
@@ -42,17 +49,36 @@
         android:fontFamily="sans-serif-medium"
         android:text="TextView"
         android:textSize="24sp"
-        android:textColor="?attr/colorOnPrimary"/>
+        android:textColor="?attr/colorOnPrimary"
+        app:layout_constraintTop_toBottomOf="@id/pb_battery"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
     <GridView
         android:id="@+id/appsGridContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:numColumns="2"
         android:overScrollMode="never"
         android:scrollbars="none"
-        android:backgroundTint="?attr/colorPrimary">
+        android:backgroundTint="?attr/colorPrimary"
+        app:layout_constraintTop_toBottomOf="@id/tv_date"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/add_apps"
+        />
 
-    </GridView>
-
-</LinearLayout>
+    <Button
+        android:id="@+id/add_apps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_apps"
+        android:backgroundTint="?attr/colorOnPrimary"
+        android:textColor="?attr/colorPrimary"
+        android:layout_gravity="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

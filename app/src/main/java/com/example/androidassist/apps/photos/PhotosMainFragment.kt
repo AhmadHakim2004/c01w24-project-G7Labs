@@ -69,6 +69,6 @@ class PhotosMainFragment : Fragment() {
 
         val photosActivity = activity as PhotosMainActivity
         photosActivity.replaceFragment(photosSinglePhotoFragment)
-        photosActivity.setState(SharedConstants.AppEnum.PSINGLEPHOTO)
+        photosActivity.setState(SharedConstants.PageState.PSINGLEPHOTO)
     }
 }
