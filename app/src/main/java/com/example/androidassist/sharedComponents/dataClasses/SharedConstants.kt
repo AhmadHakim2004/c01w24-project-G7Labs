@@ -21,7 +21,8 @@ class SharedConstants {
         CEMERGENCYCONFIRM,
         CSINGLECONTACT,
         CEDITCONTACTS,
-        CEMERGENCY
+        CEMERGENCY,
+        CCALLSCREEN
     }
 
     class DefaultAppsInfo {

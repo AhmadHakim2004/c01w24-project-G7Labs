@@ -36,7 +36,7 @@ class ContactsEmergencyCallConfirmationFragment : Fragment() {
         callButton.setOnClickListener{
             (activity as? ContactsMainActivity)?.apply {
                 replaceFragment(ContactsEmergencyFragment())
-                setState(SharedConstants.AppEnum.CEDITCONTACTS)
+                setState(SharedConstants.AppEnum.CEMERGENCY)
             }
         }
 
