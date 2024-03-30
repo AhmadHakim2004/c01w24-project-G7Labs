@@ -24,6 +24,10 @@ class MainSelectAppsActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
     private lateinit var textToSpeech: TextToSpeech
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val theme = SharedPreferenceUtils.getIntFromDefaultSharedPrefFile(applicationContext, "theme", R.style.Theme_AndroidAssist)
+        if (theme != null) {
+            setTheme(theme)
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_select_apps_activity)
 
