@@ -1,6 +1,7 @@
 package com.example.androidassist
 
 import android.os.Looper
+import android.speech.tts.TextToSpeech
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +13,16 @@ import com.example.androidassist.sharedComponents.AndroidAssistApplication
 import com.example.androidassist.sharedComponents.dataClasses.InstalledApp
 import com.example.androidassist.sharedComponents.utilities.LayoutUtils
 import com.example.androidassist.sharedComponents.utilities.SharedPreferenceUtils
+import com.example.androidassist.sharedComponents.utilities.TextToSpeechUtils
+import java.util.Locale
 
-class AppsRecyclerViewAdapter(private val items: MutableList<InstalledApp>) : RecyclerView.Adapter<AppsRecyclerViewAdapter.ViewHolder>() {
+class AppsRecyclerViewAdapter(private val items: MutableList<InstalledApp>) :
+    RecyclerView.Adapter<AppsRecyclerViewAdapter.ViewHolder>(), TextToSpeech.OnInitListener {
     val context = AndroidAssistApplication.getAppContext()
     var selectedApps: MutableList<String> = SharedPreferenceUtils.getStringSetFromDefaultSharedPrefFile(
         context, "SelectedApps", setOf())?.toMutableList() ?: mutableListOf()
+
+    private val textToSpeech: TextToSpeech = TextToSpeech(context, this)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.main_app_view, parent, false)
@@ -29,6 +35,7 @@ class AppsRecyclerViewAdapter(private val items: MutableList<InstalledApp>) : Re
 
         setupElements(holder, appItem)
         setupSelectingApp(holder, appItem, position)
+        TextToSpeechUtils.setupTTS(holder.itemView, textToSpeech, appItem.appName)
         setupStyles(holder)
     }
 
@@ -73,5 +80,16 @@ class AppsRecyclerViewAdapter(private val items: MutableList<InstalledApp>) : Re
         val appBackground: View = view.findViewById(R.id.appContainerBg)
         val appIcon: ImageView = view.findViewById(R.id.appIcon)
         val appName: TextView = view.findViewById(R.id.appName)
+    }
+
+    override fun onInit(status: Int) {
+        if (status == TextToSpeech.SUCCESS) {
+            val lang = context.resources.configuration.locales.get(0)
+            val result = textToSpeech.setLanguage(lang)
+
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                textToSpeech.setLanguage(Locale.CANADA)
+            }
+        }
     }
 }

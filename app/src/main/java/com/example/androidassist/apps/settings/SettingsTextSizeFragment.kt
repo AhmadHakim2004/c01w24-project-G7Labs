@@ -7,14 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.GridLayout
-import androidx.fragment.app.Fragment
 import com.example.androidassist.R
 import com.example.androidassist.sharedComponents.OnRefresh
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
 import com.example.androidassist.sharedComponents.utilities.LayoutUtils
 import com.example.androidassist.sharedComponents.utilities.SharedPreferenceUtils
+import com.example.androidassist.sharedComponents.views.TextToSpeechFragment
 
-class SettingsTextSizeFragment : Fragment() {
+class SettingsTextSizeFragment : TextToSpeechFragment() {
     private lateinit var textSizeButtonHolder: GridLayout
     private lateinit var size1Button: Button
     private lateinit var size2Button: Button
@@ -74,6 +74,8 @@ class SettingsTextSizeFragment : Fragment() {
                     size
                 )
             }
+
+            setupTTS(pair.first, pair.first.text)
         }
     }
     private fun setupStyles() {
