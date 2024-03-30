@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.provider.MediaStore
+import android.telephony.PhoneNumberUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,10 +18,18 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.androidassist.R
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
+import com.example.androidassist.sharedComponents.views.TextToSpeechFragment
+import java.util.Locale
 
-class ContactsEditContactFragment : Fragment() {
+class ContactsEditContactFragment : TextToSpeechFragment() {
     private var imageUri: Uri? = null
     private lateinit var contactInfo: ContactInfo
+
+    private lateinit var firstNameEditText: EditText
+    private lateinit var lastNameEditText: EditText
+    private lateinit var phoneEditText: EditText
+    private lateinit var photoImageView: ImageView
+    private lateinit var saveContactButton: Button
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.contacts_edit_contacts, container, false)
@@ -31,11 +40,11 @@ class ContactsEditContactFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val firstNameEditText = view.findViewById<EditText>(R.id.editFirstNameEditText)
-        val lastNameEditText = view.findViewById<EditText>(R.id.editLastNameEditText)
-        val phoneEditText = view.findViewById<EditText>(R.id.editPhoneEditText)
-        val photoImageView = view.findViewById<ImageView>(R.id.editPhotoImageView)
-        val saveContactButton = view.findViewById<Button>(R.id.saveEditedContactButton)
+        firstNameEditText = view.findViewById(R.id.editFirstNameEditText)
+        lastNameEditText = view.findViewById(R.id.editLastNameEditText)
+        phoneEditText = view.findViewById(R.id.editPhoneEditText)
+        photoImageView = view.findViewById(R.id.editPhotoImageView)
+        saveContactButton = view.findViewById(R.id.saveEditedContactButton)
 
         loadContactDetails(firstNameEditText, lastNameEditText, phoneEditText, photoImageView)
 
@@ -63,6 +72,8 @@ class ContactsEditContactFragment : Fragment() {
                 }
             }
         }
+
+        setupTTSForFields()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -112,8 +123,18 @@ class ContactsEditContactFragment : Fragment() {
         }
     }
 
-    fun isNumeric(input: String): Boolean {
+    private fun isNumeric(input: String): Boolean {
         return input.matches(Regex("-?\\d+(\\.\\d+)?"))
+    }
+
+    private fun setupTTSForFields() {
+        setupTTS(firstNameEditText, firstNameEditText.text)
+        setupTTS(lastNameEditText, lastNameEditText.text)
+
+        val formattedNumber = PhoneNumberUtils.formatNumber(phoneEditText.text.toString(), Locale.CANADA.country)
+        setupTTS(phoneEditText, formattedNumber ?: phoneEditText.text)
+
+        setupTTS(saveContactButton, saveContactButton.text)
     }
 
     companion object {

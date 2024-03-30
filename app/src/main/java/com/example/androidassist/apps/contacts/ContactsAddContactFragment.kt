@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.provider.MediaStore
+import android.telephony.PhoneNumberUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,10 +20,12 @@ import androidx.fragment.app.Fragment
 import com.example.androidassist.R
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
 import com.example.androidassist.sharedComponents.utilities.LayoutUtils
+import com.example.androidassist.sharedComponents.views.TextToSpeechFragment
+import java.util.Locale
 
 private const val PICK_IMAGE = 100
 
-class ContactsAddContactFragment : Fragment() {
+class ContactsAddContactFragment : TextToSpeechFragment() {
     private lateinit var choosePhotoTextView: TextView
     private lateinit var photoImageView: ImageView
     private lateinit var firstNameEditText: EditText
@@ -76,6 +79,7 @@ class ContactsAddContactFragment : Fragment() {
             }
         }
 
+        setupTTSForFields()
         setupStyles()
     }
 
@@ -86,8 +90,6 @@ class ContactsAddContactFragment : Fragment() {
             view?.findViewById<ImageView>(R.id.photoImageView)?.setImageURI(imageUri)
         }
     }
-
-
 
     private fun addContact(name: String, phone: String, photoUri: Uri?) {
         val contentResolver = requireActivity().contentResolver
@@ -132,6 +134,17 @@ class ContactsAddContactFragment : Fragment() {
 
     fun isNumeric(input: String): Boolean {
         return input.matches(Regex("-?\\d+(\\.\\d+)?"))
+    }
+
+    private fun setupTTSForFields() {
+        setupTTS(choosePhotoTextView, choosePhotoTextView.text)
+        setupTTS(firstNameEditText, firstNameEditText.text)
+        setupTTS(lastNameEditText, lastNameEditText.text)
+
+        val formattedNumber = PhoneNumberUtils.formatNumber(phoneEditText.text.toString(), Locale.CANADA.country)
+        setupTTS(phoneEditText, formattedNumber ?: phoneEditText.text)
+
+        setupTTS(saveContactButton, saveContactButton.text)
     }
 
     private fun setupStyles() {

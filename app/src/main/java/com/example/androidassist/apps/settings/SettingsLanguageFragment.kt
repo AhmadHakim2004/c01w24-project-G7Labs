@@ -7,16 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.GridLayout
-import androidx.fragment.app.Fragment
 import com.example.androidassist.R
 import com.example.androidassist.sharedComponents.OnRefresh
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
 import com.example.androidassist.sharedComponents.utilities.LayoutUtils
 import com.example.androidassist.sharedComponents.utilities.LocaleUtils
 import com.example.androidassist.sharedComponents.utilities.SharedPreferenceUtils
+import com.example.androidassist.sharedComponents.views.TextToSpeechFragment
 
 
-class SettingsLanguageFragment : Fragment() {
+class SettingsLanguageFragment : TextToSpeechFragment() {
 
     private lateinit var settingsButtonHolder: GridLayout
     private lateinit var englishButton: Button
@@ -71,6 +71,8 @@ class SettingsLanguageFragment : Fragment() {
                 onRefresh?.refreshScreen(SettingsLanguageFragment(), SharedConstants.PageState.SLANGUAGE)
                 SharedPreferenceUtils.addStringToDefaultSharedPrefFile(requireContext(), "language", lang)
             }
+
+            setupTTS(pair.first, pair.first.text)
         }
     }
 
