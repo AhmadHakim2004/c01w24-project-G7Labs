@@ -16,6 +16,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.GridLayout
 import android.widget.TextView
+import android.widget.Toast
 import com.example.androidassist.R
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
 import com.example.androidassist.sharedComponents.utilities.LayoutUtils
@@ -199,8 +200,14 @@ class SettingsMainFragment : TextToSpeechFragment() {
 
         textToSpeechButton.setOnClickListener {
             val isTextToSpeechOn = SharedPreferenceUtils.getIntFromDefaultSharedPrefFile(requireContext(), "TTS", 0)
+            val newState = isTextToSpeechOn xor 1
+            SharedPreferenceUtils.addIntToDefaultSharedPrefFile(requireContext(), "TTS", newState)
 
-            SharedPreferenceUtils.addIntToDefaultSharedPrefFile(requireContext(), "TTS", isTextToSpeechOn xor 1)
+            if (newState == 1){
+                Toast.makeText(requireContext(), "Text To Speech is ON", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Text To Speech is OFF", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

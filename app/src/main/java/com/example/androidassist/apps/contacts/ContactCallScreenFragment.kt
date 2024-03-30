@@ -7,41 +7,69 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.fragment.app.Fragment
 import com.example.androidassist.R
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
+import com.example.androidassist.sharedComponents.views.TextToSpeechFragment
 
-class ContactCallScreenFragment: Fragment(){
-
+class ContactCallScreenFragment: TextToSpeechFragment() {
     private lateinit var contactInfo: ContactInfo
+    private lateinit var contactImage: ImageView
+    private lateinit var nameTextView: TextView
+    private lateinit var numberTextView: TextView
+    private lateinit var speakerImageView: ImageView
+    private lateinit var speakerTextView: TextView
+    private lateinit var locationImageView: ImageView
+    private lateinit var locationTextView: TextView
+    private lateinit var muteImageView: ImageView
+    private lateinit var muteTextView: TextView
+    private lateinit var endCallButton: Button
+
+    private lateinit var actions: List<Pair<ImageView, TextView>>
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.contacts_call_screen, container, false)
+        return inflater.inflate(R.layout.contacts_call_screen, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         contactInfo = (activity as ContactsMainActivity).selectedContact!!
 
-        val contactImage: ImageView = view.findViewById(R.id.contactImage)
+        contactImage = view.findViewById(R.id.contactImage)
+        nameTextView = view.findViewById(R.id.contact_name)
+        numberTextView = view.findViewById(R.id.contact_phone_number)
+        speakerImageView = view.findViewById(R.id.speakerbutton)
+        speakerTextView = view.findViewById(R.id.speaker_button_text)
+        locationImageView = view.findViewById(R.id.locationbutton)
+        locationTextView = view.findViewById(R.id.location_button_text)
+        muteImageView = view.findViewById(R.id.mutebutton)
+        muteTextView = view.findViewById(R.id.mute_button_text)
+        endCallButton = view.findViewById(R.id.button3)
+
+        actions = listOf(
+            Pair(speakerImageView, speakerTextView),
+            Pair(locationImageView, locationTextView),
+            Pair(muteImageView, muteTextView)
+        )
+
         if(contactInfo.image != null) {
             contactImage.setImageBitmap(contactInfo.image)
         }
         else {
-            contactImage.setImageResource(R.mipmap.ic_launcher)
+            contactImage.setImageResource(R.drawable.contact_default_image)
         }
-
-        // Initialize TextViews with contact information
-        val nameTextView: TextView = view.findViewById(R.id.contact_name)
 
         var displayName: String? = "${contactInfo.firstName ?: ""} ${contactInfo.lastName ?: ""}"
         if(contactInfo.firstName.isNullOrBlank() && contactInfo.lastName.isNullOrBlank()) displayName = contactInfo.number
         nameTextView.text = displayName
 
-        val numberTextView: TextView = view.findViewById(R.id.contact_phone_number)
         numberTextView.text = contactInfo.number
 
         // Setup End Call button
-        val endCallButton: Button = view.findViewById(R.id.button3)
         endCallButton.setOnClickListener {
             (activity as? ContactsMainActivity)?.apply {
                 replaceFragment(ContactMainFragment())
@@ -49,6 +77,17 @@ class ContactCallScreenFragment: Fragment(){
             }
         }
 
-        return view
+        setupTTSForEverything()
+    }
+
+    private fun setupTTSForEverything() {
+        setupTTS(nameTextView, nameTextView.text)
+        setupTTS(numberTextView, numberTextView.text)
+        setupTTS(endCallButton, endCallButton.text)
+
+        for (action in actions) {
+            setupTTS(action.first, action.second.text)
+            setupTTS(action.second, action.second.text)
+        }
     }
 }

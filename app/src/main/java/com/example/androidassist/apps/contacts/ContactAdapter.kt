@@ -39,7 +39,7 @@ class ContactAdapter(private val items: MutableList<ContactInfo>, private val re
             holder.contactImage.setImageBitmap(contact.image)
         }
         else {
-            holder.contactImage.setImageResource(R.mipmap.ic_launcher)
+            holder.contactImage.setImageResource(R.drawable.contact_default_image)
         }
 
         holder.setupClickingContact(contact, ::onContactClicked)

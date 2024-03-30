@@ -105,6 +105,7 @@ class ContactMainFragment : TextToSpeechFragment() {
         )
         contacts?.use { cursor ->
             val idIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.CONTACT_ID)
+            val displayNameIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)
             val numberIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)
             val photoUriIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.PHOTO_URI)
 
@@ -115,11 +116,11 @@ class ContactMainFragment : TextToSpeechFragment() {
 
                 val id = cursor.getString(idIndex)
 
-                val firstAndLastName = getContactFirstAndLastName(id)
-                val firstName: String? = firstAndLastName.first
-                val lastName: String? = firstAndLastName.second
+                val displayName = cursor.getString(displayNameIndex)
+                val firstName: String = displayName.substringBeforeLast(" ")
+                val lastName: String = displayName.substringAfterLast(" ", "")
 
-                val number = cursor.getString(numberIndex)
+                val number = cleanPhoneNumber(cursor.getString(numberIndex))
 
                 val photoUriString = cursor.getString(photoUriIndex)
                 val photoUri = photoUriString?.let { Uri.parse(it) }
@@ -136,26 +137,9 @@ class ContactMainFragment : TextToSpeechFragment() {
         return contactList.distinctBy { it.id }.toMutableList()
     }
 
-    private fun getContactFirstAndLastName(id: String): Pair<String?, String?> {
-        val contactCursor: Cursor? = activity?.contentResolver?.query(
-            ContactsContract.Data.CONTENT_URI,
-            null,
-            ContactsContract.CommonDataKinds.StructuredName.CONTACT_ID + " = ?",
-            arrayOf(id),
-            null
-        )
-
-        contactCursor?.use {
-            val firstNameIndex = contactCursor.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME)
-            val lastNameIndex = contactCursor.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME)
-            if (contactCursor.moveToFirst()) {
-                val firstName = contactCursor.getString(firstNameIndex)
-                val lastName = contactCursor.getString(lastNameIndex)
-                return Pair(firstName, lastName)
-            }
-        }
-
-        return Pair(null, null)
+    fun cleanPhoneNumber(phoneNumber: String): String {
+        // Remove brackets and dashes using String.replace() method
+        return phoneNumber.replace("[()\\s-]".toRegex(), "")
     }
 
     private fun loadContactPhoto(photoUri: Uri?): Bitmap? {

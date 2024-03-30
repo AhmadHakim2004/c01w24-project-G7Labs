@@ -28,25 +28,28 @@
     </RelativeLayout>
 
     <!-- RecyclerView for displaying contacts -->
+
+    <!-- Emergency Call Button -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/contact_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/header"
-        android:layout_marginTop="8dp"/>
+        android:layout_above="@+id/emergency_call_button"
+        android:layout_below="@id/header" />
 
-    <!-- Emergency Call Button -->
     <Button
         android:id="@+id/emergency_call_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="@string/emergency_call"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:backgroundTint="@color/red"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:drawableStart="@drawable/ic_launcher_background"
-        android:drawablePadding="10dp"
         android:padding="12dp"
-        android:layout_alignParentBottom="true"/>
+        android:text="@string/emergency_call"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
 </RelativeLayout>
