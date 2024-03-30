@@ -15,7 +15,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import com.example.androidassist.R
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
 import com.example.androidassist.sharedComponents.views.TextToSpeechFragment
@@ -91,7 +90,7 @@ class ContactsEditContactFragment : TextToSpeechFragment() {
         if(contactInfo.image != null) photoImageView.setImageBitmap(contactInfo.image)
 
     }
-
+/*
     private fun updateContact(firstName: String, lastName: String, phoneNumber: String, photoUri: Uri?) {
         val ops = ArrayList<ContentProviderOperation>().apply {
             add(ContentProviderOperation.newUpdate(ContactsContract.Data.CONTENT_URI)
@@ -121,7 +120,57 @@ class ContactsEditContactFragment : TextToSpeechFragment() {
         } catch (e: Exception) {
             // Handle any errors
         }
+    }*/
+    private fun updateContact(firstName: String, lastName: String, phoneNumber: String, photoUri: Uri?) {
+        val ops = ArrayList<ContentProviderOperation>().apply {
+            // Update the name and phone number as before
+        }
+
+        // Check if a photo entry exists and insert or update accordingly
+        val photoIdCursor = requireActivity().contentResolver.query(
+            ContactsContract.Data.CONTENT_URI,
+            arrayOf(ContactsContract.Data._ID),
+            "${ContactsContract.Data.CONTACT_ID} = ? AND ${ContactsContract.Data.MIMETYPE} = ?",
+            arrayOf(contactInfo.id.toString(), ContactsContract.CommonDataKinds.Photo.CONTENT_ITEM_TYPE),
+            null
+        )
+
+        val photoExists = photoIdCursor?.moveToFirst() ?: false
+        photoIdCursor?.close()
+
+        photoUri?.let {
+            val photoStream = requireActivity().contentResolver.openInputStream(photoUri)
+            val photoBytes = photoStream?.readBytes()
+
+            if (photoExists) {
+                // If photo exists, update
+                ops.add(ContentProviderOperation.newUpdate(ContactsContract.Data.CONTENT_URI)
+                    .withSelection("${ContactsContract.Data.CONTACT_ID} = ? AND ${ContactsContract.Data.MIMETYPE} = ?", arrayOf(contactInfo.id.toString(), ContactsContract.CommonDataKinds.Photo.CONTENT_ITEM_TYPE))
+                    .withValue(ContactsContract.CommonDataKinds.Photo.PHOTO, photoBytes)
+                    .build())
+            } else {
+                // If no photo exists, insert
+                ops.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
+                    .withValue(ContactsContract.Data.RAW_CONTACT_ID, contactInfo.id)
+                    .withValue(ContactsContract.Data.IS_SUPER_PRIMARY, 1)
+                    .withValue(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.Photo.CONTENT_ITEM_TYPE)
+                    .withValue(ContactsContract.CommonDataKinds.Photo.PHOTO, photoBytes)
+                    .build())
+            }
+
+            photoStream?.close()
+        }
+
+        try {
+            requireActivity().contentResolver.applyBatch(ContactsContract.AUTHORITY, ops)
+            // Notify the user of success
+            Toast.makeText(requireContext(), "Contact updated", Toast.LENGTH_SHORT).show()
+        } catch (e: Exception) {
+            // Handle any errors
+            Toast.makeText(requireContext(), "Failed to update contact", Toast.LENGTH_SHORT).show()
+        }
     }
+
 
     private fun isNumeric(input: String): Boolean {
         return input.matches(Regex("-?\\d+(\\.\\d+)?"))
