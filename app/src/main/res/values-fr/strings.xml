@@ -44,4 +44,9 @@
     <string name="emergency_call">Appel d &amp;apos;urgence</string>
     <string name="edit_contact">Modifier le contact</string>
     <string name="call_contact">Appeler le contact</string>
+    <string name="emergency_services">Services d &amp;apos;urgence</string>
+    <string name="location">Emplacement</string>
+    <string name="mute">Muet</string>
+    <string name="speaker">Conférencier</string>
+    <string name="end_call">Fin d &amp;apos;appel</string>
 </resources>

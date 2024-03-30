@@ -20,7 +20,7 @@ class ContactsEmergencyFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.call_screen, container, false)
+        return inflater.inflate(R.layout.contacts_call_screen, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

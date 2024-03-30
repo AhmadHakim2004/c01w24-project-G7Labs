@@ -44,4 +44,9 @@
     <string name="emergency_call">مكالمة طارئة</string>
     <string name="edit_contact">تحرير جهة الاتصال</string>
     <string name="call_contact">اتصل بجهة الاتصال</string>
+    <string name="emergency_services">خدمات الطوارئ</string>
+    <string name="location">موقع</string>
+    <string name="mute">صامت</string>
+    <string name="speaker">مكبر الصوت</string>
+    <string name="end_call">إنهاء المكالمة</string>
 </resources>
