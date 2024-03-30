@@ -5,15 +5,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.fragment.app.Fragment
+import android.widget.ImageView
+import android.widget.TextView
 import com.example.androidassist.R
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
 import com.example.androidassist.sharedComponents.utilities.LayoutUtils
+import com.example.androidassist.sharedComponents.views.TextToSpeechFragment
 
-class ContactsEmergencyFragment : Fragment() {
+class ContactsEmergencyFragment : TextToSpeechFragment() {
+    private lateinit var nameTextView: TextView
+    private lateinit var numberTextView: TextView
+    private lateinit var speakerImageView: ImageView
+    private lateinit var speakerTextView: TextView
+    private lateinit var locationImageView: ImageView
+    private lateinit var locationTextView: TextView
+    private lateinit var muteImageView: ImageView
+    private lateinit var muteTextView: TextView
+    private lateinit var endCallButton: Button
 
-
-    private lateinit var endButton: Button
+    private lateinit var actions: List<Pair<ImageView, TextView>>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,20 +36,45 @@ class ContactsEmergencyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        endButton = requireView().findViewById(R.id.button3)
+        nameTextView = view.findViewById(R.id.contact_name)
+        numberTextView = view.findViewById(R.id.contact_phone_number)
+        speakerImageView = view.findViewById(R.id.speakerbutton)
+        speakerTextView = view.findViewById(R.id.speaker_button_text)
+        locationImageView = view.findViewById(R.id.locationbutton)
+        locationTextView = view.findViewById(R.id.location_button_text)
+        muteImageView = view.findViewById(R.id.mutebutton)
+        muteTextView = view.findViewById(R.id.mute_button_text)
+        endCallButton = view.findViewById(R.id.button3)
 
-        endButton.setOnClickListener{
+        actions = listOf(
+            Pair(speakerImageView, speakerTextView),
+            Pair(locationImageView, locationTextView),
+            Pair(muteImageView, muteTextView)
+        )
+
+        endCallButton.setOnClickListener{
             (activity as? ContactsMainActivity)?.apply {
                 replaceFragment(ContactMainFragment())
                 setState(SharedConstants.PageState.CONTACTS)
             }
         }
 
+        setupTTSForEverything()
         setupStyles()
     }
 
-    private fun setupStyles() {
+    private fun setupTTSForEverything() {
+        setupTTS(nameTextView, nameTextView.text)
+        setupTTS(numberTextView, numberTextView.text)
+        setupTTS(endCallButton, endCallButton.text)
 
-        LayoutUtils.setTextSize(endButton, 0.01f)
+        for (action in actions) {
+            setupTTS(action.first, action.second.text)
+            setupTTS(action.second, action.second.text)
+        }
+    }
+
+    private fun setupStyles() {
+        LayoutUtils.setTextSize(endCallButton, 0.01f)
     }
 }
