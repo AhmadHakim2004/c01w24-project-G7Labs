@@ -44,7 +44,7 @@ class MainSelectAppsActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
     private fun initAppGrid() {
         apps = AppsService.getAllApps()
 
-        appsRecyclerViewAdapter = AppsRecyclerViewAdapter(apps)
+        appsRecyclerViewAdapter = AppsRecyclerViewAdapter(this, apps)
         appsRecyclerView.adapter = appsRecyclerViewAdapter
 
         val layoutManager = GridLayoutManager(this, 2)

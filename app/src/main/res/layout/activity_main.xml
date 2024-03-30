@@ -56,8 +56,8 @@
 
     <GridView
         android:id="@+id/appsGridContainer"
-        android:layout_width="399dp"
-        android:layout_height="464dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:backgroundTint="?attr/colorPrimary"
         android:numColumns="2"

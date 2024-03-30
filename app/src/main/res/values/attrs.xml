@@ -2,5 +2,6 @@
 <resources>
     <attr name="ThemeName" />
     <attr name="backButtonColor" format="reference" />
+    <attr name="colorPrimary2" format="color" />
 
 </resources>

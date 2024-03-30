@@ -2,11 +2,13 @@ package com.example.androidassist
 
 import android.os.Looper
 import android.speech.tts.TextToSpeech
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidassist.sharedComponents.AndroidAssistApplication
@@ -16,7 +18,7 @@ import com.example.androidassist.sharedComponents.utilities.SharedPreferenceUtil
 import com.example.androidassist.sharedComponents.utilities.TextToSpeechUtils
 import java.util.Locale
 
-class AppsRecyclerViewAdapter(private val items: MutableList<InstalledApp>) :
+class AppsRecyclerViewAdapter(private val activity: AppCompatActivity, private val items: MutableList<InstalledApp>) :
     RecyclerView.Adapter<AppsRecyclerViewAdapter.ViewHolder>(), TextToSpeech.OnInitListener {
     val context = AndroidAssistApplication.getAppContext()
     var selectedApps: MutableList<String> = SharedPreferenceUtils.getStringSetFromDefaultSharedPrefFile(
@@ -49,6 +51,18 @@ class AppsRecyclerViewAdapter(private val items: MutableList<InstalledApp>) :
         if (appItem.selected) {
             holder.appBackground.setBackgroundColor(context.resources.getColor(R.color.teal_200, context.theme))
             holder.appName.setBackgroundColor(context.resources.getColor(R.color.teal_200, context.theme))
+        }
+        else {
+            val outValue = TypedValue()
+            activity.theme.resolveAttribute(R.attr.ThemeName, outValue, true)
+
+            if (outValue.string.equals("LightTheme")){
+                holder.appBackground.setBackgroundColor(activity.resources.getColor(R.color.white, activity.theme))
+                holder.appName.setBackgroundColor(activity.resources.getColor(R.color.white, activity.theme))
+            } else{
+                holder.appBackground.setBackgroundColor(activity.resources.getColor(R.color.black, activity.theme))
+                holder.appName.setBackgroundColor(activity.resources.getColor(R.color.black, activity.theme))
+            }
         }
     }
 
