@@ -31,7 +31,7 @@ class ContactsEmergencyFragment : Fragment() {
         endButton.setOnClickListener{
             (activity as? ContactsMainActivity)?.apply {
                 replaceFragment(ContactMainFragment())
-                setState(SharedConstants.AppEnum.CONTACTS)
+                setState(SharedConstants.PageState.CONTACTS)
             }
         }
 

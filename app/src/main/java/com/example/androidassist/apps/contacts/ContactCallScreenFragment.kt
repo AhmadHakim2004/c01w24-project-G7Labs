@@ -45,7 +45,7 @@ class ContactCallScreenFragment: Fragment(){
         endCallButton.setOnClickListener {
             (activity as? ContactsMainActivity)?.apply {
                 replaceFragment(ContactMainFragment())
-                setState(SharedConstants.AppEnum.CONTACTS)
+                setState(SharedConstants.PageState.CONTACTS)
             }
         }
 
