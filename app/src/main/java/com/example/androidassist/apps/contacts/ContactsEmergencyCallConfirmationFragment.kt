@@ -10,8 +10,9 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.androidassist.R
 import com.example.androidassist.sharedComponents.utilities.LayoutUtils
+import com.example.androidassist.sharedComponents.views.TextToSpeechFragment
 
-class ContactsEmergencyCallConfirmationFragment : Fragment() {
+class ContactsEmergencyCallConfirmationFragment : TextToSpeechFragment() {
     private lateinit var constraintLayout: ConstraintLayout
 
     private lateinit var confirmationText: TextView
@@ -32,6 +33,8 @@ class ContactsEmergencyCallConfirmationFragment : Fragment() {
         confirmationText = requireView().findViewById(R.id.emergency_call_confirmation_text)
         callButton = requireView().findViewById(R.id.call911)
 
+        setupTTS(confirmationText, confirmationText.text)
+        setupTTS(callButton, callButton.text)
         setupStyles()
     }
 

@@ -1,6 +1,7 @@
 package com.example.androidassist.apps.contacts
 
 import android.os.Bundle
+import android.telephony.PhoneNumberUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +12,10 @@ import androidx.fragment.app.Fragment
 import com.example.androidassist.R
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
 import com.example.androidassist.sharedComponents.utilities.LayoutUtils
+import com.example.androidassist.sharedComponents.views.TextToSpeechFragment
+import java.util.Locale
 
-class ContactsSingleContactFragment : Fragment() {
+class ContactsSingleContactFragment : TextToSpeechFragment() {
     private lateinit var contactInfo: ContactInfo
 
     private lateinit var contactImage: ImageView
@@ -51,13 +54,25 @@ class ContactsSingleContactFragment : Fragment() {
         contactNameText.text = displayName
         contactPhoneNumberText.text = contactInfo.number
 
-        setupStyles()
         editContactBtn.setOnClickListener {
             (activity as? ContactsMainActivity)?.apply {
                 replaceFragment(ContactsEditContactFragment())
                 setState(SharedConstants.PageState.CEDITCONTACTS)
             }
         }
+
+        setupTTSForFields()
+        setupStyles()
+    }
+
+    private fun setupTTSForFields() {
+        setupTTS(contactNameText, contactNameText.text)
+
+        val formattedNumber = PhoneNumberUtils.formatNumber(contactPhoneNumberText.text.toString(), Locale.CANADA.country)
+        setupTTS(contactPhoneNumberText, formattedNumber ?: contactPhoneNumberText.text)
+
+        setupTTS(editContactBtn, editContactBtn.text)
+        setupTTS(callContactBtn, callContactBtn.text)
     }
 
     private fun setupStyles() {

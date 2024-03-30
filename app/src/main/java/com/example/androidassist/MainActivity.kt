@@ -9,12 +9,14 @@ import android.os.BatteryManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.Button
 import android.widget.GridView
 import android.widget.ProgressBar
+import android.widget.TextClock
 import android.widget.TextView
 import com.example.androidassist.apps.settings.SettingsMainActivity
 import com.example.androidassist.apps.camera.CameraMainActivity
@@ -26,18 +28,23 @@ import com.example.androidassist.sharedComponents.dataClasses.InstalledApp
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
 import com.example.androidassist.sharedComponents.utilities.LayoutUtils
 import com.example.androidassist.sharedComponents.utilities.SharedPreferenceUtils
+import com.example.androidassist.sharedComponents.utilities.TextToSpeechUtils
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.util.Locale
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private lateinit var appsGridContainer: GridView
     private lateinit var appsGridAdapter: GridAdapter
     private lateinit var apps: MutableList<AdapterItem>
+    private lateinit var textClock: TextClock
     private var dateDisplay: TextView? = null
     private lateinit var batteryDisplay: ProgressBar
     private var batteryProgressStatus = 0
     private lateinit var addAppsBtn: Button
     private lateinit var mContext: Context
+
+    private lateinit var textToSpeech: TextToSpeech
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val theme = SharedPreferenceUtils.getIntFromDefaultSharedPrefFile(applicationContext, "theme", R.style.Theme_AndroidAssist)
@@ -58,14 +65,13 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
+        textToSpeech = TextToSpeech(this, this)
+
         initAppGrid()
         initTimeAndDate()
         initBattery()
+        initOnClickListeners()
 
-        addAppsBtn = findViewById(R.id.add_apps)
-        addAppsBtn.setOnClickListener {
-            startActivity(Intent(this, MainSelectAppsActivity::class.java))
-        }
         setStyles()
     }
 
@@ -92,7 +98,9 @@ class MainActivity : AppCompatActivity() {
 
         appsGridAdapter = GridAdapter(this, apps)
         appsGridContainer.adapter = appsGridAdapter
+    }
 
+    private fun initOnClickListeners() {
         appsGridContainer.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
             val item = apps[position]
             if(item is CustomApp) {
@@ -108,6 +116,13 @@ class MainActivity : AppCompatActivity() {
                 startActivity(item.intent)
             }
         }
+        TextToSpeechUtils.setupTTS(appsGridContainer, apps, textToSpeech)
+
+        addAppsBtn = findViewById(R.id.add_apps)
+        addAppsBtn.setOnClickListener {
+            startActivity(Intent(this, MainSelectAppsActivity::class.java))
+        }
+        TextToSpeechUtils.setupTTS(addAppsBtn, textToSpeech, addAppsBtn.text)
     }
 
     fun initTimeAndDate() {
@@ -117,6 +132,7 @@ class MainActivity : AppCompatActivity() {
         dateDisplay?.let {
             it.text = currentDate
         }
+        TextToSpeechUtils.setupTTS(dateDisplay!!, textToSpeech, dateDisplay!!.text)
     }
 
     private fun initBattery() {
@@ -158,5 +174,16 @@ class MainActivity : AppCompatActivity() {
         LayoutUtils.setMargins(addAppsBtn, 0.01f, 0.01f, 0.01f, 0.01f)
         LayoutUtils.setPadding(addAppsBtn, 0f, 0.03f, 0f, 0.03f)
         LayoutUtils.setTextSize(addAppsBtn, 0.01f)
+    }
+
+    override fun onInit(status: Int) {
+        if (status == TextToSpeech.SUCCESS) {
+            val lang = resources.configuration.locales.get(0)
+            val result = textToSpeech.setLanguage(lang)
+
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                textToSpeech.setLanguage(Locale.CANADA)
+            }
+        }
     }
 }
