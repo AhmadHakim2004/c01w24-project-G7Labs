@@ -4,12 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainSelectAppsActivity">
+    tools:context=".MainSelectAppsActivity"
+    android:backgroundTint="?attr/colorPrimary"
+    android:background="?attr/colorPrimary">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/appsRecyclerContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="?attr/colorPrimary"
         android:backgroundTint="?attr/colorPrimary"
         android:overScrollMode="never"
         android:scrollbars="none"
@@ -20,31 +23,31 @@
 
     <Button
         android:id="@+id/apply_apps_changes"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="@string/apply_changes"
+        android:layout_width="146dp"
+        android:layout_height="83dp"
         android:backgroundTint="@color/green_confirmation"
+        android:text="@string/apply_changes"
         android:textColor="?attr/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/discard_apps_changes"
+        app:layout_constraintHeight_percent="0.1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appsRecyclerContainer"
-        app:layout_constraintEnd_toStartOf="@id/discard_apps_changes"
-        app:layout_constraintWidth_percent="0.3"
-        app:layout_constraintHeight_percent="0.1"/>
+        app:layout_constraintWidth_percent="0.3" />
 
     <Button
         android:id="@+id/discard_apps_changes"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="@string/discard_changes"
+        android:layout_width="146dp"
+        android:layout_height="83dp"
         android:backgroundTint="@color/red"
+        android:text="@string/discard_changes"
         android:textColor="?attr/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appsRecyclerContainer"
+        app:layout_constraintHeight_percent="0.1"
         app:layout_constraintStart_toEndOf="@id/apply_apps_changes"
-        app:layout_constraintWidth_percent="0.3"
-        app:layout_constraintHeight_percent="0.1"/>
+        app:layout_constraintTop_toBottomOf="@+id/appsRecyclerContainer"
+        app:layout_constraintWidth_percent="0.3" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
