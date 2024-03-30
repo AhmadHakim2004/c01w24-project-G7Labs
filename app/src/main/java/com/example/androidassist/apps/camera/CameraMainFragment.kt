@@ -70,13 +70,12 @@ class CameraMainFragment : TextToSpeechFragment() {
         }
     }
 
-    // @Todo Get Apps From DB
     private fun getActionItems(): List<ActionItem> {
         return listOf(
             ActionItem("1", R.string.c_photo, R.mipmap.camera_rear, SharedConstants.PageState.CPHOTO),
             ActionItem("2", R.string.c_photo_selfie, R.mipmap.camera_front, SharedConstants.PageState.CPHOTOSELFIE),
             ActionItem("3", R.string.c_video, R.mipmap.video_rear, SharedConstants.PageState.CVIDEO),
-            ActionItem("4", R.string.c_video_selfie, R.mipmap.video_front, SharedConstants.PageState.CVIDEO),
+            ActionItem("4", R.string.c_video_selfie, R.mipmap.video_front, SharedConstants.PageState.CVIDEOSELFIE),
         )
     }
 }
