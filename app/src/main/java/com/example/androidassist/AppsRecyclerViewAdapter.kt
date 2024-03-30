@@ -48,6 +48,7 @@ class AppsRecyclerViewAdapter(private val items: MutableList<InstalledApp>) :
 
         if (appItem.selected) {
             holder.appBackground.setBackgroundColor(context.resources.getColor(R.color.teal_200, context.theme))
+            holder.appName.setBackgroundColor(context.resources.getColor(R.color.teal_200, context.theme))
         }
     }
 
