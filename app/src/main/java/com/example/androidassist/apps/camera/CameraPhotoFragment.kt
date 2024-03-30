@@ -14,11 +14,12 @@ import androidx.fragment.app.Fragment
 import androidx.camera.core.ImageCapture
 import androidx.camera.view.PreviewView
 import com.example.androidassist.R
+import com.example.androidassist.sharedComponents.views.TextToSpeechFragment
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicReference
 
-class CameraPhotoFragment : Fragment() {
+class CameraPhotoFragment : TextToSpeechFragment() {
 
     private var imageCaptureRef: AtomicReference<ImageCapture> = AtomicReference()
     private lateinit var cameraExecutor: ExecutorService
@@ -52,9 +53,12 @@ class CameraPhotoFragment : Fragment() {
 
         // set on click listener for the button of capture photo
         // it calls a method which is implemented below
-       view.findViewById<Button>(R.id.camera_capture_button).setOnClickListener {
+        val takePhotoButton: Button = view.findViewById(R.id.camera_capture_button)
+       takePhotoButton.setOnClickListener {
            CameraService.takePhoto(imageCaptureRef, cameraExecutor, requireActivity())
         }
+
+        setupTTS(takePhotoButton, takePhotoButton.text)
     }
 
     override fun onDestroyView() {

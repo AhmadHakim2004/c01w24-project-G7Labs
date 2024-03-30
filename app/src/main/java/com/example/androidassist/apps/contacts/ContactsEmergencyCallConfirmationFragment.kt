@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.fragment.app.Fragment
 import com.example.androidassist.R
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
 import com.example.androidassist.sharedComponents.utilities.LayoutUtils
+import com.example.androidassist.sharedComponents.views.TextToSpeechFragment
 
-class ContactsEmergencyCallConfirmationFragment : Fragment() {
+class ContactsEmergencyCallConfirmationFragment : TextToSpeechFragment() {
     private lateinit var constraintLayout: ConstraintLayout
 
     private lateinit var confirmationText: TextView
@@ -36,10 +36,12 @@ class ContactsEmergencyCallConfirmationFragment : Fragment() {
         callButton.setOnClickListener{
             (activity as? ContactsMainActivity)?.apply {
                 replaceFragment(ContactsEmergencyFragment())
-                setState(SharedConstants.AppEnum.CEMERGENCY)
+                setState(SharedConstants.PageState.CEMERGENCY)
             }
         }
 
+        setupTTS(confirmationText, confirmationText.text)
+        setupTTS(callButton, callButton.text)
         setupStyles()
     }
 

@@ -21,13 +21,14 @@ import androidx.camera.view.PreviewView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.androidassist.R
+import com.example.androidassist.sharedComponents.views.TextToSpeechFragment
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-class CameraVideoSelfieFragment : Fragment() {
+class CameraVideoSelfieFragment : TextToSpeechFragment() {
     private var imageCapture: ImageCapture? = null
     private lateinit var previewViewV: PreviewView
 
@@ -48,6 +49,9 @@ class CameraVideoSelfieFragment : Fragment() {
         } else {
             requestCameraPermissions()
         }
+
+        val takeVideoSelfieButton: Button = view.findViewById(R.id.camera_capture_button)
+        setupTTS(takeVideoSelfieButton, takeVideoSelfieButton.text)
     }
 
 

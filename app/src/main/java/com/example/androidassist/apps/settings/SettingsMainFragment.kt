@@ -16,15 +16,15 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.GridLayout
 import android.widget.TextView
-import androidx.fragment.app.Fragment
 import com.example.androidassist.R
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
 import com.example.androidassist.sharedComponents.utilities.LayoutUtils
 import com.example.androidassist.sharedComponents.utilities.LocaleUtils
 import com.example.androidassist.sharedComponents.utilities.SharedPreferenceUtils
+import com.example.androidassist.sharedComponents.views.TextToSpeechFragment
 
 
-class SettingsMainFragment : Fragment() {
+class SettingsMainFragment : TextToSpeechFragment() {
     private lateinit var settingsButtonHolder: GridLayout
     private lateinit var languageButton: Button
     private lateinit var volumeButton: Button
@@ -61,43 +61,8 @@ class SettingsMainFragment : Fragment() {
             blindnessButton, textToSpeechButton
         )
 
-        // Set OnClickListener to the button
-        languageButton.setOnClickListener {
-            val settingsActivity = activity as SettingsMainActivity
-            settingsActivity.replaceFragment(SettingsLanguageFragment())
-            settingsActivity.setState(SharedConstants.PageState.SLANGUAGE)
-        }
-
-        // Set OnClickListener to the button
-        textSizeButton.setOnClickListener {
-            val settingsActivity = activity as SettingsMainActivity
-            settingsActivity.replaceFragment(SettingsTextSizeFragment())
-            settingsActivity.setState(SharedConstants.PageState.STEXT)
-        }
-
-        blindnessButton.setOnClickListener {
-                val outValue = TypedValue()
-                requireActivity().theme.resolveAttribute(R.attr.ThemeName, outValue, true)
-
-                if (outValue.string.equals("LightTheme")){
-                    SharedPreferenceUtils.addIntToDefaultSharedPrefFile(requireContext(), "theme", R.style.Theme_AndroidAssistDark)
-
-                } else{
-                    SharedPreferenceUtils.addIntToDefaultSharedPrefFile(requireContext(), "theme", R.style.Theme_AndroidAssist)
-                }
-                requireActivity().recreate()
-            }
-
-        // Set OnClickListener to the volume button
-        volumeButton.setOnClickListener {
-            showVolumeDialog()
-        }
-
-        // Set OnClickListener to the brightness button
-        brightnessButton.setOnClickListener {
-            showBrightnessDialog()
-        }
-
+        initOnClickListeners()
+        initOnLongClickListener()
         setupStyles()
     }
 
@@ -191,6 +156,57 @@ class SettingsMainFragment : Fragment() {
             val intent = Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS)
             intent.setData(Uri.parse("package:" + requireContext().packageName))
             startActivity(intent)
+        }
+    }
+
+    private fun initOnClickListeners() {
+        // Set OnClickListener to the button
+        languageButton.setOnClickListener {
+            val settingsActivity = activity as SettingsMainActivity
+            settingsActivity.replaceFragment(SettingsLanguageFragment())
+            settingsActivity.setState(SharedConstants.PageState.SLANGUAGE)
+        }
+
+        // Set OnClickListener to the button
+        textSizeButton.setOnClickListener {
+            val settingsActivity = activity as SettingsMainActivity
+            settingsActivity.replaceFragment(SettingsTextSizeFragment())
+            settingsActivity.setState(SharedConstants.PageState.STEXT)
+        }
+
+        blindnessButton.setOnClickListener {
+            val outValue = TypedValue()
+            requireActivity().theme.resolveAttribute(R.attr.ThemeName, outValue, true)
+
+            if (outValue.string.equals("LightTheme")){
+                SharedPreferenceUtils.addIntToDefaultSharedPrefFile(requireContext(), "theme", R.style.Theme_AndroidAssistDark)
+
+            } else{
+                SharedPreferenceUtils.addIntToDefaultSharedPrefFile(requireContext(), "theme", R.style.Theme_AndroidAssist)
+            }
+            requireActivity().recreate()
+        }
+
+        // Set OnClickListener to the volume button
+        volumeButton.setOnClickListener {
+            showVolumeDialog()
+        }
+
+        // Set OnClickListener to the brightness button
+        brightnessButton.setOnClickListener {
+            showBrightnessDialog()
+        }
+
+        textToSpeechButton.setOnClickListener {
+            val isTextToSpeechOn = SharedPreferenceUtils.getIntFromDefaultSharedPrefFile(requireContext(), "TTS", 0)
+
+            SharedPreferenceUtils.addIntToDefaultSharedPrefFile(requireContext(), "TTS", isTextToSpeechOn xor 1)
+        }
+    }
+
+    private fun initOnLongClickListener() {
+        for (button in buttons) {
+            setupTTS(button, button.text)
         }
     }
 

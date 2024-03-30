@@ -1,7 +1,6 @@
 package com.example.androidassist.apps.camera
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +10,10 @@ import com.example.androidassist.GridAdapter
 import com.example.androidassist.R
 import com.example.androidassist.sharedComponents.dataClasses.ActionItem
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
+import com.example.androidassist.sharedComponents.utilities.TextToSpeechUtils
+import com.example.androidassist.sharedComponents.views.TextToSpeechFragment
 
-class CameraMainFragment : Fragment() {
+class CameraMainFragment : TextToSpeechFragment() {
     // TODO: Rename and change types of parameters
     private lateinit var actionItemsContainer: GridView
     private lateinit var actionItemsAdapter: GridAdapter
@@ -29,6 +30,8 @@ class CameraMainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAppGrid()
+        setupOnClickListeners()
+        TextToSpeechUtils.setupTTS(actionItemsContainer, actionItems, textToSpeech)
     }
 
     private fun initAppGrid() {
@@ -37,6 +40,9 @@ class CameraMainFragment : Fragment() {
         actionItemsAdapter = GridAdapter(requireContext(), actionItems)
         actionItemsContainer.adapter = actionItemsAdapter
 
+    }
+
+    private fun setupOnClickListeners() {
         actionItemsContainer.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
             when(actionItems[position].pageState) {
                 SharedConstants.PageState.CPHOTO -> {

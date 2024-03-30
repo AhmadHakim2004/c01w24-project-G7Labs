@@ -1,5 +1,6 @@
 package com.example.androidassist.apps.contacts
 
+import android.speech.tts.TextToSpeech
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +12,13 @@ import com.example.androidassist.R
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
 import com.example.androidassist.sharedComponents.AndroidAssistApplication
 import com.example.androidassist.sharedComponents.utilities.SharedPreferenceUtils
+import com.example.androidassist.sharedComponents.utilities.TextToSpeechUtils
+import java.util.Locale
 
 class ContactAdapter(private val items: MutableList<ContactInfo>, private val recyclerView: RecyclerView, private val activity: ContactsMainActivity) :
-    RecyclerView.Adapter<ContactAdapter.ViewHolder>() {
+    RecyclerView.Adapter<ContactAdapter.ViewHolder>(), TextToSpeech.OnInitListener {
+
+    private val textToSpeech: TextToSpeech = TextToSpeech(AndroidAssistApplication.getAppContext(), this)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.contacts_list_item_view, parent, false)
@@ -39,6 +44,7 @@ class ContactAdapter(private val items: MutableList<ContactInfo>, private val re
 
         holder.setupClickingContact(contact, ::onContactClicked)
         holder.setupHeartButton(contact, ::onHeartButtonClicked)
+        holder.setupTTC(textToSpeech)
     }
 
     override fun getItemCount(): Int = items.size
@@ -83,6 +89,21 @@ class ContactAdapter(private val items: MutableList<ContactInfo>, private val re
         fun setupClickingContact(contact: ContactInfo, clickContact: (ContactInfo)-> Unit) {
             itemView.setOnClickListener {
                 clickContact(contact)
+            }
+        }
+
+        fun setupTTC(textToSpeech: TextToSpeech) {
+            TextToSpeechUtils.setupTTS(itemView, textToSpeech, contactName.text)
+        }
+    }
+
+    override fun onInit(status: Int) {
+        if (status == TextToSpeech.SUCCESS) {
+            val lang = AndroidAssistApplication.getAppContext().resources.configuration.locales.get(0)
+            val result = textToSpeech.setLanguage(lang)
+
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                textToSpeech.setLanguage(Locale.CANADA)
             }
         }
     }

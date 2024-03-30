@@ -21,8 +21,9 @@ import com.example.androidassist.R
 import com.example.androidassist.sharedComponents.dataClasses.SharedConstants
 import com.example.androidassist.sharedComponents.AndroidAssistApplication
 import com.example.androidassist.sharedComponents.utilities.SharedPreferenceUtils
+import com.example.androidassist.sharedComponents.views.TextToSpeechFragment
 
-class ContactMainFragment : Fragment() {
+class ContactMainFragment : TextToSpeechFragment() {
     private lateinit var contacts: MutableList<ContactInfo>
     private var contactAdapter: ContactAdapter? = null
     private lateinit var favouredContacts: Set<String>
@@ -70,6 +71,9 @@ class ContactMainFragment : Fragment() {
             contactsActivity.replaceFragment(ContactsEmergencyCallConfirmationFragment())
             contactsActivity.setState(SharedConstants.PageState.CEMERGENCYCONFIRM)
         }
+
+        setupTTS(addButton, addButton.text)
+        setupTTS(emergencyButton, emergencyButton.text)
     }
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
