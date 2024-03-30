@@ -90,7 +90,7 @@ class ContactsEditContactFragment : TextToSpeechFragment() {
         if(contactInfo.image != null) photoImageView.setImageBitmap(contactInfo.image)
 
     }
-/*
+
     private fun updateContact(firstName: String, lastName: String, phoneNumber: String, photoUri: Uri?) {
         val ops = ArrayList<ContentProviderOperation>().apply {
             add(ContentProviderOperation.newUpdate(ContactsContract.Data.CONTENT_URI)
@@ -103,27 +103,6 @@ class ContactsEditContactFragment : TextToSpeechFragment() {
                 .withSelection("${ContactsContract.Data.CONTACT_ID}=? AND ${ContactsContract.Data.MIMETYPE}=?", arrayOf(contactInfo.id, ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE))
                 .withValue(ContactsContract.CommonDataKinds.Phone.NUMBER, phoneNumber)
                 .build())
-
-            photoUri?.let {
-                val photoStream = requireActivity().contentResolver.openInputStream(photoUri) // Ensure to handle nullability and exceptions here
-                val photoBytes = photoStream?.readBytes()
-                add(ContentProviderOperation.newUpdate(ContactsContract.Data.CONTENT_URI)
-                    .withSelection("${ContactsContract.Data.CONTACT_ID}=? AND ${ContactsContract.Data.MIMETYPE}=?", arrayOf(contactInfo.id, ContactsContract.CommonDataKinds.Photo.CONTENT_ITEM_TYPE))
-                    .withValue(ContactsContract.CommonDataKinds.Photo.PHOTO, photoBytes)
-                    .build())
-            }
-        }
-
-        try {
-            requireActivity().contentResolver.applyBatch(ContactsContract.AUTHORITY, ops)
-            // Notify the user of success
-        } catch (e: Exception) {
-            // Handle any errors
-        }
-    }*/
-    private fun updateContact(firstName: String, lastName: String, phoneNumber: String, photoUri: Uri?) {
-        val ops = ArrayList<ContentProviderOperation>().apply {
-            // Update the name and phone number as before
         }
 
         // Check if a photo entry exists and insert or update accordingly
