@@ -58,6 +58,13 @@ class ContactsSingleContactFragment : Fragment() {
                 setState(SharedConstants.AppEnum.CEDITCONTACTS)
             }
         }
+
+        callContactBtn.setOnClickListener {
+            (activity as? ContactsMainActivity)?.apply {
+                replaceFragment(ContactCallScreenFragment())
+                setState(SharedConstants.AppEnum.CCALLSCREEN)
+            }
+        }
     }
 
     private fun setupStyles() {
